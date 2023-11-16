@@ -1,0 +1,25 @@
+{
+  "name": "gsl",
+  "displayName": "Garden Shading Language",
+  "description": "Custom GLSL dialect",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "gsl",
+      "aliases": ["GSL", "gsl"],
+      "extensions": [".gsl",".vert",".frag",".comp",".rgen",".rahit",".rchit",".rmiss",".rint",".rcall",".mesh",".task"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "gsl",
+      "scopeName": "source.gsl",
+      "path": "./syntaxes/gsl.tmLanguage.json"
+    }]
+  }
+}

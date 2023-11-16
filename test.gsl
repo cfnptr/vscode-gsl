@@ -1,0 +1,39 @@
+// GSL testing file
+
+/*
+ * Comment block test
+ */
+
+#include "shaders/common.gsl"
+
+pipelineState
+{
+	depthTesting = on;
+	depthWriting = off;
+}
+
+in float3 v.position;
+out float3 f.texCoords;
+
+uniform isampler2D
+{
+	filter = linear;
+} someSampler;
+
+float adder(int a, int b)
+{
+	return a + b;
+}
+
+void main()
+{
+	const float2 someVector = float2(1.0);
+	float3 sample = texture(someSampler);
+
+	if (sample.r > 0.5)
+		discard;
+
+	gl.position = float3(0.0);
+}
+
+// TODO: possibly replace vec2, vec3... inside compilation errors

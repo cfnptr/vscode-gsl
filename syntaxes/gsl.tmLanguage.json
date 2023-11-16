@@ -1,0 +1,135 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "GSL",
+	"patterns": [
+		{ "include": "#comments" },
+		{ "include": "#preprocessors" },
+		{ "include": "#keywords" },
+		{ "include": "#operators" },
+		{ "include": "#strings" },
+		{ "include": "#names" }
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.gsl",
+					"match": "//.*$",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.gsl"
+						}
+					}
+				},
+				{
+					"name": "comment.block.gsl",
+					"begin": "/\\*",
+					"end": "\\*/",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.gsl"
+						}
+					}
+				}
+			]
+		},
+		"preprocessors": {
+			"patterns": [
+				{
+					"name": "keyword.control.preprocessor.gsl",
+					"match": "^\\s*(#\\s*(include|define|undef|if|else|elif|endif|ifdef|ifndef|pragma|line|feature|variantCount|attributeOffset|subpassOffset))\\b"
+				},
+				{
+					"name": "keyword.control.preprocessor.gsl",
+					"match": "^\\s*(#\\s*error)(\\s+[^\\n]+)?(?=\\n)"
+				},
+				{
+					"name": "invalid.illegal.gsl",
+					"match": "^\\s*(#\\s*(version|extension))\\b"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.gsl",
+					"match": "\\b(if|else|while|do|for|break|continue|switch|case|return|discard)\\b"
+				},
+				{
+					"name": "storage.type.gsl",
+					"match": "\\b(void|struct|int32|uint32|float|bool|int[2-4]|uint[2-4]|bool[2-4]|float(2|3|4|2x2|3x3|4x4|2x3|3x2|2x4|4x2|3x4|4x3)|sampler(1D|2D|3D|Cube|1DArray|2DArray|CubeArray|1DShadow|2DShadow|CubeShadow|1DArrayShadow|2DArrayShadow|CubeArrayShadow)|(u|i)sampler(1D|2D|3D|Cube|1DArray|2DArray|CubeArray)|image(1D|2D|3D|Cube|1DArray|2DArray|CubeArray|1DShadow|2DShadow|CubeShadow|1DArrayShadow|2DArrayShadow|CubeArrayShadow)|(u|i)image(1D|2D|3D|Cube|1DArray|2DArray|CubeArray)|subpassInput|pipelineState|pushConstants)\\b"
+				},
+				{
+					"name": "storage.modifier.gsl",
+					"match": "\\b(const|uniform|buffer|in|out|inout|flat|noperspective|smooth|centroid|invariant|shared|coherent|volatile|restrict|readonly|writeonly|depthLess|depthGreater|lowp|mediump|highp|localSize|f(32|64|16rgba|32rgba|16r|32r|16rg|32rg)|i(8|16|32|64|8rgba|16rgba|32rgba|8rg|16rg|32rg|8r|16r|32r)|u(8|16|32|64|8rgba|16rgba|32rgba|8rg|16rg|32rg|8r|16r|32r)|set[0-7])\\b"
+				},
+				{
+					"name": "constant.language.gsl",
+					"match": "\\b(false|true)\\b"
+				},
+				{
+					"name": "invalid.illegal.gsl",
+					"match": "\\b(int|uint|vec[2-4]|(i|u|b)vec[2-4]|mat(2|3|4|2x2|3x3|4x4|2x3|3x2|2x4|4x2|3x4|4x3)|layout)\\b"
+				}
+			]
+		},
+		"operators": {
+			"patterns": [
+				{
+					"name": "keyword.operator.assignment.augmented.gsl",
+					"match": "\\+\\=|-\\=|\\*\\=|/\\=|%\\=|&\\=|\\|\\=|\\^\\=|>>\\=|<<\\="
+				},
+				{
+					"name": "keyword.operator.arithmetic.gsl",
+					"match": "\\+|\\-|\\*|/|%|<<|>>|&&|&|\\|\\||\\||\\^|~|!"
+				},
+				{
+					"name": "keyword.operator.comparison.gsl",
+					"match": "<\\=|>\\=|\\=\\=|<|>|\\!\\="
+				},
+				{
+					"name": "keyword.operator.assignment.gsl",
+					"match": "\\="
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.gsl",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [{
+				"name": "constant.character.escape.gsl",
+				"match": "\\\\."
+			}]
+		},
+		"names": {
+			"patterns": [
+				{
+					"name": "invalid.illegal.gsl",
+					"match": "\\bgl_[a-zA-Z0-9_]+\\b"
+				},
+				{
+					"name": "entity.name.function.gsl",
+					"match": "\\b[a-z]\\w+(?=\\()"
+				},
+				{
+					"name": "constant.numeric.gsl",
+					"match": "\\b((0(x|X)[0-9a-fA-F]*(\\.[0-9a-fA-F]+p-?\\d+)?)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)([fF]|(l{1,2}|L{1,2})[uU]?|[uU](l{0,2}|L{0,2})|[lL][fF])?\\b"
+				},
+				{
+					"name": "constant.language.gsl",
+					"match": "\\b[A-Z0-9_]+\\b"
+				},
+				{
+					"name": "entity.name.class.gsl",
+					"match": "\\b[A-Z][a-zA-Z0-9_]*\\b"
+				},
+				{
+					"name": "variable.parameter.gsl",
+					"match": "\\b[a-zA-Z_][\\w]*\\b"
+				}
+			]
+		}
+	},
+	"scopeName": "source.gsl"
+}
