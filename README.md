@@ -1,1 +1,1 @@
-# GSL - Garden Shading Language (Custom GLSL dialect)
+# GSL - Garden Shading Language (GLSL dialect)
