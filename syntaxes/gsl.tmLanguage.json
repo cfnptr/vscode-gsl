@@ -61,7 +61,7 @@
 				},
 				{
 					"name": "storage.modifier.gsl",
-					"match": "\\b(const|uniform|buffer|in|out|inout|flat|noperspective|smooth|centroid|invariant|shared|coherent|volatile|restrict|readonly|writeonly|depthLess|depthGreater|lowp|mediump|highp|localSize|f(32|64|16rgba|32rgba|16r|32r|16rg|32rg)|i(8|16|32|64|8rgba|16rgba|32rgba|8rg|16rg|32rg|8r|16r|32r)|u(8|16|32|64|8rgba|16rgba|32rgba|8rg|16rg|32rg|8r|16r|32r)|set[0-7])\\b"
+					"match": "\\b(const|spec|uniform|buffer|in|out|inout|flat|noperspective|smooth|centroid|invariant|shared|coherent|volatile|restrict|readonly|writeonly|depthLess|depthGreater|lowp|mediump|highp|localSize|f(32|64|16rgba|32rgba|16r|32r|16rg|32rg)|i(8|16|32|64|8rgba|16rgba|32rgba|8rg|16rg|32rg|8r|16r|32r)|u(8|16|32|64|8rgba|16rgba|32rgba|8rg|16rg|32rg|8r|16r|32r)|set[0-7])\\b"
 				},
 				{
 					"name": "constant.language.gsl",

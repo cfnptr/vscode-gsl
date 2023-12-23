@@ -1,14 +1,36 @@
 {
-  "name": "gsl",
-  "displayName": "Garden Shading Language",
+  "name": "gsl-linter",
+  "displayName": "Garden Shading Language (GSL)",
   "description": "Custom GLSL dialect",
-  "version": "0.0.1",
+  "version": "0.1.0",
+  "publisher": "cfnptr",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/cfnptr/vscode-gsl"
+	},
+	"license": "Apache 2.0",
+  "bugs": {
+		"url": "https://github.com/cfnptr/vscode-gsl/issues"
+	},
+  "homepage": "https://github.com/cfnptr/vscode-gsl",
+	"keywords": [
+		"gsl",
+		"garden",
+		"shading",
+		"language",
+		"glsl",
+    "shader",
+    "syntax",
+    "linter",
+    "highlighter"
+	],
   "engines": {
     "vscode": "^1.75.0"
   },
   "categories": [
     "Programming Languages"
   ],
+  "icon": "logo.png",
   "contributes": {
     "languages": [{
       "id": "gsl",
