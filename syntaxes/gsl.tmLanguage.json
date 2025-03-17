@@ -61,7 +61,7 @@
 				},
 				{
 					"name": "storage.modifier.gsl",
-					"match": "\\b(const|spec|uniform|buffer|in|out|inout|flat|noperspective|smooth|centroid|invariant|shared|coherent|volatile|restrict|readonly|writeonly|depthLess|depthGreater|lowp|mediump|highp|localSize|f(8|16|32|64|16rgba|32rgba|16r|32r|16rg|32rg)|i(8|16|32|64|8rgba|16rgba|32rgba|8rg|16rg|32rg|8r|16r|32r)|u(8|16|32|64|8rgba|16rgba|32rgba|8rg|16rg|32rg|8r|16r|32r)|set[0-7])\\b"
+					"match": "\\b(const|spec|uniform|buffer|in|out|inout|flat|noperspective|smooth|centroid|invariant|shared|coherent|volatile|restrict|readonly|writeonly|depthLess|depthGreater|lowp|mediump|highp|localSize|uint(R8|R8G8|R8G8B8A8|R16|R16G16|R16G16B16A16|R32|R32G32|R32G32B32A32|A2R10G10B10)|int(R8|R8G8|R8G8B8A8|R16|R16G16|R16G16B16A16|R32|R32G32|R32G32B32A32)|unorm(R8|R8G8|R8G8B8A8|R16|R16G16|R16G16B16A16|A2R10G10B10)|snorm(R8|R8G8|R8G8B8A8|R16|R16G16|R16G16B16A16)|float(R16|R16G16|R16G16B16A16|R32|R32G32|R32G32B32A32|R11G11B10)|set[0-7])\\b"
 				},
 				{
 					"name": "constant.language.gsl",
