@@ -1,47 +1,34 @@
 {
-  "name": "gsl-linter",
-  "displayName": "Garden Shading Language (GSL)",
-  "description": "Custom GLSL dialect",
-  "version": "0.2.2",
-  "publisher": "cfnptr",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/cfnptr/vscode-gsl"
-	},
+	"name": "gsl-linter",
+	"displayName": "Garden Shading Language (GSL)",
+	"description": "Custom GLSL dialect",
+	"version": "0.2.2",
+	"publisher": "cfnptr",
+	"repository": { "type": "git", "url": "https://github.com/cfnptr/vscode-gsl" },
 	"license": "Apache 2.0",
-  "bugs": {
-		"url": "https://github.com/cfnptr/vscode-gsl/issues"
-	},
-  "homepage": "https://github.com/cfnptr/vscode-gsl",
-	"keywords": [
-		"gsl",
-		"garden",
-		"shading",
-		"language",
-		"glsl",
-    "shader",
-    "syntax",
-    "linter",
-    "highlighter"
-	],
-  "engines": {
-    "vscode": "^1.75.0"
-  },
-  "categories": [
-    "Programming Languages"
-  ],
-  "icon": "logo.png",
-  "contributes": {
-    "languages": [{
-      "id": "gsl",
-      "aliases": ["GSL", "gsl"],
-      "extensions": [".gsl",".vert",".frag",".comp",".rgen",".rahit",".rchit",".rmiss",".rint",".rcall",".mesh",".task"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "gsl",
-      "scopeName": "source.gsl",
-      "path": "./syntaxes/gsl.tmLanguage.json"
-    }]
-  }
+	"bugs": { "url": "https://github.com/cfnptr/vscode-gsl/issues" },
+	"homepage": "https://github.com/cfnptr/vscode-gsl",
+	"keywords": [ "gsl", "garden", "shading", "language", "glsl", "shader", "syntax", "linter", "highlighter" ],
+	"engines": { "vscode": "^1.75.0" },
+	"categories": [ "Programming Languages" ],
+	"icon": "logo.png",
+	"main": "./extension.js",
+	"activationEvents": [ "onLanguage:gsl" ],
+	"contributes": {
+		"languages": [
+			{
+				"id": "gsl",
+				"aliases": [ "GSL", "gsl" ],
+				"extensions": [ ".gsl", ".vert", ".frag", ".comp", ".rgen", ".rahit", ".rchit", ".rmiss", ".rint", ".rcall", ".mesh", ".task" ],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "gsl",
+				"scopeName": "source.gsl",
+				"path": "./syntaxes/gsl.tmLanguage.json"
+			}
+		]
+	}
 }
