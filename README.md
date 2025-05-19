@@ -24,9 +24,9 @@ uniform pushConstants
 void main()
 {
     gl.position = float4(vs.position * pc.scale + pc.translate, 0.0f, 1.0f);
-	float3 color = gammaCorrection(vs.color.rgb, DEFAULT_GAMMA);
-	fs.color = float4(color, vs.color.a);
-	fs.texCoords = vs.texCoords;
+    float3 color = gammaCorrection(vs.color.rgb, DEFAULT_GAMMA);
+    fs.color = float4(color, vs.color.a);
+    fs.texCoords = vs.texCoords;
 }
 ```
 
