@@ -320,7 +320,7 @@ const builtins =
 	{
 		label: 'mutable', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Indicates that texture sampler state can be changed at runtime.', 
-		signature: 'uniform mutable Type name;', insertText: new vscode.SnippetString('mutable ')
+		signature: 'uniform mutable Sampler name;', insertText: new vscode.SnippetString('mutable ')
 	},
 	{
 		label: 'depthLess', kind: vscode.CompletionItemKind.Keyword, 
@@ -610,7 +610,7 @@ const builtins =
 	{
 		label: 'subpassInput', kind: vscode.CompletionItemKind.Class, 
 		documentation: 'An image type that allows reading from a framebuffer attachment during a subpass.', 
-		signature: 'uniform subpassInput name;', insertText: new vscode.SnippetString('subpassInput ')
+		signature: 'uniform set0 subpassInput name;', insertText: new vscode.SnippetString('subpassInput ')
 	},
 	
 	{
@@ -682,83 +682,83 @@ const builtins =
 	{
 		label: 'exp', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return the natural exponentiation of the `x`.',
-		signature: 'Type exp(Type x);', insertText: new vscode.SnippetString('exp($1)')
+		signature: 'FloatX exp(FloatX x);', insertText: new vscode.SnippetString('exp($1)')
 	},
 	{
 		label: 'exp2', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return 2 raised to the power of the `x`.',
-		signature: 'Type exp2(Type x);', insertText: new vscode.SnippetString('exp2($1)')
+		signature: 'FloatX exp2(FloatX x);', insertText: new vscode.SnippetString('exp2($1)')
 	},
 	{
 		label: 'log', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return the natural logarithm of the `x`.',
-		signature: 'Type log(Type x);', insertText: new vscode.SnippetString('log($1)')
+		signature: 'FloatX log(FloatX x);', insertText: new vscode.SnippetString('log($1)')
 	},
 	{
 		label: 'log2', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return the base 2 logarithm of the `x`.',
-		signature: 'Type log2(Type x);', insertText: new vscode.SnippetString('log2($1)')
+		signature: 'FloatX log2(FloatX x);', insertText: new vscode.SnippetString('log2($1)')
 	},
 	{
 		label: 'pow', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return the value of the `x` raised to the power of the `y`. [r = x ^ y]',
-		signature: 'Type pow(Type x, Type y);', insertText: new vscode.SnippetString('pow($1, $2)')
+		signature: 'FloatX pow(FloatX x, FloatX y);', insertText: new vscode.SnippetString('pow($1, $2)')
 	},
 	{
 		label: 'sqrt', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return the square root of the `x`.',
-		signature: 'Type sqrt(Type x);', insertText: new vscode.SnippetString('sqrt($1)')
+		signature: 'FloatX sqrt(FloatX x);', insertText: new vscode.SnippetString('sqrt($1)')
 	},
 	{
 		label: 'inversesqrt', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return the inverse of the square root of the `x`. [r = 1.0 / sqrt(x)]',
-		signature: 'Type inversesqrt(Type x);', insertText: new vscode.SnippetString('inversesqrt($1)')
+		signature: 'FloatX inversesqrt(FloatX x);', insertText: new vscode.SnippetString('inversesqrt($1)')
 	},
 	{
 		label: 'fma', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform a fused multiply-add operation. [r = a * b + c]',
-		signature: 'Type fma(Type a, Type b, Type c);', insertText: new vscode.SnippetString('fma($1, $2, $3)')
+		signature: 'FloatX fma(FloatX a, FloatX b, FloatX c);', insertText: new vscode.SnippetString('fma($1, $2, $3)')
 	},
 	{
 		label: 'mod', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Compute value of the `x` modulo `y`. [r = x - y * floor(x / y)]',
-		signature: 'Type mod(Type x, Type y);', insertText: new vscode.SnippetString('mod($1, $2, $3)')
+		signature: 'FloatX mod(FloatX x, FloatX y);', insertText: new vscode.SnippetString('mod($1, $2, $3)')
 	},
 	{
 		label: 'modf', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Separate the `x` into its `integer` and fractional components.',
-		signature: 'Type modf(Type x, out Type integer);', insertText: new vscode.SnippetString('modf($1, $2, $3)')
+		signature: 'FloatX modf(FloatX x, out FloatX integer);', insertText: new vscode.SnippetString('modf($1, $2, $3)')
 	},
 
 	{
 		label: 'floor', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Find the nearest integer less than or equal to the `x`.',
-		signature: 'Type floor(Type x);', insertText: new vscode.SnippetString('floor($1)')
+		signature: 'FloatX floor(FloatX x);', insertText: new vscode.SnippetString('floor($1)')
 	},
 	{
 		label: 'ceil', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Find the nearest integer that is greater than or equal to the `x`.',
-		signature: 'Type ceil(Type x);', insertText: new vscode.SnippetString('ceil($1)')
+		signature: 'FloatX ceil(FloatX x);', insertText: new vscode.SnippetString('ceil($1)')
 	},
 	{
 		label: 'round', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Find the nearest integer to the `x`.',
-		signature: 'Type round(Type x);', insertText: new vscode.SnippetString('round($1)')
+		signature: 'FloatX round(FloatX x);', insertText: new vscode.SnippetString('round($1)')
 	},
 	{
 		label: 'roundEven', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Find the nearest even integer to the `x`.',
-		signature: 'Type roundEven(Type x);', insertText: new vscode.SnippetString('roundEven($1)')
+		signature: 'FloatX roundEven(FloatX x);', insertText: new vscode.SnippetString('roundEven($1)')
 	},
 	{
 		label: 'fract', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Compute the fractional part of the `x`. [r = x - floor(x)]',
-		signature: 'Type fract(Type x);', insertText: new vscode.SnippetString('fract($1)')
+		signature: 'FloatX fract(FloatX x);', insertText: new vscode.SnippetString('fract($1)')
 	},
 	{
 		label: 'trunc', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Find the truncated value of the `x`.',
-		signature: 'Type trunc(Type x);', insertText: new vscode.SnippetString('trunc($1)')
+		signature: 'FloatX trunc(FloatX x);', insertText: new vscode.SnippetString('trunc($1)')
 	},
 	{
 		label: 'min', kind: vscode.CompletionItemKind.Function, 
@@ -778,83 +778,83 @@ const builtins =
 	{
 		label: 'step', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Generate a step function by comparing two values.',
-		signature: 'Type step(Type edge, Type x);', insertText: new vscode.SnippetString('step($1, $2)')
+		signature: 'FloatX step(FloatX edge, FloatX x);', insertText: new vscode.SnippetString('step($1, $2)')
 	},
 	{
 		label: 'smoothstep', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform Hermite interpolation between two values.',
-		signature: 'Type smoothstep(Type edge0, Type edge1, Type x);', insertText: new vscode.SnippetString('smoothstep($1, $2, $3)')
+		signature: 'FloatX smoothstep(FloatX edge0, FloatX edge1, FloatX x);', insertText: new vscode.SnippetString('smoothstep($1, $2, $3)')
 	},
 
 	{
 		label: 'sin', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Returns the sine of the `angle` in radians.',
-		signature: 'Type sin(Type angle);', insertText: new vscode.SnippetString('sin($1)')
+		signature: 'FloatX sin(FloatX angle);', insertText: new vscode.SnippetString('sin($1)')
 	},
 	{
 		label: 'cos', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Returns the cosine of the `angle` in radians.',
-		signature: 'Type cos(Type angle);', insertText: new vscode.SnippetString('cos($1)')
+		signature: 'FloatX cos(FloatX angle);', insertText: new vscode.SnippetString('cos($1)')
 	},
 	{
 		label: 'tan', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Returns the tangent of the `angle` in radians.',
-		signature: 'Type tan(Type angle);', insertText: new vscode.SnippetString('tan($1)')
+		signature: 'FloatX tan(FloatX angle);', insertText: new vscode.SnippetString('tan($1)')
 	},
 	{
 		label: 'asin', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Returns the arcsine of the `angle` in radians.',
-		signature: 'Type asin(Type angle);', insertText: new vscode.SnippetString('asin($1)')
+		signature: 'FloatX asin(FloatX angle);', insertText: new vscode.SnippetString('asin($1)')
 	},
 	{
 		label: 'acos', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Returns the arccosine of the `angle` in radians.',
-		signature: 'Type acos(Type angle);', insertText: new vscode.SnippetString('acos($1)')
+		signature: 'FloatX acos(FloatX angle);', insertText: new vscode.SnippetString('acos($1)')
 	},
 	{
 		label: 'atan', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Returns the arc-tangent of the `angle` in radians.',
-		signature: 'Type atan(Type angle);', insertText: new vscode.SnippetString('atan($1)')
+		signature: 'FloatX atan(FloatX angle);', insertText: new vscode.SnippetString('atan($1)')
 	},
 	{
 		label: 'sinh', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Returns the hyperbolic sine of the `angle` in radians.',
-		signature: 'Type sinh(Type angle);', insertText: new vscode.SnippetString('sinh($1)')
+		signature: 'FloatX sinh(FloatX angle);', insertText: new vscode.SnippetString('sinh($1)')
 	},
 	{
 		label: 'cosh', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Returns the hyperbolic cosine of the `angle` in radians.',
-		signature: 'Type cosh(Type angle);', insertText: new vscode.SnippetString('cosh($1)')
+		signature: 'FloatX cosh(FloatX angle);', insertText: new vscode.SnippetString('cosh($1)')
 	},
 	{
 		label: 'tanh', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Returns the hyperbolic tangent of the `angle` in radians.',
-		signature: 'Type tanh(Type angle);', insertText: new vscode.SnippetString('tanh($1)')
+		signature: 'FloatX tanh(FloatX angle);', insertText: new vscode.SnippetString('tanh($1)')
 	},
 	{
 		label: 'asinh', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Returns the arc hyperbolic sine of the `angle` in radians.',
-		signature: 'Type asinh(Type angle);', insertText: new vscode.SnippetString('asinh($1)')
+		signature: 'FloatX asinh(FloatX angle);', insertText: new vscode.SnippetString('asinh($1)')
 	},
 	{
 		label: 'acosh', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Returns the arc hyperbolic cosine of the `angle` in radians.',
-		signature: 'Type acosh(Type angle);', insertText: new vscode.SnippetString('acosh($1)')
+		signature: 'FloatX acosh(FloatX angle);', insertText: new vscode.SnippetString('acosh($1)')
 	},
 	{
 		label: 'atanh', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Returns the arc hyperbolic tangent of the `angle` in radians.',
-		signature: 'Type atanh(Type angle);', insertText: new vscode.SnippetString('atanh($1)')
+		signature: 'FloatX atanh(FloatX angle);', insertText: new vscode.SnippetString('atanh($1)')
 	},
 	{
 		label: 'degrees', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Convert a quantity in `radians` to degrees.',
-		signature: 'Type degrees(Type radians);', insertText: new vscode.SnippetString('degrees($1)')
+		signature: 'FloatX degrees(FloatX radians);', insertText: new vscode.SnippetString('degrees($1)')
 	},
 	{
 		label: 'radians', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Convert a quantity in `degrees` to radians.',
-		signature: 'Type radians(Type degrees);', insertText: new vscode.SnippetString('radians($1)')
+		signature: 'FloatX radians(FloatX degrees);', insertText: new vscode.SnippetString('radians($1)')
 	},
 
 	{
@@ -865,350 +865,412 @@ const builtins =
 	{
 		label: 'dot', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Calculate the dot product of two vectors.',
-		signature: 'Type dot(Type x, Type y);', insertText: new vscode.SnippetString('dot($1, $2)')
+		signature: 'float dot(FloatX x, FloatX y);', insertText: new vscode.SnippetString('dot($1, $2)')
 	},
 	{
 		label: 'cross', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Calculate the cross product of two vectors.',
-		signature: 'Type cross(Type x, Type y);', insertText: new vscode.SnippetString('cross($1, $2)')
+		signature: 'float3 cross(float3 x, float3 y);', insertText: new vscode.SnippetString('cross($1, $2)')
 	},
 	{
 		label: 'outerProduct', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Calculate the outer product of a pair of vectors.',
-		signature: 'Type outerProduct(Type column, Type row);', insertText: new vscode.SnippetString('outerProduct($1, $2)')
+		signature: 'FloatXxX outerProduct(FloatX column, FloatX row);', insertText: new vscode.SnippetString('outerProduct($1, $2)')
 	},
 	{
 		label: 'distance', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Calculate the distance between two points.',
-		signature: 'Type distance(Type x, Type y);', insertText: new vscode.SnippetString('distance($1, $2)')
+		signature: 'float distance(FloatX x, FloatX y);', insertText: new vscode.SnippetString('distance($1, $2)')
 	},
 	{
 		label: 'length', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Calculate the length of the `vector`.',
-		signature: 'Type length(Type vector);', insertText: new vscode.SnippetString('length($1)')
+		signature: 'float length(FloatX vector);', insertText: new vscode.SnippetString('length($1)')
 	},
 	{
 		label: 'normalize', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Calculates the unit vector in the same direction as the original vector.',
-		signature: 'Type normalize(Type vector);', insertText: new vscode.SnippetString('normalize($1)')
+		signature: 'FloatX normalize(FloatX vector);', insertText: new vscode.SnippetString('normalize($1)')
 	},
 	{
 		label: 'reflect', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Calculate the reflection direction for an `incident` vector.',
-		signature: 'Type reflect(Type incident, Type normal);', insertText: new vscode.SnippetString('reflect($1, $2)')
+		signature: 'FloatX reflect(FloatX incident, FloatX normal);', insertText: new vscode.SnippetString('reflect($1, $2)')
 	},
 	{
 		label: 'refract', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Calculate the refraction direction for an `incident` vector.',
-		signature: 'Type refract(Type incident, Type normal, float eta);', insertText: new vscode.SnippetString('reflect($1, $2, $3)')
+		signature: 'FloatX refract(FloatX incident, FloatX normal, float eta);', insertText: new vscode.SnippetString('reflect($1, $2, $3)')
 	},
 	{
 		label: 'faceforward', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return a vector pointing in the same direction as another.',
-		signature: 'Type faceforward(Type orient, Type incident, Type reference);', insertText: new vscode.SnippetString('faceforward($1, $2, $3)')
+		signature: 'FloatX faceforward(FloatX orient, FloatX incident, FloatX reference);', insertText: new vscode.SnippetString('faceforward($1, $2, $3)')
 	},
 
 	{
 		label: 'matrixCompMult', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform a component-wise multiplication of two matrices.',
-		signature: 'Type matrixCompMult(Type x, Type y);', insertText: new vscode.SnippetString('matrixCompMult($1, $2)')
+		signature: 'FloatXxX matrixCompMult(FloatXxX x, FloatXxX y);', insertText: new vscode.SnippetString('matrixCompMult($1, $2)')
 	},
 	{
 		label: 'inverse', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Calculate the inverse of the `matrix`.',
-		signature: 'Type inverse(Type matrix);', insertText: new vscode.SnippetString('inverse($1)')
+		signature: 'FloatXxX inverse(FloatXxX matrix);', insertText: new vscode.SnippetString('inverse($1)')
 	},
 	{
 		label: 'transpose', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Calculate the transpose of the `matrix`.',
-		signature: 'Type transpose(Type matrix);', insertText: new vscode.SnippetString('transpose($1)')
+		signature: 'FloatXxX transpose(FloatXxX matrix);', insertText: new vscode.SnippetString('transpose($1)')
 	},
 	{
 		label: 'determinant', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Calculate the determinant of the `matrix`.',
-		signature: 'Type determinant(Type matrix);', insertText: new vscode.SnippetString('determinant($1)')
+		signature: 'float determinant(FloatXxX matrix);', insertText: new vscode.SnippetString('determinant($1)')
 	},
 
 	{
 		label: 'all', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Check whether all elements of a boolean `vector` are true.',
-		signature: 'bool all(Type vector);', insertText: new vscode.SnippetString('all($1)')
+		signature: 'bool all(BoolX vector);', insertText: new vscode.SnippetString('all($1)')
 	},
 	{
 		label: 'any', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Check whether any elements of a boolean `vector` is true.',
-		signature: 'bool any(Type vector);', insertText: new vscode.SnippetString('any($1)')
+		signature: 'bool any(BoolX vector);', insertText: new vscode.SnippetString('any($1)')
 	},
 	{
 		label: 'not', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Logically invert the boolean `vector`.',
-		signature: 'bool not(Type vector);', insertText: new vscode.SnippetString('not($1)')
+		signature: 'bool not(BoolX vector);', insertText: new vscode.SnippetString('not($1)')
 	},
 	{
 		label: 'equal', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform a component-wise equal-to comparison of two vectors. [r = x == y]',
-		signature: 'Type equal(Type x, Type y);', insertText: new vscode.SnippetString('equal($1, $2)')
+		signature: 'BoolX equal(TypeX x, TypeX y);', insertText: new vscode.SnippetString('equal($1, $2)')
 	},
 	{
 		label: 'notEqual', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform a component-wise not-equal-to comparison of two vectors. [r = x != y]',
-		signature: 'Type notEqual(Type x, Type y);', insertText: new vscode.SnippetString('notEqual($1, $2)')
+		signature: 'BoolX notEqual(TypeX x, TypeX y);', insertText: new vscode.SnippetString('notEqual($1, $2)')
 	},
 	{
 		label: 'lessThan', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform a component-wise less-than comparison of two vectors. [r = x < y]',
-		signature: 'Type lessThan(Type x, Type y);', insertText: new vscode.SnippetString('lessThan($1, $2)')
+		signature: 'BoolX lessThan(TypeX x, TypeX y);', insertText: new vscode.SnippetString('lessThan($1, $2)')
 	},
 	{
 		label: 'lessThanEqual', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform a component-wise less-than-or-equal comparison of two vectors. [r = x <= y]',
-		signature: 'Type lessThanEqual(Type x, Type y);', insertText: new vscode.SnippetString('lessThanEqual($1, $2)')
+		signature: 'BoolX lessThanEqual(TypeX x, TypeX y);', insertText: new vscode.SnippetString('lessThanEqual($1, $2)')
 	},
 	{
 		label: 'greaterThan', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform a component-wise greater-than comparison of two vectors. [r = x > y]',
-		signature: 'Type greaterThan(Type x, Type y);', insertText: new vscode.SnippetString('greaterThan($1, $2)')
+		signature: 'BoolX greaterThan(TypeX x, TypeX y);', insertText: new vscode.SnippetString('greaterThan($1, $2)')
 	},
 	{
 		label: 'greaterThanEqual', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform a component-wise greater-than-or-equal comparison of two vectors. [r = x >= y]',
-		signature: 'Type greaterThanEqual(Type x, Type y);', insertText: new vscode.SnippetString('greaterThanEqual($1, $2)')
+		signature: 'BoolX greaterThanEqual(TypeX x, TypeX y);', insertText: new vscode.SnippetString('greaterThanEqual($1, $2)')
 	},
 
 	{
 		label: 'floatBitsToInt', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Produce the encoding of the `x` floating point value as an signed integer.',
-		signature: 'Type floatBitsToInt(Type x);', insertText: new vscode.SnippetString('floatBitsToInt($1)')
+		signature: 'IntX floatBitsToInt(FloatX x);', insertText: new vscode.SnippetString('floatBitsToInt($1)')
 	},
 	{
 		label: 'floatBitsToUint', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Produce the encoding of the `x` floating point value as an unsigned integer.',
-		signature: 'Type floatBitsToUint(Type x);', insertText: new vscode.SnippetString('floatBitsToUint($1)')
+		signature: 'UintX floatBitsToUint(FloatX x);', insertText: new vscode.SnippetString('floatBitsToUint($1)')
 	},
 	{
 		label: 'intBitsToFloat', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Produce a floating point using an encoding supplied as the `x` signed integer.',
-		signature: 'Type intBitsToFloat(Type x);', insertText: new vscode.SnippetString('intBitsToFloat($1)')
+		signature: 'FloatX intBitsToFloat(IntX x);', insertText: new vscode.SnippetString('intBitsToFloat($1)')
 	},
 	{
 		label: 'uintBitsToFloat', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Produce a floating point using an encoding supplied as the `x` unsigned integer.',
-		signature: 'Type uintBitsToFloat(Type x);', insertText: new vscode.SnippetString('uintBitsToFloat($1)')
+		signature: 'FloatX uintBitsToFloat(UintX x);', insertText: new vscode.SnippetString('uintBitsToFloat($1)')
 	},
 	{
 		label: 'frexp', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Split the `x` floating point number. [x = significand * (2 ^ exponent)]',
-		signature: 'Type frexp(Type x, out Type exponent);', insertText: new vscode.SnippetString('frexp($1, $2)')
+		signature: 'FloatX frexp(FloatX x, out FloatX exponent);', insertText: new vscode.SnippetString('frexp($1, $2)')
 	},
 	{
 		label: 'ldexp', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Assemble a floating point number from the `x` and `exponent`',
-		signature: 'Type ldexp(Type x, Type exponent);', insertText: new vscode.SnippetString('ldexp($1, $2)')
+		signature: 'FloatX ldexp(FloatX x, FloatX exponent);', insertText: new vscode.SnippetString('ldexp($1, $2)')
 	},
 	{
 		label: 'isinf', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Determine whether the `x` is positive or negative infinity',
-		signature: 'Type isinf(Type x);', insertText: new vscode.SnippetString('isinf($1)')
+		signature: 'BoolX isinf(FloatX x);', insertText: new vscode.SnippetString('isinf($1)')
 	},
 	{
 		label: 'isnan', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Determine whether the `x` is a number',
-		signature: 'Type isnan(Type x);', insertText: new vscode.SnippetString('isnan($1)')
+		signature: 'BoolX isnan(FloatX x);', insertText: new vscode.SnippetString('isnan($1)')
 	},
 
 	{
 		label: 'bitCount', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Counts the number of 1 bits in the `x` integer.',
-		signature: 'Type bitCount(Type x);', insertText: new vscode.SnippetString('bitCount($1)')
+		signature: 'UIntX bitCount(UIntX x);', insertText: new vscode.SnippetString('bitCount($1)')
 	},
 	{
 		label: 'bitfieldExtract', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Extract a range of bits from the `x` integer.',
-		signature: 'Type bitfieldExtract(Type x, int32 offset, int32 bits);', insertText: new vscode.SnippetString('bitfieldExtract($1, $2, $3)')
+		signature: 'UIntX bitfieldExtract(UIntX x, int32 offset, int32 bits);', insertText: new vscode.SnippetString('bitfieldExtract($1, $2, $3)')
 	},
 	{
 		label: 'bitfieldInsert', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Insert a range of bits into the `x` integer.',
-		signature: 'Type bitfieldInsert(Type x, Type insert, int32 offset, int32 bits);', insertText: new vscode.SnippetString('bitfieldInsert($1, $2, $3, $4)')
+		signature: 'UIntX bitfieldInsert(UIntX x, UIntX insert, int32 offset, int32 bits);', insertText: new vscode.SnippetString('bitfieldInsert($1, $2, $3, $4)')
 	},
 	{
 		label: 'bitfieldReverse', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Reverse the order of bits in the `x` integer.',
-		signature: 'Type bitfieldReverse(Type x);', insertText: new vscode.SnippetString('bitfieldReverse($1)')
+		signature: 'UIntX bitfieldReverse(UIntX x);', insertText: new vscode.SnippetString('bitfieldReverse($1)')
 	},
 	{
 		label: 'findLSB', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Find the index of the least significant bit set to 1 in the `x` integer.',
-		signature: 'Type findLSB(Type x);', insertText: new vscode.SnippetString('findLSB($1)')
+		signature: 'IntX findLSB(UIntX x);', insertText: new vscode.SnippetString('findLSB($1)')
 	},
 	{
 		label: 'findMSB', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Find the index of the most significant bit set to 1 in the `x` integer.',
-		signature: 'Type findMSB(Type x);', insertText: new vscode.SnippetString('findMSB($1)')
+		signature: 'IntX findMSB(UIntX x);', insertText: new vscode.SnippetString('findMSB($1)')
+	},
+
+	{
+		label: 'packHalf2x16', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Convert two 32-bit floating-point quantities to 16-bit quantities and pack them into a single 32-bit integer.',
+		signature: 'uint32 packHalf2x16(float2 x);', insertText: new vscode.SnippetString('packHalf2x16($1)')
+	},
+	{
+		label: 'packDouble2x32', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Create a double-precision value from a pair of unsigned integers.',
+		signature: 'double packDouble2x32(uint2 x);', insertText: new vscode.SnippetString('packDouble2x32($1)')
+	},
+	{
+		label: 'packSnorm2x16', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Pack floating-point values into an unsigned integer. [r = round(clamp(x, -1.0, 1.0) * 32767.0)]',
+		signature: 'uint32 packSnorm2x16(float2 x);', insertText: new vscode.SnippetString('packSnorm2x16($1)')
+	},
+	{
+		label: 'packSnorm4x8', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Pack floating-point values into an unsigned integer. [r = round(clamp(x, -1.0, 1.0) * 127.0)]',
+		signature: 'uint32 packSnorm4x8(float4 x);', insertText: new vscode.SnippetString('packSnorm4x8($1)')
+	},
+	{
+		label: 'packUnorm2x16', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Pack floating-point values into an unsigned integer. [r = round(clamp(x, 0.0, 1.0) * 65535.0)]',
+		signature: 'uint32 packUnorm2x16(float2 x);', insertText: new vscode.SnippetString('packUnorm2x16($1)')
+	},
+	{
+		label: 'packUnorm4x8', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Pack floating-point values into an unsigned integer. [r = round(clamp(x, 0.0, 1.0) * 255.0)]',
+		signature: 'uint32 packUnorm4x8(float4 x);', insertText: new vscode.SnippetString('packUnorm4x8($1)')
+	},
+
+	{
+		label: 'unpackHalf2x16', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Convert two 16-bit floating-point values packed into a single 32-bit integer into a vector of two 32-bit floating-point quantities.',
+		signature: 'float2 unpackHalf2x16(uint32 x);', insertText: new vscode.SnippetString('unpackHalf2x16($1)')
+	},
+	{
+		label: 'unpackDouble2x32', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Produce two unsigned integers containing the bit encoding of a double precision floating point value.',
+		signature: 'uint2 unpackDouble2x32(double x);', insertText: new vscode.SnippetString('unpackDouble2x32($1)')
+	},
+	{
+		label: 'unpackSnorm2x16', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Unpack floating-point values from an unsigned integer. [r = clamp(x / 32727.0, -1.0, 1.0)]',
+		signature: 'float2 unpackSnorm2x16(uint32 x);', insertText: new vscode.SnippetString('unpackSnorm2x16($1)')
+	},
+	{
+		label: 'unpackSnorm4x8', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Unpack floating-point values from an unsigned integer. [r = clamp(x / 127.0, -1.0, 1.0)]',
+		signature: 'float4 unpackSnorm4x8(uint32 x);', insertText: new vscode.SnippetString('unpackSnorm4x8($1)')
+	},
+	{
+		label: 'unpackUnorm2x16', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Unpack floating-point values from an unsigned integer. [r = x / 65535.0]',
+		signature: 'float2 unpackUnorm2x16(uint32 x);', insertText: new vscode.SnippetString('unpackUnorm2x16($1)')
+	},
+	{
+		label: 'unpackUnorm4x8', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Unpack floating-point values from an unsigned integer. [r = x / 255.0]',
+		signature: 'float4 unpackUnorm4x8(uint32 x);', insertText: new vscode.SnippetString('unpackUnorm4x8($1)')
 	},
 
 	{
 		label: 'uaddCarry', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Add unsigned integers and generate carry.',
-		signature: 'Type uaddCarry(Type x, Type y, out Type carry);', insertText: new vscode.SnippetString('uaddCarry($1, $2, $3)')
+		signature: 'UintX uaddCarry(UintX x, UintX y, out UintX carry);', insertText: new vscode.SnippetString('uaddCarry($1, $2, $3)')
 	},
 	{
 		label: 'usubBorrow', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Subtract unsigned integers and generate borrow.',
-		signature: 'Type usubBorrow(Type x, Type y, out Type borrow);', insertText: new vscode.SnippetString('usubBorrow($1, $2, $3)')
+		signature: 'UintX usubBorrow(UintX x, UintX y, out UintX borrow);', insertText: new vscode.SnippetString('usubBorrow($1, $2, $3)')
 	},
 	{
 		label: 'imulExtended', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform a 32 by 32 bit signed integer multiply to produce a 64-bit result.',
-		signature: 'void imulExtended(Type x, Type y, out Type msb, out Type lsb);', insertText: new vscode.SnippetString('imulExtended($1, $2, $3, $4)')
+		signature: 'void imulExtended(IntX x, IntX y, out IntX msb, out IntX lsb);', insertText: new vscode.SnippetString('imulExtended($1, $2, $3, $4)')
 	},
 	{
 		label: 'umulExtended', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform a 32 by 32 bit unsigned integer multiply to produce a 64-bit result.',
-		signature: 'void umulExtended(Type x, Type y, out Type msb, out Type lsb);', insertText: new vscode.SnippetString('umulExtended($1, $2, $3, $4)')
+		signature: 'void umulExtended(UintX x, UintX y, out UintX msb, out UintX lsb);', insertText: new vscode.SnippetString('umulExtended($1, $2, $3, $4)')
 	},
 
 	{
 		label: 'dFdx', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return the partial derivative of an argument with respect to x. (Fragment Shader)',
-		signature: 'Type dFdx(Type p);', insertText: new vscode.SnippetString('dFdx($1)')
+		signature: 'FloatX dFdx(FloatX p);', insertText: new vscode.SnippetString('dFdx($1)')
 	},
 	{
 		label: 'dFdy', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return the partial derivative of an argument with respect to y. (Fragment Shader)',
-		signature: 'Type dFdy(Type p);', insertText: new vscode.SnippetString('dFdy($1)')
+		signature: 'FloatX dFdy(FloatX p);', insertText: new vscode.SnippetString('dFdy($1)')
 	},
 	{
 		label: 'dFdxFine', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Calculate derivatives using local differencing based on the value of `p` for the <br>current fragment and its immediate neighbor(s). (Fragment Shader)',
-		signature: 'Type dFdxFine(Type p);', insertText: new vscode.SnippetString('dFdxFine($1)')
+		signature: 'FloatX dFdxFine(FloatX p);', insertText: new vscode.SnippetString('dFdxFine($1)')
 	},
 	{
 		label: 'dFdyFine', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Calculate derivatives using local differencing based on the value of `p` for the <br>current fragment and its immediate neighbor(s). (Fragment Shader)',
-		signature: 'Type dFdyFine(Type p);', insertText: new vscode.SnippetString('dFdyFine($1)')
+		signature: 'FloatX dFdyFine(FloatX p);', insertText: new vscode.SnippetString('dFdyFine($1)')
 	},
 	{
 		label: 'dFdxCoarse', kind: vscode.CompletionItemKind.Function, 
 		documentation: "Calculate derivatives using local differencing based on the value of `p` for the current fragment's <br>neighbors, and will possibly, but not necessarily, include the value for the current fragment. (Fragment Shader)",
-		signature: 'Type dFdxCoarse(Type p);', insertText: new vscode.SnippetString('dFdxCoarse($1)')
+		signature: 'FloatX dFdxCoarse(FloatX p);', insertText: new vscode.SnippetString('dFdxCoarse($1)')
 	},
 	{
 		label: 'dFdyCoarse', kind: vscode.CompletionItemKind.Function, 
 		documentation: "Calculate derivatives using local differencing based on the value of `p` for the current fragment's <br>neighbors, and will possibly, but not necessarily, include the value for the current fragment. (Fragment Shader)",
-		signature: 'Type dFdyCoarse(Type p);', insertText: new vscode.SnippetString('dFdyCoarse($1)')
+		signature: 'FloatX dFdyCoarse(FloatX p);', insertText: new vscode.SnippetString('dFdyCoarse($1)')
 	},
 	{
 		label: 'fwidth', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return the sum of the absolute value of derivatives in x and y. (Fragment Shader)',
-		signature: 'Type fwidth(Type p);', insertText: new vscode.SnippetString('fwidth($1)')
+		signature: 'FloatX fwidth(FloatX p);', insertText: new vscode.SnippetString('fwidth($1)')
 	},
 	{
 		label: 'fwidthFine', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return the sum of the absolute value of derivatives in x and y. (Fragment Shader)',
-		signature: 'Type fwidthFine(Type p);', insertText: new vscode.SnippetString('fwidthFine($1)')
+		signature: 'FloatX fwidthFine(FloatX p);', insertText: new vscode.SnippetString('fwidthFine($1)')
 	},
 	{
 		label: 'fwidthCoarse', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return the sum of the absolute value of derivatives in x and y. (Fragment Shader)',
-		signature: 'Type fwidthCoarse(Type p);', insertText: new vscode.SnippetString('fwidthCoarse($1)')
+		signature: 'FloatX fwidthCoarse(FloatX p);', insertText: new vscode.SnippetString('fwidthCoarse($1)')
 	},
 	{
 		label: 'interpolateAtCentroid', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Sample a varying at the centroid of a pixel. (Fragment Shader)',
-		signature: 'Type interpolateAtCentroid(Type interpolant);', insertText: new vscode.SnippetString('interpolateAtCentroid($1)')
+		signature: 'FloatX interpolateAtCentroid(FloatX interpolant);', insertText: new vscode.SnippetString('interpolateAtCentroid($1)')
 	},
 	{
 		label: 'interpolateAtOffset', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Sample a varying at specified offset from the center of a pixel. (Fragment Shader)',
-		signature: 'Type interpolateAtOffset(Type interpolant, float2 offset);', insertText: new vscode.SnippetString('interpolateAtOffset($1, $2)')
+		signature: 'FloatX interpolateAtOffset(FloatX interpolant, float2 offset);', insertText: new vscode.SnippetString('interpolateAtOffset($1, $2)')
 	},
 	{
 		label: 'interpolateAtSample', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Sample a varying at the location of a specified sample. (Fragment Shader)',
-		signature: 'Type interpolateAtSample(Type interpolant, int32 sample);', insertText: new vscode.SnippetString('interpolateAtSample($1, $2)')
+		signature: 'FloatX interpolateAtSample(FloatX interpolant, int32 sample);', insertText: new vscode.SnippetString('interpolateAtSample($1, $2)')
 	},
 
 	{
 		label: 'atomicAdd', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform an atomic addition to the `memory` variable.',
-		signature: 'Type atomicAdd(inout Type memory, Type value);', insertText: new vscode.SnippetString('atomicAdd($1, $2)')
+		signature: 'UInt atomicAdd(inout UInt memory, UInt value);', insertText: new vscode.SnippetString('atomicAdd($1, $2)')
 	},
 	{
 		label: 'atomicAnd', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform an atomic logical AND operation to the `memory` variable.',
-		signature: 'Type atomicAnd(inout Type memory, Type value);', insertText: new vscode.SnippetString('atomicAnd($1, $2)')
+		signature: 'UInt atomicAnd(inout UInt memory, UInt value);', insertText: new vscode.SnippetString('atomicAnd($1, $2)')
 	},
 	{
 		label: 'atomicOr', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform an atomic logical OR operation to the `memory` variable.',
-		signature: 'Type atomicOr(inout Type memory, Type value);', insertText: new vscode.SnippetString('atomicOr($1, $2)')
+		signature: 'UInt atomicOr(inout UInt memory, UInt value);', insertText: new vscode.SnippetString('atomicOr($1, $2)')
 	},
 	{
 		label: 'atomicXor', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform an atomic logical XOR operation to the `memory` variable.',
-		signature: 'Type atomicXor(inout Type memory, Type value);', insertText: new vscode.SnippetString('atomicXor($1, $2)')
+		signature: 'UInt atomicXor(inout UInt memory, UInt value);', insertText: new vscode.SnippetString('atomicXor($1, $2)')
 	},
 	{
 		label: 'atomicMin', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform an atomic min operation to the `memory` variable.',
-		signature: 'Type atomicMin(inout Type memory, Type value);', insertText: new vscode.SnippetString('atomicMin($1, $2)')
+		signature: 'UInt atomicMin(inout UInt memory, UInt value);', insertText: new vscode.SnippetString('atomicMin($1, $2)')
 	},
 	{
 		label: 'atomicMax', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform an atomic max operation to the `memory` variable.',
-		signature: 'Type atomicMax(inout Type memory, Type value);', insertText: new vscode.SnippetString('atomicMax($1, $2)')
+		signature: 'UInt atomicMax(inout UInt memory, UInt value);', insertText: new vscode.SnippetString('atomicMax($1, $2)')
 	},
 	{
 		label: 'atomicExchange', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform an atomic exchange operation to the `memory` variable.',
-		signature: 'Type atomicExchange(inout Type memory, Type value);', insertText: new vscode.SnippetString('atomicExchange($1, $2)')
+		signature: 'UInt atomicExchange(inout UInt memory, UInt value);', insertText: new vscode.SnippetString('atomicExchange($1, $2)')
 	},
 	{
 		label: 'atomicCompSwap', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform an atomic compare-exchange operation to the `memory` variable.',
-		signature: 'Type atomicCompSwap(inout Type memory, Type compare, Type value);', insertText: new vscode.SnippetString('atomicCompSwap($1, $2, $3)')
+		signature: 'UInt atomicCompSwap(inout UInt memory, UInt compare, UInt value);', insertText: new vscode.SnippetString('atomicCompSwap($1, $2, $3)')
 	},
 
 	{
 		label: 'imageAtomicAdd', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Atomically add a value to an existing value in memory and return the original value.',
-		signature: 'Type imageAtomicAdd(Image image, Type position, Type value);', insertText: new vscode.SnippetString('imageAtomicAdd($1, $2, $3)')
+		signature: 'UInt imageAtomicAdd(Image image, IntX position, UInt value);', insertText: new vscode.SnippetString('imageAtomicAdd($1, $2, $3)')
 	},
 	{
 		label: 'imageAtomicAnd', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Atomically compute the logical AND of a value with an existing value in memory, store that value and return the original value.',
-		signature: 'Type imageAtomicAnd(Image image, Type position, Type value);', insertText: new vscode.SnippetString('imageAtomicAnd($1, $2, $3)')
+		signature: 'UInt imageAtomicAnd(Image image, IntX position, UInt value);', insertText: new vscode.SnippetString('imageAtomicAnd($1, $2, $3)')
 	},
 	{
 		label: 'imageAtomicOr', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Atomically compute the logical OR of a value with an existing value in memory, store that value and return the original value.',
-		signature: 'Type imageAtomicOr(Image image, Type position, Type value);', insertText: new vscode.SnippetString('imageAtomicOr($1, $2, $3)')
+		signature: 'UInt imageAtomicOr(Image image, IntX position, UInt value);', insertText: new vscode.SnippetString('imageAtomicOr($1, $2, $3)')
 	},
 	{
 		label: 'imageAtomicXor', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Atomically compute the logical XOR of a value with an existing value in memory, store that value and return the original value.',
-		signature: 'Type imageAtomicXor(Image image, Type position, Type value);', insertText: new vscode.SnippetString('imageAtomicXor($1, $2, $3)')
+		signature: 'UInt imageAtomicXor(Image image, IntX position, UInt value);', insertText: new vscode.SnippetString('imageAtomicXor($1, $2, $3)')
 	},
 	{
 		label: 'imageAtomicMin', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Atomically compute the minimum of a value with an existing value in memory, store that value and return the original value.',
-		signature: 'Type imageAtomicMin(Image image, Type position, Type value);', insertText: new vscode.SnippetString('imageAtomicMin($1, $2, $3)')
+		signature: 'UInt imageAtomicMin(Image image, IntX position, UInt value);', insertText: new vscode.SnippetString('imageAtomicMin($1, $2, $3)')
 	},
 	{
 		label: 'imageAtomicMax', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Atomically compute the maximum of a value with an existing value in memory, store that value and return the original value.',
-		signature: 'Type imageAtomicMax(Image image, Type position, Type value);', insertText: new vscode.SnippetString('imageAtomicMax($1, $2, $3)')
+		signature: 'UInt imageAtomicMax(Image image, IntX position, UInt value);', insertText: new vscode.SnippetString('imageAtomicMax($1, $2, $3)')
 	},
 	{
 		label: 'imageAtomicExchange', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Atomically store supplied data into memory and return the original value from memory.',
-		signature: 'Type imageAtomicExchange(Image image, Type position, Type value);', insertText: new vscode.SnippetString('imageAtomicExchange($1, $2, $3)')
+		signature: 'UInt imageAtomicExchange(Image image, IntX position, UInt value);', insertText: new vscode.SnippetString('imageAtomicExchange($1, $2, $3)')
 	},
 	{
 		label: 'imageAtomicCompSwap', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Atomically compares supplied data with that in memory and conditionally stores it to memory.',
-		signature: 'Type imageAtomicCompSwap(Image image, Type position, Type value);', insertText: new vscode.SnippetString('imageAtomicCompSwap($1, $2, $3, $4)')
+		signature: 'UInt imageAtomicCompSwap(Image image, IntX position, UInt value);', insertText: new vscode.SnippetString('imageAtomicCompSwap($1, $2, $3, $4)')
 	},
 
 	{
@@ -1245,59 +1307,129 @@ const builtins =
 	{
 		label: 'texelFetch', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform a lookup of a single texel within a texture.',
-		signature: 'Type texelFetch(Sampler sampler, Type position, int32 lod);', insertText: new vscode.SnippetString('texelFetch($1, $2, $3)')
+		signature: 'Type4 texelFetch(Sampler sampler, FloatX texCoords, int32 lod);', insertText: new vscode.SnippetString('texelFetch($1, $2, $3)')
 	},
 	{
 		label: 'texelFetchOffset', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform a lookup of a single texel within a texture with an offset.',
-		signature: 'Type texelFetchOffset(Sampler sampler, Type position, int32 lod, Type offset);', insertText: new vscode.SnippetString('texelFetchOffset($1, $2, $3, $4)')
+		signature: 'Type4 texelFetchOffset(Sampler sampler, FloatX texCoords, int32 lod, Type offset);', insertText: new vscode.SnippetString('texelFetchOffset($1, $2, $3, $4)')
 	},
 	{
 		label: 'texture', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Retrieves texels from a texture.',
-		signature: 'Type texture(Sampler sampler, Type position, [float bias]);', insertText: new vscode.SnippetString('texture($1, $2)')
+		signature: 'Type4 texture(Sampler sampler, FloatX texCoords, [float bias]);', insertText: new vscode.SnippetString('texture($1, $2)')
 	},
 	{
 		label: 'textureOffset', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform a texture lookup with offset.',
-		signature: 'Type textureOffset(Sampler sampler, Type position, Type offset, [float bias]);', insertText: new vscode.SnippetString('textureOffset($1, $2, $3)')
+		signature: 'Type4 textureOffset(Sampler sampler, FloatX texCoords, IntX offset, [float bias]);', insertText: new vscode.SnippetString('textureOffset($1, $2, $3)')
 	},
 	{
 		label: 'textureGather', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Gathers four texels from a texture.',
-		signature: 'Type textureGather(Sampler sampler, Type position, [int32 component]);', insertText: new vscode.SnippetString('textureGather($1, $2)')
+		signature: 'Type4 textureGather(Sampler sampler, FloatX texCoords, [int32 component]);', insertText: new vscode.SnippetString('textureGather($1, $2)')
 	},
 	{
 		label: 'textureGatherOffset', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Gathers four texels from a texture with offset.',
-		signature: 'Type textureGatherOffset(Sampler sampler, Type position, int2 offset, [int32 component]);', insertText: new vscode.SnippetString('textureGatherOffset($1, $2, $3)')
+		signature: 'Type4 textureGatherOffset(Sampler sampler, FloatX texCoords, int2 offset, [int32 component]);', insertText: new vscode.SnippetString('textureGatherOffset($1, $2, $3)')
 	},
 	{
 		label: 'textureGatherOffsets', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Gathers four texels from a texture with an array of offsets.',
-		signature: 'Type textureGatherOffsets(Sampler sampler, Type position, int2 offsets[4], [int32 component]);', insertText: new vscode.SnippetString('textureGatherOffsets($1, $2, $3)')
+		signature: 'Type4 textureGatherOffsets(Sampler sampler, FloatX texCoords, int2 offsets[4], [int32 component]);', insertText: new vscode.SnippetString('textureGatherOffsets($1, $2, $3)')
 	},
-	// TODO: textureGrad... and others
+	{
+		label: 'textureGrad', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Perform a texture lookup with explicit gradients.',
+		signature: 'Type4 textureGrad(Sampler sampler, FloatX texCoords, FloatX dPdx, FloatX dPdy);', insertText: new vscode.SnippetString('textureGrad($1, $2, $3, $4)')
+	},
+	{
+		label: 'textureGradOffset', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Perform a texture lookup with explicit gradients and offset.',
+		signature: 'Type4 textureGradOffset(Sampler sampler, FloatX texCoords, FloatX dPdx, FloatX dPdy, IntX offset);', insertText: new vscode.SnippetString('textureGradOffset($1, $2, $3, $4, $5)')
+	},
+	{
+		label: 'textureLod', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Perform a texture lookup with explicit level-of-detail.',
+		signature: 'Type4 textureLod(Sampler sampler, FloatX texCoords, float lod);', insertText: new vscode.SnippetString('textureLod($1, $2, $3)')
+	},
+	{
+		label: 'textureLodOffset', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Perform a texture lookup with explicit level-of-detail and offset.',
+		signature: 'Type4 textureLodOffset(Sampler sampler, FloatX texCoords, float lod, IntX offset);', insertText: new vscode.SnippetString('textureLodOffset($1, $2, $3, $4)')
+	},
+	{
+		label: 'textureProj', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Perform a texture lookup with projection.',
+		signature: 'Type4 textureProj(Sampler sampler, FloatX texCoords, [float bias]);', insertText: new vscode.SnippetString('textureProj($1, $2)')
+	},
+	{
+		label: 'textureProjOffset', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Perform a texture lookup with projection and offset.',
+		signature: 'Type4 textureProjOffset(Sampler sampler, FloatX texCoords, IntX offset, [float bias]);', insertText: new vscode.SnippetString('textureProjOffset($1, $2, $3)')
+	},
+	{
+		label: 'textureProjGrad', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Perform a texture lookup with projection and explicit gradients.',
+		signature: 'Type4 textureProjGrad(Sampler sampler, FloatX texCoords, FloatX dPdx, FloatX dPdy);', insertText: new vscode.SnippetString('textureProjGrad($1, $2, $3, $4)')
+	},
+	{
+		label: 'textureProjGradOffset', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Perform a texture lookup with projection, explicit gradients and offset.',
+		signature: 'Type4 textureProjGradOffset(Sampler sampler, FloatX texCoords, FloatX dPdx, FloatX dPdy, IntX offset);', insertText: new vscode.SnippetString('textureProjGradOffset($1, $2, $3, $4, $5)')
+	},
+	{
+		label: 'textureProjLod', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Perform a texture lookup with projection and explicit level-of-detail.',
+		signature: 'Type4 textureProjLod(Sampler sampler, FloatX texCoords, float lod);', insertText: new vscode.SnippetString('textureProjLod($1, $2, $3)')
+	},
+	{
+		label: 'textureProjLodOffset', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Perform a texture lookup with projection, explicit level-of-detail and offset.',
+		signature: 'Type4 textureProjLodOffset(Sampler sampler, FloatX texCoords, float lod, IntX offset);', insertText: new vscode.SnippetString('textureProjLodOffset($1, $2, $3, $4)')
+	},
+	{
+		label: 'textureSize', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Retrieve the dimensions of a level of a texture.',
+		signature: 'IntX textureSize(Sampler sampler, int32 lod);', insertText: new vscode.SnippetString('textureSize($1, $2)')
+	},
+	{
+		label: 'textureSamples', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Return the number of samples of a texture.',
+		signature: 'int32 textureSamples(Sampler sampler);', insertText: new vscode.SnippetString('textureSamples($1)')
+	},
+	{
+		label: 'textureQueryLevels', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Compute the number of accessible mipmap levels of a texture.',
+		signature: 'int32 textureQueryLevels(Sampler sampler);', insertText: new vscode.SnippetString('textureQueryLevels($1)')
+	},
+	{
+		label: 'textureQueryLod', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Compute the level-of-detail that would be used to sample from a texture.',
+		signature: 'float2 textureQueryLod(Sampler sampler, FloatX texCoords);', insertText: new vscode.SnippetString('textureQueryLod($1, $2)')
+	},
+
 
 	{
 		label: 'imageLoad', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Load a single texel from the `image`.',
-		signature: 'Type imageLoad(Image image, Type position);', insertText: new vscode.SnippetString('imageLoad($1, $2)')
+		signature: 'Type4 imageLoad(Image image, IntX position);', insertText: new vscode.SnippetString('imageLoad($1, $2)')
 	},
 	{
 		label: 'imageStore', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Write a single texel into the `image`.',
-		signature: 'void imageStore(Image image, Type position, Type value);', insertText: new vscode.SnippetString('imageStore($1, $2, $3)')
+		signature: 'void imageStore(Image image, IntX position, Type4 value);', insertText: new vscode.SnippetString('imageStore($1, $2, $3)')
 	},
 	{
 		label: 'imageSize', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Retrieve the dimensions of the `image`.',
-		signature: 'Type imageSize(Image image);', insertText: new vscode.SnippetString('imageSize($1)')
+		signature: 'IntX imageSize(Image image);', insertText: new vscode.SnippetString('imageSize($1)')
 	},
 	{
 		label: 'imageSamples', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return the number of samples of the `image`.',
-		signature: 'Type imageSamples(Image image);', insertText: new vscode.SnippetString('imageSamples($1)')
+		signature: 'int32 imageSamples(Image image);', insertText: new vscode.SnippetString('imageSamples($1)')
 	},
 
 	{
@@ -1454,7 +1586,7 @@ const builtins =
 	{
 		label: 'accelerationStructure', kind: vscode.CompletionItemKind.Class, 
 		documentation: "A structure that holds the scene's spatial hierarchy for ray tracing.", 
-		signature: 'uniform accelerationStructure name;', insertText: new vscode.SnippetString('accelerationStructure ')
+		signature: 'uniform set0 accelerationStructure name;', insertText: new vscode.SnippetString('accelerationStructure ')
 	},
 	{
 		label: 'rayPayload', kind: vscode.CompletionItemKind.Keyword, 
@@ -1672,8 +1804,6 @@ const builtins =
 		documentation: 'Front-facing triangle hit. (Ray Tracing Shader)', 
 		signature: 'const uint32 gl.hitKindBackFacingTriangle = 0xFF;', insertText: new vscode.SnippetString('gl.hitKindBackFacingTriangle')
 	},
-
-	// TODO: packXXX, unpackXXX.
 ];
 const builtinMap = new Map(builtins.map(item => [item.label, item]));
 
@@ -1702,7 +1832,7 @@ function activate(context)
 		}
 	});
 
-	let completionProvider = vscode.languages.registerCompletionItemProvider('gsl',
+	let completionProvider = vscode.languages.registerCompletionItemProvider("*",
 	{
 		provideCompletionItems(document, position, token, context)
 		{
@@ -1715,7 +1845,7 @@ function activate(context)
 				return item;
 			});
 		}
-	}, '');
+	});
 
 	context.subscriptions.push(hoverProvider, completionProvider);
 }
