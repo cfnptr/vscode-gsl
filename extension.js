@@ -516,32 +516,32 @@ const builtins =
 
 	{
 		label: 'image1D', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 1D image that can be read from or written to in shaders, with signed integer data.', 
+		documentation: 'A 1D image that can be read from or written to in shaders, with floating point data.', 
 		signature: 'uniform <readonly|writeonly|coherent|volatile|restrict> set0 image1D name : Format;', insertText: new vscode.SnippetString('image1D ')
 	},
 	{
 		label: 'image2D', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 2D image that can be read from or written to in shaders, with signed integer data.', 
+		documentation: 'A 2D image that can be read from or written to in shaders, with floating point data.', 
 		signature: 'uniform <readonly|writeonly|coherent|volatile|restrict> set0 image2D name : Format;', insertText: new vscode.SnippetString('image2D ')
 	},
 	{
 		label: 'image3D', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 3D image that can be read from or written to in shaders, with signed integer data.', 
+		documentation: 'A 3D image that can be read from or written to in shaders, with floating point data.', 
 		signature: 'uniform <readonly|writeonly|coherent|volatile|restrict> set0 image3D name : Format;', insertText: new vscode.SnippetString('image3D ')
 	},
 	{
 		label: 'imageCube', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A cubemap image that can be read from or written to in shaders, with signed integer data.', 
+		documentation: 'A cubemap image that can be read from or written to in shaders, with floating point data.', 
 		signature: 'uniform <readonly|writeonly|coherent|volatile|restrict> set0 imageCube name : Format;', insertText: new vscode.SnippetString('imageCube ')
 	},
 	{
 		label: 'image1DArray', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 1D image array that can be read from or written to in shaders, with signed integer data.', 
+		documentation: 'A 1D image array that can be read from or written to in shaders, with floating point data.', 
 		signature: 'uniform <readonly|writeonly|coherent|volatile|restrict> set0 image1DArray name : Format;', insertText: new vscode.SnippetString('image1DArray ')
 	},
 	{
 		label: 'image2DArray', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 2D image array that can be read from or written to in shaders, with signed integer data.', 
+		documentation: 'A 2D image array that can be read from or written to in shaders, with floating point data.', 
 		signature: 'uniform <readonly|writeonly|coherent|volatile|restrict> set0 image2DArray name : Format;', insertText: new vscode.SnippetString('image2DArray ')
 	},
 
@@ -1532,7 +1532,7 @@ const builtins =
 	},
 	{
 		label: 'gl.primitiveID', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the index of the current primitive. (Fragment and Mesh Shaders)', 
+		documentation: 'Contains the index of the current primitive. (Fragment, Ray Tracing and Mesh Shaders)', 
 		signature: 'inout int32 gl.primitiveID;', insertText: new vscode.SnippetString('gl.primitiveID')
 	},
 	{
@@ -1663,11 +1663,6 @@ const builtins =
 		label: 'gl.launchSize', kind: vscode.CompletionItemKind.Variable, 
 		documentation: 'Contains the 3D size of the ray launch grid. (Ray Tracing Shader)', 
 		signature: 'in uint3 gl.launchSize;', insertText: new vscode.SnippetString('gl.launchSize')
-	},
-	{
-		label: 'gl.primitiveID', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the primitive (triangle) ID hit by the ray. (Ray Tracing Shader)', 
-		signature: 'in uint32 gl.primitiveID;', insertText: new vscode.SnippetString('gl.primitiveID')
 	},
 	{
 		label: 'gl.instanceID', kind: vscode.CompletionItemKind.Variable, 
