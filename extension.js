@@ -285,7 +285,7 @@ const builtins =
 	{
 		label: 'buffer', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Declares a shader storage buffer for reading and/or writing large data buffers.', 
-		signature: 'buffer <readonly|writeonly|coherent|volatile|restrict> set0 BufferName\n{\n\t...\n} name;', insertText: new vscode.SnippetString('buffer ')
+		signature: 'buffer <readonly|writeonly|coherent|volatile|restrict|scalar> set0 BufferName\n{\n\t...\n} name;', insertText: new vscode.SnippetString('buffer ')
 	},
 	{
 		label: 'coherent', kind: vscode.CompletionItemKind.Keyword, 
@@ -323,6 +323,16 @@ const builtins =
 		signature: 'uniform mutable Sampler name;', insertText: new vscode.SnippetString('mutable ')
 	},
 	{
+		label: 'scalar', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'Indicates that buffer layout becomes tightly packed. <br>No unnecessary padding between scalar members like float3, int3, etc.', 
+		signature: 'buffer scalar set0 BufferName\n{\n\t...\n} name;', insertText: new vscode.SnippetString('scalar ')
+	},
+	{
+		label: 'reference', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'Declares that the type can be used as a buffer reference.', 
+		signature: 'buffer reference BufferName\n{\n\t...\n};', insertText: new vscode.SnippetString('reference ')
+	},
+	{
 		label: 'depthLess', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Indicates fragment depth is less than stored depth.', 
 		signature: 'depthLess out float gl.fragDepth;', insertText: new vscode.SnippetString('depthLess out float gl.fragDepth;')
@@ -331,6 +341,11 @@ const builtins =
 		label: 'depthGreater', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Indicates fragment depth is greater than stored depth.', 
 		signature: 'depthGreater out float gl.fragDepth;', insertText: new vscode.SnippetString('depthGreater out float gl.fragDepth;')
+	},
+	{
+		label: 'earlyFragmentTests', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'Perform early depth and stencil tests before executing the fragment shader.', 
+		signature: 'earlyFragmentTests in;', insertText: new vscode.SnippetString('earlyFragmentTests in;')
 	},
 	{
 		label: 'localSize', kind: vscode.CompletionItemKind.Keyword, 
