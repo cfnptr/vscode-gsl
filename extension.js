@@ -5,7 +5,7 @@ const builtins =
 	{
 		label: '#include', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Includes the contents of another GSL source file.<br>Used to modularize shader code by reusing common functions or definitions.', 
-		signature: '#include "file-name.gsl"', insertText: new vscode.SnippetString('#include $1')
+		signature: '#include "file-name.gsl"', insertText: new vscode.SnippetString('#include "$1"')
 	},
 	{
 		label: '#feature', kind: vscode.CompletionItemKind.Keyword, 
@@ -34,23 +34,58 @@ const builtins =
 		signature: 'bool', insertText: new vscode.SnippetString('bool')
 	},
 	{
+		label: 'int8', kind: vscode.CompletionItemKind.Class, 
+		documentation: "A signed 8-bit integer. (-128 to 127)", 
+		signature: 'int8', insertText: new vscode.SnippetString('int8')
+	},
+	{
+		label: 'uint8', kind: vscode.CompletionItemKind.Class, 
+		documentation: "An unsigned 8-bit integer. (0 to 255)", 
+		signature: 'uint8', insertText: new vscode.SnippetString('uint8')
+	},
+	{
+		label: 'int16', kind: vscode.CompletionItemKind.Class, 
+		documentation: "A signed 16-bit integer. (-32,768 to 32,767)", 
+		signature: 'int16', insertText: new vscode.SnippetString('int16')
+	},
+	{
+		label: 'uint16', kind: vscode.CompletionItemKind.Class, 
+		documentation: "An unsigned 16-bit integer. (0 to 65,535)", 
+		signature: 'uint16', insertText: new vscode.SnippetString('uint16')
+	},
+	{
 		label: 'int32', kind: vscode.CompletionItemKind.Class, 
-		documentation: "A signed, [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), 32-bit integer.", 
+		documentation: "A signed, [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), 32-bit integer. (-2,147,483,648 to 2,147,483,647)", 
 		signature: 'int32', insertText: new vscode.SnippetString('int32')
 	},
 	{
 		label: 'uint32', kind: vscode.CompletionItemKind.Class, 
-		documentation: "An unsigned, [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), 32-bit integer.", 
+		documentation: "An unsigned, [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), 32-bit integer. (0 to 4,294,967,295)", 
 		signature: 'uint32', insertText: new vscode.SnippetString('uint32')
 	},
 	{
+		label: 'int64', kind: vscode.CompletionItemKind.Class, 
+		documentation: "A signed 64-bit integer. (-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807)", 
+		signature: 'int64', insertText: new vscode.SnippetString('int64')
+	},
+	{
+		label: 'uint64', kind: vscode.CompletionItemKind.Class, 
+		documentation: "An unsigned 64-bit integer. (0 to 18,446,744,073,709,551,615)", 
+		signature: 'uint64', insertText: new vscode.SnippetString('uint64')
+	},
+	{
+		label: 'half', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'An [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754) half-precision 16-bit floating point number.', 
+		signature: 'half', insertText: new vscode.SnippetString('half')
+	},
+	{
 		label: 'float', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'An [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754) single-precision floating point number.', 
+		documentation: 'An [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754) single-precision 32-bit floating point number.', 
 		signature: 'float', insertText: new vscode.SnippetString('float')
 	},
 	{
 		label: 'double', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'An [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754) double-precision floating point number.', 
+		documentation: 'An [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754) double-precision 64-bit floating point number.', 
 		signature: 'doulbe', insertText: new vscode.SnippetString('doulbe')
 	},
 
@@ -71,6 +106,99 @@ const builtins =
 	},
 
 	{
+		label: 'sbyte2', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 2-component vector of 8-bit signed integers.', 
+		signature: 'sbyte2(int8 x, int8 y)', insertText: new vscode.SnippetString('sbyte2($1, $2)')
+	},
+	{
+		label: 'sbyte3', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 3-component vector of 8-bit signed integers.', 
+		signature: 'sbyte3(int8 x, int8 y, int8 z)', insertText: new vscode.SnippetString('sbyte3($1, $2, $3)')
+	},
+	{
+		label: 'sbyte4', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 4-component vector of 8-bit signed integers.', 
+		signature: 'sbyte4(int8 x, int8 y, int8 z, int8 w)', insertText: new vscode.SnippetString('sbyte4($1, $2, $3, $4)')
+	},
+	{
+		label: 'byte2', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 2-component vector of 8-bit unsigned integers.', 
+		signature: 'byte2(uint8 x, uint8 y)', insertText: new vscode.SnippetString('byte2($1, $2)')
+	},
+	{
+		label: 'byte3', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 3-component vector of 8-bit unsigned integers.', 
+		signature: 'byte3(uint8 x, uint8 y, uint8 z)', insertText: new vscode.SnippetString('byte3($1, $2, $3)')
+	},
+	{
+		label: 'byte4', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 4-component vector of 8-bit unsigned integers.', 
+		signature: 'byte4(uint8 x, uint8 y, uint8 z, uint8 w)', insertText: new vscode.SnippetString('byte4($1, $2, $3, $4)')
+	},
+
+	{
+		label: 'short2', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 2-component vector of 16-bit signed integers.', 
+		signature: 'short2(int16 x, int16 y)', insertText: new vscode.SnippetString('short2($1, $2)')
+	},
+	{
+		label: 'short3', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 3-component vector of 16-bit signed integers.', 
+		signature: 'short3(int16 x, int16 y, int16 z)', insertText: new vscode.SnippetString('short3($1, $2, $3)')
+	},
+	{
+		label: 'short4', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 4-component vector of 16-bit signed integers.', 
+		signature: 'short4(int16 x, int16 y, int16 z, int16 w)', insertText: new vscode.SnippetString('short4($1, $2, $3, $4)')
+	},
+	{
+		label: 'ushort2', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 2-component vector of 16-bit unsigned integers.', 
+		signature: 'ushort2(uint16 x, uint16 y)', insertText: new vscode.SnippetString('ushort2($1, $2)')
+	},
+	{
+		label: 'ushort3', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 3-component vector of 16-bit unsigned integers.', 
+		signature: 'ushort3(uint16 x, uint16 y, uint16 z)', insertText: new vscode.SnippetString('ushort3($1, $2, $3)')
+	},
+	{
+		label: 'ushort4', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 4-component vector of 16-bit unsigned integers.', 
+		signature: 'ushort4(uint16 x, uint16 y, uint16 z, uint16 w)', insertText: new vscode.SnippetString('ushort4($1, $2, $3, $4)')
+	},
+
+	{
+		label: 'long2', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 2-component vector of 64-bit signed integers.', 
+		signature: 'long2(int64 x, int64 y)', insertText: new vscode.SnippetString('long2($1, $2)')
+	},
+	{
+		label: 'long3', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 3-component vector of 64-bit signed integers.', 
+		signature: 'long3(int64 x, int64 y, int64 z)', insertText: new vscode.SnippetString('long3($1, $2, $3)')
+	},
+	{
+		label: 'long4', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 4-component vector of 64-bit signed integers.', 
+		signature: 'long4(int64 x, int64 y, int64 z, int64 w)', insertText: new vscode.SnippetString('long4($1, $2, $3, $4)')
+	},
+	{
+		label: 'ulong2', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 2-component vector of 64-bit unsigned integers.', 
+		signature: 'ulong2(uint64 x, uint64 y)', insertText: new vscode.SnippetString('ulong2($1, $2)')
+	},
+	{
+		label: 'ulong3', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 3-component vector of 64-bit unsigned integers.', 
+		signature: 'ulong3(uint64 x, uint64 y, uint64 z)', insertText: new vscode.SnippetString('ulong3($1, $2, $3)')
+	},
+	{
+		label: 'ulong4', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 4-component vector of 64-bit unsigned integers.', 
+		signature: 'ulong4(uint64 x, uint64 y, uint64 z, uint64 w)', insertText: new vscode.SnippetString('ulong4($1, $2, $3, $4)')
+	},
+
+	{
 		label: 'int2', kind: vscode.CompletionItemKind.Class, 
 		documentation: 'A 2-component vector of 32-bit signed integers.', 
 		signature: 'int2(int32 x, int32 y)', insertText: new vscode.SnippetString('int2($1, $2)')
@@ -85,7 +213,6 @@ const builtins =
 		documentation: 'A 4-component vector of 32-bit signed integers.', 
 		signature: 'int4(int32 x, int32 y, int32 z, int32 w)', insertText: new vscode.SnippetString('int4($1, $2, $3, $4)')
 	},
-
 	{
 		label: 'uint2', kind: vscode.CompletionItemKind.Class, 
 		documentation: 'A 2-component vector of 32-bit unsigned integers.', 
@@ -103,127 +230,143 @@ const builtins =
 	},
 
 	{
+		label: 'half2', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 2-component vector of half-precision 16-bit floating-point numbers.', 
+		signature: 'half2(half x, half y)', insertText: new vscode.SnippetString('half2($1, $2)')
+	},
+	{
+		label: 'half3', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 3-component vector of half-precision 16-bit floating-point numbers.', 
+		signature: 'half3(half x, half y, half z)', insertText: new vscode.SnippetString('half3($1, $2, $3)')
+	},
+	{
+		label: 'half4', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A 4-component vector of half-precision 16-bit floating-point numbers.', 
+		signature: 'half4(half x, half y, half z, half w)', insertText: new vscode.SnippetString('half4($1, $2, $3, $4)')
+	},
+
+	{
 		label: 'float2', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 2-component vector of single-precision floating-point numbers.', 
+		documentation: 'A 2-component vector of single-precision 32-bit floating-point numbers.', 
 		signature: 'float2(float x, float y)', insertText: new vscode.SnippetString('float2($1, $2)')
 	},
 	{
 		label: 'float3', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 3-component vector of single-precision floating-point numbers.', 
+		documentation: 'A 3-component vector of single-precision 32-bit floating-point numbers.', 
 		signature: 'float3(float x, float y, float z)', insertText: new vscode.SnippetString('float3($1, $2, $3)')
 	},
 	{
 		label: 'float4', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 4-component vector of single-precision floating-point numbers.', 
+		documentation: 'A 4-component vector of single-precision 32-bit floating-point numbers.', 
 		signature: 'float4(float x, float y, float z, float w)', insertText: new vscode.SnippetString('float4($1, $2, $3, $4)')
 	},
 
 	{
 		label: 'double2', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 2-component vector of double-precision floating-point numbers.', 
+		documentation: 'A 2-component vector of double-precision 64-bit floating-point numbers.', 
 		signature: 'double2(double x, double y)', insertText: new vscode.SnippetString('double2($1, $2)')
 	},
 	{
 		label: 'double3', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 3-component vector of double-precision floating-point numbers.', 
+		documentation: 'A 3-component vector of double-precision 64-bit floating-point numbers.', 
 		signature: 'double3(double x, double y, double z)', insertText: new vscode.SnippetString('double3($1, $2, $3)')
 	},
 	{
 		label: 'double4', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 4-component vector of double-precision floating-point numbers.', 
+		documentation: 'A 4-component vector of double-precision 64-bit floating-point numbers.', 
 		signature: 'double4(double x, double y, double z, double w)', insertText: new vscode.SnippetString('double4($1, $2, $3, $4)')
 	},
 
 	{
+		label: 'half2x2', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A matrix with 2 columns and 2 rows of half-precision 16-bit floating-point numbers.', 
+		signature: 'half2x2(half2 c0, half2 c1)', insertText: new vscode.SnippetString('half2x2($1, $2)')
+	},
+	{
+		label: 'half2x3', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A matrix with 2 columns and 3 rows of half-precision 16-bit floating-point numbers.', 
+		signature: 'halfx3(half3 c0, half3 c1)', insertText: new vscode.SnippetString('half2x3($1, $2)')
+	},
+	{
+		label: 'half2x4', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A matrix with 2 columns and 4 rows of half-precision 16-bit floating-point numbers.', 
+		signature: 'half2x4(half4 c0, half4 c1)', insertText: new vscode.SnippetString('half2x4($1, $2)')
+	},
+	{
+		label: 'half3x2', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A matrix with 3 columns and 2 rows of half-precision 16-bit floating-point numbers.', 
+		signature: 'half3x2(half2 c0, half2 c1, half2 c2)', insertText: new vscode.SnippetString('half3x2($1, $2, $3)')
+	},
+	{
+		label: 'half3x3', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A matrix with 3 columns and 3 rows of half-precision 16-bit floating-point numbers.', 
+		signature: 'half3x3(half3 c0, half3 c1, half3 c2)', insertText: new vscode.SnippetString('half3x3($1, $2, $3)')
+	},
+	{
+		label: 'half3x4', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A matrix with 3 columns and 4 rows of half-precision 16-bit floating-point numbers.', 
+		signature: 'half3x4(half4 c0, half4 c1, half4 c2)', insertText: new vscode.SnippetString('half3x4($1, $2, $3)')
+	},
+	{
+		label: 'half4x2', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A matrix with 4 columns and 2 rows of half-precision 16-bit floating-point numbers.', 
+		signature: 'half4x2(half2 c0, half2 c1, half2 c2, half2 c3)', insertText: new vscode.SnippetString('half4x2($1, $2, $3, $4)')
+	},
+	{
+		label: 'half4x3', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A matrix with 4 columns and 3 rows of half-precision 16-bit floating-point numbers.', 
+		signature: 'half4x3(half3 c0, half3 c1, half3 c2, half3 c3)', insertText: new vscode.SnippetString('half4x3($1, $2, $3)')
+	},
+	{
+		label: 'half4x4', kind: vscode.CompletionItemKind.Class, 
+		documentation: 'A matrix with 4 columns and 4 rows of half-precision 16-bit floating-point numbers.', 
+		signature: 'half4x4(half4 c0, half4 c1, half4 c2, half4 c3)', insertText: new vscode.SnippetString('half4x4($1, $2, $3)')
+	},
+
+	{
 		label: 'float2x2', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 2 columns and 2 rows of single-precision floating-point numbers.', 
+		documentation: 'A matrix with 2 columns and 2 rows of single-precision 32-bit floating-point numbers.', 
 		signature: 'float2x2(float2 c0, float2 c1)', insertText: new vscode.SnippetString('float2x2($1, $2)')
 	},
 	{
 		label: 'float2x3', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 2 columns and 3 rows of single-precision floating-point numbers.', 
+		documentation: 'A matrix with 2 columns and 3 rows of single-precision 32-bit floating-point numbers.', 
 		signature: 'float2x3(float3 c0, float3 c1)', insertText: new vscode.SnippetString('float2x3($1, $2)')
 	},
 	{
 		label: 'float2x4', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 2 columns and 4 rows of single-precision floating-point numbers.', 
+		documentation: 'A matrix with 2 columns and 4 rows of single-precision 32-bit floating-point numbers.', 
 		signature: 'float2x4(float4 c0, float4 c1)', insertText: new vscode.SnippetString('float2x4($1, $2)')
 	},
 	{
 		label: 'float3x2', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 3 columns and 2 rows of single-precision floating-point numbers.', 
+		documentation: 'A matrix with 3 columns and 2 rows of single-precision 32-bit floating-point numbers.', 
 		signature: 'float3x2(float2 c0, float2 c1, float2 c2)', insertText: new vscode.SnippetString('float3x2($1, $2, $3)')
 	},
 	{
 		label: 'float3x3', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 3 columns and 3 rows of single-precision floating-point numbers.', 
+		documentation: 'A matrix with 3 columns and 3 rows of single-precision 32-bit floating-point numbers.', 
 		signature: 'float3x3(float3 c0, float3 c1, float3 c2)', insertText: new vscode.SnippetString('float3x3($1, $2, $3)')
 	},
 	{
 		label: 'float3x4', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 3 columns and 4 rows of single-precision floating-point numbers.', 
+		documentation: 'A matrix with 3 columns and 4 rows of single-precision 32-bit floating-point numbers.', 
 		signature: 'float3x4(float4 c0, float4 c1, float4 c2)', insertText: new vscode.SnippetString('float3x4($1, $2, $3)')
 	},
 	{
 		label: 'float4x2', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 4 columns and 2 rows of single-precision floating-point numbers.', 
+		documentation: 'A matrix with 4 columns and 2 rows of single-precision 32-bit floating-point numbers.', 
 		signature: 'float4x2(float2 c0, float2 c1, float2 c2, float2 c3)', insertText: new vscode.SnippetString('float4x2($1, $2, $3, $4)')
 	},
 	{
 		label: 'float4x3', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 4 columns and 3 rows of single-precision floating-point numbers.', 
+		documentation: 'A matrix with 4 columns and 3 rows of single-precision 32-bit floating-point numbers.', 
 		signature: 'float4x3(float3 c0, float3 c1, float3 c2, float3 c3)', insertText: new vscode.SnippetString('float4x3($1, $2, $3)')
 	},
 	{
 		label: 'float4x4', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 4 columns and 4 rows of single-precision floating-point numbers.', 
+		documentation: 'A matrix with 4 columns and 4 rows of single-precision 32-bit floating-point numbers.', 
 		signature: 'float4x4(float4 c0, float4 c1, float4 c2, float4 c3)', insertText: new vscode.SnippetString('float4x4($1, $2, $3)')
-	},
-
-	{
-		label: 'double2x2', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 2 columns and 2 rows of double-precision floating-point numbers.', 
-		signature: 'double2x2(double2 c0, double2 c1)', insertText: new vscode.SnippetString('double2x2($1, $2)')
-	},
-	{
-		label: 'double2x3', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 2 columns and 3 rows of double-precision floating-point numbers.', 
-		signature: 'double2x3(double3 c0, double3 c1)', insertText: new vscode.SnippetString('double2x3($1, $2)')
-	},
-	{
-		label: 'double2x4', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 2 columns and 4 rows of double-precision floating-point numbers.', 
-		signature: 'double2x4(double4 c0, double4 c1)', insertText: new vscode.SnippetString('double2x4($1, $2)')
-	},
-	{
-		label: 'double3x2', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 3 columns and 2 rows of double-precision floating-point numbers.', 
-		signature: 'double3x2(double2 c0, double2 c1, double2 c2)', insertText: new vscode.SnippetString('double3x2($1, $2, $3)')
-	},
-	{
-		label: 'double3x3', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 3 columns and 3 rows of double-precision floating-point numbers.', 
-		signature: 'double3x3(double3 c0, double3 c1, double3 c2)', insertText: new vscode.SnippetString('double3x3($1, $2, $3)')
-	},
-	{
-		label: 'double3x4', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 3 columns and 4 rows of double-precision floating-point numbers.', 
-		signature: 'double3x4(double4 c0, double4 c1, double4 c2)', insertText: new vscode.SnippetString('double3x4($1, $2, $3)')
-	},
-	{
-		label: 'double4x2', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 4 columns and 2 rows of double-precision floating-point numbers.', 
-		signature: 'double4x2(double2 c0, double2 c1, double2 c2, double2 c3)', insertText: new vscode.SnippetString('double4x2($1, $2, $3, $4)')
-	},
-	{
-		label: 'double4x3', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 4 columns and 3 rows of double-precision floating-point numbers.', 
-		signature: 'double4x3(double3 c0, double3 c1, double3 c2, double3 c3)', insertText: new vscode.SnippetString('double4x3($1, $2, $3)')
-	},
-	{
-		label: 'double4x4', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A matrix with 4 columns and 4 rows of double-precision floating-point numbers.', 
-		signature: 'double4x4(double4 c0, double4 c1, double4 c2, double4 c3)', insertText: new vscode.SnippetString('double4x4($1, $2, $3)')
 	},
 
 	{
@@ -1322,12 +1465,12 @@ const builtins =
 	{
 		label: 'texelFetch', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform a lookup of a single texel within a texture.',
-		signature: 'Type4 texelFetch(Sampler sampler, FloatX texCoords, int32 lod);', insertText: new vscode.SnippetString('texelFetch($1, $2, $3)')
+		signature: 'Type4 texelFetch(Sampler sampler, IntX position, int32 lod);', insertText: new vscode.SnippetString('texelFetch($1, $2, $3)')
 	},
 	{
 		label: 'texelFetchOffset', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Perform a lookup of a single texel within a texture with an offset.',
-		signature: 'Type4 texelFetchOffset(Sampler sampler, FloatX texCoords, int32 lod, Type offset);', insertText: new vscode.SnippetString('texelFetchOffset($1, $2, $3, $4)')
+		signature: 'Type4 texelFetchOffset(Sampler sampler, IntX position, int32 lod, Type offset);', insertText: new vscode.SnippetString('texelFetchOffset($1, $2, $3, $4)')
 	},
 	{
 		label: 'texture', kind: vscode.CompletionItemKind.Function, 

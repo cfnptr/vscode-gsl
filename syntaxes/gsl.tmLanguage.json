@@ -57,11 +57,11 @@
 				},
 				{
 					"name": "storage.type.gsl",
-					"match": "\\b(void|struct|int32|uint32|float|bool|int[2-4]|uint[2-4]|bool[2-4]|float(2|3|4|2x2|3x3|4x4|2x3|3x2|2x4|4x2|3x4|4x3)|sampler(1D|2D|3D|Cube|1DArray|2DArray|CubeArray|1DShadow|2DShadow|CubeShadow|1DArrayShadow|2DArrayShadow|CubeArrayShadow)|(u|i)sampler(1D|2D|3D|Cube|1DArray|2DArray|CubeArray)|image(1D|2D|3D|Cube|1DArray|2DArray|CubeArray|1DShadow|2DShadow|CubeShadow|1DArrayShadow|2DArrayShadow|CubeArrayShadow)|(u|i)image(1D|2D|3D|Cube|1DArray|2DArray|CubeArray)|subpassInput|accelerationStructure)\\b"
+					"match": "\\b(void|struct|int(8|16|32|64)|uint(8|16|32|64)|half|float|double|bool|sbyte[2-4]|byte[2-4]|short[2-4]|ushort[2-4]|int[2-4]|uint[2-4]|long[2-4]|ulong[2-4]|bool[2-4]|half(2|3|4|2x2|3x3|4x4|2x3|3x2|2x4|4x2|3x4|4x3)|float(2|3|4|2x2|3x3|4x4|2x3|3x2|2x4|4x2|3x4|4x3)|double(2|3|4)|sampler(1D|2D|3D|Cube|1DArray|2DArray|CubeArray|1DShadow|2DShadow|CubeShadow|1DArrayShadow|2DArrayShadow|CubeArrayShadow)|(u|i)sampler(1D|2D|3D|Cube|1DArray|2DArray|CubeArray)|image(1D|2D|3D|Cube|1DArray|2DArray|CubeArray|1DShadow|2DShadow|CubeShadow|1DArrayShadow|2DArrayShadow|CubeArrayShadow)|(u|i)image(1D|2D|3D|Cube|1DArray|2DArray|CubeArray)|subpassInput|accelerationStructure)\\b"
 				},
 				{
 					"name": "storage.modifier.gsl",
-					"match": "\\b(const|spec|uniform|buffer|pipelineState|pushConstants|in|out|inout|flat|noperspective|smooth|centroid|sample|shared|coherent|volatile|restrict|readonly|writeonly|mutable|scalar|reference|depthLess|depthGreater|earlyFragmentTests|lowp|mediump|highp|localSize|rayPayload|rayPayloadIn|hitAttribute|callableData|callableDataIn|f(8|16|32|64)|i(8|16|32|64)|u(8|16|32|64)|uint(R8|R8G8|R8G8B8A8|R16|R16G16|R16G16B16A16|R32|R32G32|R32G32B32A32|A2R10G10B10)|int(R8|R8G8|R8G8B8A8|R16|R16G16|R16G16B16A16|R32|R32G32|R32G32B32A32)|unorm(R8|R8G8|R8G8B8A8|R16|R16G16|R16G16B16A16|A2R10G10B10)|snorm(R8|R8G8|R8G8B8A8|R16|R16G16|R16G16B16A16)|float(R16|R16G16|R16G16B16A16|R32|R32G32|R32G32B32A32)|ufloatB10G11R11|set[0-7])\\b"
+					"match": "\\b(const|spec|uniform|buffer|pipelineState|pushConstants|in|out|inout|flat|noperspective|smooth|centroid|sample|shared|coherent|volatile|restrict|readonly|writeonly|mutable|scalar|reference|depthLess|depthGreater|earlyFragmentTests|lowp|mediump|highp|localSize|rayPayload|rayPayloadIn|hitAttribute|callableData|callableDataIn|f(8|16|32|64)|i(8|16|32|64)|u(8|16|32|64)|uint(R8|R8G8|R8G8B8A8|R16|R16G16|R16G16B16A16|R32|R32G32|R32G32B32A32|A2R10G10B10)|sint(R8|R8G8|R8G8B8A8|R16|R16G16|R16G16B16A16|R32|R32G32|R32G32B32A32)|unorm(R8|R8G8|R8G8B8A8|R16|R16G16|R16G16B16A16|A2R10G10B10)|snorm(R8|R8G8|R8G8B8A8|R16|R16G16|R16G16B16A16)|sfloat(R16|R16G16|R16G16B16A16|R32|R32G32|R32G32B32A32)|ufloatB10G11R11|set[0-7])\\b"
 				},
 				{
 					"name": "constant.language.gsl",
@@ -69,7 +69,7 @@
 				},
 				{
 					"name": "invalid.illegal.gsl",
-					"match": "\\b(int|uint|vec[2-4]|(i|u|b)vec[2-4]|mat(2|3|4|2x2|3x3|4x4|2x3|3x2|2x4|4x2|3x4|4x3)|layout)\\b"
+					"match": "\\b(int|uint|vec[2-4]|(i|u|b|d)vec[2-4]|mat(2|3|4|2x2|3x3|4x4|2x3|3x2|2x4|4x2|3x4|4x3)|layout)\\b"
 				}
 			]
 		},
