@@ -2,7 +2,7 @@
 	"name": "gsl-linter",
 	"displayName": "Garden Shading Language (GSL)",
 	"description": "Custom GLSL dialect",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"publisher": "cfnptr",
 	"repository": { "type": "git", "url": "https://github.com/cfnptr/vscode-gsl" },
 	"license": "Apache 2.0",
