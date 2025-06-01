@@ -3,6 +3,11 @@ const vscode = require('vscode');
 const builtins =
 [
 	{
+		label: '#defines', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'Defines constant global shader preprocessor macros.', 
+		signature: '#define NAME value', insertText: new vscode.SnippetString('#define $1 $2')
+	},
+	{
 		label: '#include', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Includes the contents of another GSL source file.<br>Used to modularize shader code by reusing common functions or definitions.', 
 		signature: '#include "file-name.gsl"', insertText: new vscode.SnippetString('#include "$1"')
@@ -423,7 +428,7 @@ const builtins =
 	{
 		label: 'out', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Declares an output variable from the shader stage or function.', 
-		signature: 'out Type name;', insertText: new vscode.SnippetString('out ')
+		signature: '<invariant> out Type name;', insertText: new vscode.SnippetString('out ')
 	},
 	{
 		label: 'inout', kind: vscode.CompletionItemKind.Keyword, 
@@ -505,6 +510,11 @@ const builtins =
 		label: 'writeonly', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Marks an image or buffer as as write-only in shaders.', 
 		signature: 'uniform writeonly Type name;', insertText: new vscode.SnippetString('writeonly ')
+	},
+	{
+		label: 'invariant', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'Ensures consistent rasterization results across shader stages <br>by preventing small differences in floating-point calculations.', 
+		signature: 'invariant out Type name;', insertText: new vscode.SnippetString('invariant ')
 	},
 	{
 		label: 'mutable', kind: vscode.CompletionItemKind.Keyword, 
