@@ -9,8 +9,8 @@
 - `uint8`, `uint16`, `half`, etc. keywords support.
 - Input vertex attribute types docs. (`f8`, `f16`...)
 
-Scalar layout - https://github.com/KhronosGroup/GLSL/blob/main/extensions/ext/GL_EXT_scalar_block_layout.txt
-Buffer reference - https://github.com/KhronosGroup/GLSL/blob/main/extensions/ext/GLSL_EXT_buffer_reference.txt
+Scalar layout - https://github.com/KhronosGroup/GLSL/blob/main/extensions/ext/GL_EXT_scalar_block_layout.txt<br>
+Buffer reference - https://github.com/KhronosGroup/GLSL/blob/main/extensions/ext/GLSL_EXT_buffer_reference.txt<br>
 Shader 16-bit storage - https://github.com/KhronosGroup/GLSL/blob/main/extensions/ext/GL_EXT_shader_16bit_storage.txt
 
 ### Fixed
