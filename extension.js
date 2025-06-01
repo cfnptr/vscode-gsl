@@ -370,6 +370,52 @@ const builtins =
 	},
 
 	{
+		label: 'f8', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 8-bit normalized uint as float vertex shader input attribute type.', 
+		signature: 'in Type vs.name : f8;', insertText: new vscode.SnippetString('f8;')
+	},
+	{
+		label: 'f16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit normalized uint as float vertex shader input attribute type.', 
+		signature: 'in Type vs.name : f16;', insertText: new vscode.SnippetString('f16;')
+	},
+	{
+		label: 'f32', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 32-bit floating-point vertex shader input attribute type.', 
+		signature: 'in Type vs.name : f32;', insertText: new vscode.SnippetString('f32;')
+	},
+	{
+		label: 'i8', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 8-bit signed integer vertex shader input attribute type.', 
+		signature: 'in Type vs.name : i8;', insertText: new vscode.SnippetString('i8;')
+	},
+	{
+		label: 'i16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit signed integer vertex shader input attribute type.', 
+		signature: 'in Type vs.name : i16;', insertText: new vscode.SnippetString('i16;')
+	},
+	{
+		label: 'i32', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 32-bit signed integer vertex shader input attribute type.', 
+		signature: 'in Type vs.name : i32;', insertText: new vscode.SnippetString('i32;')
+	},
+	{
+		label: 'u8', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 8-bit unsigned integer vertex shader input attribute type.', 
+		signature: 'in Type vs.name : u8;', insertText: new vscode.SnippetString('u8;')
+	},
+	{
+		label: 'u16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit unsigned integer vertex shader input attribute type.', 
+		signature: 'in Type vs.name : u16;', insertText: new vscode.SnippetString('u16;')
+	},
+	{
+		label: 'u32', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 32-bit unsigned integer vertex shader input attribute type.', 
+		signature: 'in Type vs.name : u32;', insertText: new vscode.SnippetString('u32;')
+	},
+
+	{
 		label: 'in', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Declares an input variable to the shader stage or function.', 
 		signature: 'in Type name;', insertText: new vscode.SnippetString('in ')
