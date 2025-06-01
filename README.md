@@ -54,3 +54,7 @@ void main()
     fb.color = fs.color * texture(tex, fs.texCoords);
 }
 ```
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for details.
