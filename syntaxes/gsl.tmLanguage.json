@@ -37,7 +37,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.preprocessor.gsl",
-					"match": "^\\s*(#\\s*(include|define|undef|if|else|elif|endif|ifdef|ifndef|pragma|line|feature|variantCount|attributeOffset|subpassOffset))\\b"
+					"match": "^\\s*(#\\s*(include|define|undef|if|else|elif|endif|ifdef|ifndef|pragma|line|feature|variantCount|attributeOffset|attachmentOffset|rayRecursionDepth))\\b"
 				},
 				{
 					"name": "keyword.control.preprocessor.gsl",

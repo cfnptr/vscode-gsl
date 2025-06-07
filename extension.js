@@ -582,6 +582,11 @@ const builtins =
 		documentation: 'Adds offset to the `subpassInput` index.', 
 		signature: '#attachmentOffset x', insertText: new vscode.SnippetString('#attachmentOffset $1')
 	},
+	{
+		label: '#rayRecursionDepth', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'Maximum number of levels of ray recursion allowed in a trace command.', 
+		signature: '#rayRecursionDepth x', insertText: new vscode.SnippetString('#rayRecursionDepth $1')
+	},
 
 	{
 		label: 'set0', kind: vscode.CompletionItemKind.Keyword, 
@@ -986,17 +991,17 @@ const builtins =
 	},
 	{
 		label: 'clamp', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Constrain the `x` value to lie between two further values.',
+		documentation: 'Constrain the `x` value to lie between two further values. (Inclusive range)',
 		signature: 'Type clamp(Type x, Type min, Type max);', insertText: new vscode.SnippetString('clamp($1, $2, $3)')
 	},
 	{
 		label: 'step', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Generate a step function by comparing two values.',
+		documentation: 'Generate a step function by comparing two values. [r = x < edge ? 0 : 1]',
 		signature: 'FloatX step(FloatX edge, FloatX x);', insertText: new vscode.SnippetString('step($1, $2)')
 	},
 	{
 		label: 'smoothstep', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Perform Hermite interpolation between two values.',
+		documentation: 'Perform Hermite interpolation between two values. (edge0 < x < edge1)',
 		signature: 'FloatX smoothstep(FloatX edge0, FloatX edge1, FloatX x);', insertText: new vscode.SnippetString('smoothstep($1, $2, $3)')
 	},
 
@@ -1796,6 +1801,11 @@ const builtins =
 		documentation: 'Compile-time index of the current shader variant.', 
 		signature: 'spec const uint32 gsl.variantIndex;', insertText: new vscode.SnippetString('gsl.variantIndex')
 	},
+	{
+		label: 'gsl.rayRecursionDepth', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'Compile-time maximum ray recursion depth.', 
+		signature: 'const uint32 gsl.rayRecursionDepth;', insertText: new vscode.SnippetString('gsl.rayRecursionDepth')
+	},
 
 	{
 		label: 'accelerationStructure', kind: vscode.CompletionItemKind.Class, 
@@ -1895,12 +1905,12 @@ const builtins =
 	},
 	{
 		label: 'gl.worldRayOrigin', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the ray origin in world coordinates. (Ray Tracing Shader)', 
+		documentation: 'Contains the ray origin in world (global) coordinates. (Ray Tracing Shader)', 
 		signature: 'in float3 gl.worldRayOrigin;', insertText: new vscode.SnippetString('gl.worldRayOrigin')
 	},
 	{
 		label: 'gl.worldRayDirection', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the ray direction in world coordinates. (Ray Tracing Shader)', 
+		documentation: 'Contains the ray direction in world (global) coordinates. (Ray Tracing Shader)', 
 		signature: 'in float3 gl.worldRayDirection;', insertText: new vscode.SnippetString('gl.worldRayDirection')
 	},
 	{
@@ -1935,22 +1945,22 @@ const builtins =
 	},
 	{
 		label: 'gl.hitKind', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Indicates front or back facing triangle hit. (Ray Tracing Shader)', 
+		documentation: 'Indicates front or back facing triangle hit, or a custom 0-255 hit kind. (Ray Tracing Shader)', 
 		signature: 'in uint32 gl.hitKind;', insertText: new vscode.SnippetString('gl.hitKind')
 	},
 	{
 		label: 'gl.objectToWorld', kind: vscode.CompletionItemKind.Variable, 
 		documentation: 'Contains the object to world space transformation matrix. (Ray Tracing Shader)', 
-		signature: 'in float4x4 gl.objectToWorld;', insertText: new vscode.SnippetString('gl.objectToWorld')
+		signature: 'in float4x3 gl.objectToWorld;', insertText: new vscode.SnippetString('gl.objectToWorld')
 	},
 	{
 		label: 'gl.worldToObject', kind: vscode.CompletionItemKind.Variable, 
 		documentation: 'Contains the world to object space transformation matrix. (Ray Tracing Shader)', 
-		signature: 'in float4x4 gl.worldToObject;', insertText: new vscode.SnippetString('gl.worldToObject')
+		signature: 'in float4x3 gl.worldToObject;', insertText: new vscode.SnippetString('gl.worldToObject')
 	},
 	{
 		label: 'gl.worldToObject3x4', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the 3x4 portion of the world to object transformation matrix. (Ray Tracing Shader)', 
+		documentation: 'Contains the 3x4 portion of the world to objecttransformation matrix. (Ray Tracing Shader)', 
 		signature: 'in float3x4 gl.worldToObject3x4;', insertText: new vscode.SnippetString('gl.worldToObject3x4')
 	},
 	{
