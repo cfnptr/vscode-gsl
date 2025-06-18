@@ -889,6 +889,12 @@ const builtins =
 	},
 
 	{
+		label: 'printf', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Writes debug messages directly from shaders.', 
+		signature: 'void printf(String fmt, ...);', insertText: new vscode.SnippetString('printf($1)')
+	},
+
+	{
 		label: 'abs', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return the absolute value of the `x`.',
 		signature: 'Type abs(Type x);', insertText: new vscode.SnippetString('abs($1)')
@@ -1525,7 +1531,7 @@ const builtins =
 
 	{
 		label: 'texelFetch', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Perform a lookup of a single texel within a texture.',
+		documentation: 'Perform a lookup of a single texel within a texture. (No out of bounds checks!)',
 		signature: 'Type4 texelFetch(Sampler sampler, IntX position, int32 lod);', insertText: new vscode.SnippetString('texelFetch($1, $2, $3)')
 	},
 	{
@@ -1545,17 +1551,17 @@ const builtins =
 	},
 	{
 		label: 'textureGather', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Gathers four texels from a texture.',
+		documentation: 'Gathers four texels from a texture. (xy: r01, g11, b10, a00)',
 		signature: 'Type4 textureGather(Sampler sampler, FloatX texCoords, [int32 component]);', insertText: new vscode.SnippetString('textureGather($1, $2)')
 	},
 	{
 		label: 'textureGatherOffset', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Gathers four texels from a texture with offset.',
+		documentation: 'Gathers four texels from a texture with offset. (xy: r01, g11, b10, a00)',
 		signature: 'Type4 textureGatherOffset(Sampler sampler, FloatX texCoords, int2 offset, [int32 component]);', insertText: new vscode.SnippetString('textureGatherOffset($1, $2, $3)')
 	},
 	{
 		label: 'textureGatherOffsets', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Gathers four texels from a texture with an array of offsets.',
+		documentation: 'Gathers four texels from a texture with an array of offsets. (xy: r01, g11, b10, a00)',
 		signature: 'Type4 textureGatherOffsets(Sampler sampler, FloatX texCoords, int2 offsets[4], [int32 component]);', insertText: new vscode.SnippetString('textureGatherOffsets($1, $2, $3)')
 	},
 	{
@@ -1797,9 +1803,9 @@ const builtins =
 	},
 
 	{
-		label: 'gsl.variantIndex', kind: vscode.CompletionItemKind.Constant, 
+		label: 'gsl.variant', kind: vscode.CompletionItemKind.Constant, 
 		documentation: 'Compile-time index of the current shader variant.', 
-		signature: 'spec const uint32 gsl.variantIndex;', insertText: new vscode.SnippetString('gsl.variantIndex')
+		signature: 'spec const uint32 gsl.variant;', insertText: new vscode.SnippetString('gsl.variant')
 	},
 	{
 		label: 'gsl.rayRecursionDepth', kind: vscode.CompletionItemKind.Constant, 
