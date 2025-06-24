@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.2.0] - 2025-06-24
+
+- Added GLSL `invariant` keyword.
+- Added GSL extension changelog.
+- Added `#rayRecusrionDepth` and `gsl.rayRecursionDepth` support.
+- Added `printf(fmt, ...)` support.
+- Added `uintR8, sintR16G16...` image formats support.
+- Added `ext.bindless, ext.debugPrintf...` extensions support.
+- Fixed `gsl.variant` built-in name.
+- And other docs fixes and improvements.
+
 ## [1.1.0] - 2025-06-01
 
 ### Added
