@@ -421,6 +421,206 @@ const builtins =
 	},
 
 	{
+		label: 'uintR8', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 8-bit unsigned integer (red only channel) image format.', 
+		signature: 'uniform Image name : uintR8;', insertText: new vscode.SnippetString('uintR8;')
+	},
+	{
+		label: 'uintR8G8', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 8-bit unsigned integer (red and green channel) image format.', 
+		signature: 'uniform Image name : uintR8G8;', insertText: new vscode.SnippetString('uintR8G8;')
+	},
+	{
+		label: 'uintR8G8B8A8', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 8-bit unsigned integer (red, green, blue, alpha channel) image format.', 
+		signature: 'uniform Image name : uintR8G8B8A8;', insertText: new vscode.SnippetString('uintR8G8B8A8;')
+	},
+	{
+		label: 'uintR16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit unsigned integer (red only channel) image format.', 
+		signature: 'uniform Image name : uintR16;', insertText: new vscode.SnippetString('uintR16;')
+	},
+	{
+		label: 'uintR16G16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit unsigned integer (red and green channel) image format.', 
+		signature: 'uniform Image name : uintR16G16;', insertText: new vscode.SnippetString('uintR16G16;')
+	},
+	{
+		label: 'uintR16G16B16A16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit unsigned integer (red, green, blue, alpha channel) image format.', 
+		signature: 'uniform Image name : uintR16G16B16A16;', insertText: new vscode.SnippetString('uintR16G16B16A16;')
+	},
+	{
+		label: 'uintR32', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 32-bit unsigned integer (red only channel) image format.', 
+		signature: 'uniform Image name : uintR32;', insertText: new vscode.SnippetString('uintR32;')
+	},
+	{
+		label: 'uintR32G32', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 32-bit unsigned integer (red and green channel) image format.', 
+		signature: 'uniform Image name : uintR32G32;', insertText: new vscode.SnippetString('uintR32G32;')
+	},
+	{
+		label: 'uintR32G32B32A32', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 32-bit unsigned integer (red, green, blue, alpha channel) image format.', 
+		signature: 'uniform Image name : uintR32G32B32A32;', insertText: new vscode.SnippetString('uintR32G32B32A32;')
+	},
+	{
+		label: 'uintA2R10G10B10', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'An unsigned integer (2-bit alpha, 10-bit red/green/blue channel) format.', 
+		signature: 'uniform Image name : uintA2R10G10B10;', insertText: new vscode.SnippetString('uintA2R10G10B10;')
+	},
+
+	{
+		label: 'sintR8', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 8-bit signed integer (red only channel) image format.', 
+		signature: 'uniform Image name : sintR8;', insertText: new vscode.SnippetString('sintR8;')
+	},
+	{
+		label: 'sintR8G8', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 8-bit signed integer (red and green channel) image format.', 
+		signature: 'uniform Image name : sintR8G8;', insertText: new vscode.SnippetString('sintR8G8;')
+	},
+	{
+		label: 'sintR8G8B8A8', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 8-bit signed integer (red, green, blue, alpha channel) image format.', 
+		signature: 'uniform Image name : sintR8G8B8A8;', insertText: new vscode.SnippetString('sintR8G8B8A8;')
+	},
+	{
+		label: 'sintR16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit signed integer (red only channel) image format.', 
+		signature: 'uniform Image name : sintR16;', insertText: new vscode.SnippetString('sintR16;')
+	},
+	{
+		label: 'sintR16G16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit signed integer (red and green channel) image format.', 
+		signature: 'uniform Image name : sintR16G16;', insertText: new vscode.SnippetString('sintR16G16;')
+	},
+	{
+		label: 'sintR16G16B16A16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit signed integer (red, green, blue, alpha channel) image format.', 
+		signature: 'uniform Image name : sintR16G16B16A16;', insertText: new vscode.SnippetString('sintR16G16B16A16;')
+	},
+	{
+		label: 'sintR32', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 32-bit signed integer (red only channel) image format.', 
+		signature: 'uniform Image name : sintR32;', insertText: new vscode.SnippetString('sintR32;')
+	},
+	{
+		label: 'sintR32G32', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 32-bit signed integer (red and green channel) image format.', 
+		signature: 'uniform Image name : sintR32G32;', insertText: new vscode.SnippetString('sintR32G32;')
+	},
+	{
+		label: 'sintR32G32B32A32', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 32-bit signed integer (red, green, blue, alpha channel) image format.', 
+		signature: 'uniform Image name : sintR32G32B32A32;', insertText: new vscode.SnippetString('sintR32G32B32A32;')
+	},
+
+	{
+		label: 'unormR8', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 8-bit normalized uint as float (red only channel) image format. [0.0, 1.0]', 
+		signature: 'uniform Image name : unormR8;', insertText: new vscode.SnippetString('unormR8;')
+	},
+	{
+		label: 'unormR8G8', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 8-bit normalized uint as float (red and green channel) image format. [0.0, 1.0]', 
+		signature: 'uniform Image name : unormR8G8;', insertText: new vscode.SnippetString('unormR8G8;')
+	},
+	{
+		label: 'unormR8G8B8A8', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 8-bit normalized uint as float (red, green, blue, alpha channel) image format. [0.0, 1.0]', 
+		signature: 'uniform Image name : unormR8G8B8A8;', insertText: new vscode.SnippetString('unormR8G8B8A8;')
+	},
+	{
+		label: 'unormR16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit normalized uint as float (red only channel) image format. [0.0, 1.0]', 
+		signature: 'uniform Image name : unormR16;', insertText: new vscode.SnippetString('unormR16;')
+	},
+	{
+		label: 'unormR16G16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit normalized uint as float (red and green channel) image format. [0.0, 1.0]', 
+		signature: 'uniform Image name : unormR16G16;', insertText: new vscode.SnippetString('unormR16G16;')
+	},
+	{
+		label: 'unormR16G16B16A16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit normalized uint as float (red, green, blue, alpha channel) image format. [0.0, 1.0]', 
+		signature: 'uniform Image name : unormR16G16B16A16;', insertText: new vscode.SnippetString('unormR16G16B16A16;')
+	},
+	{
+		label: 'unormA2R10G10B10', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'An normalized uint as float (2-bit alpha, 10-bit red/green/blue channel) format. [0.0, 1.0]', 
+		signature: 'uniform Image name : unormA2R10G10B10;', insertText: new vscode.SnippetString('unormA2R10G10B10;')
+	},
+
+	{
+		label: 'snormR8', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 8-bit normalized int as float (red only channel) image format. [-1.0, 1.0]', 
+		signature: 'uniform Image name : snormR8;', insertText: new vscode.SnippetString('snormR8;')
+	},
+	{
+		label: 'snormR8G8', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 8-bit normalized int as float (red and green channel) image format. [-1.0, 1.0]', 
+		signature: 'uniform Image name : snormR8G8;', insertText: new vscode.SnippetString('snormR8G8;')
+	},
+	{
+		label: 'snormR8G8B8A8', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 8-bit normalized int as float (red, green, blue, alpha channel) image format. [-1.0, 1.0]', 
+		signature: 'uniform Image name : snormR8G8B8A8;', insertText: new vscode.SnippetString('snormR8G8B8A8;')
+	},
+	{
+		label: 'snormR16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit normalized int as float (red only channel) image format. [-1.0, 1.0]', 
+		signature: 'uniform Image name : snormR16;', insertText: new vscode.SnippetString('snormR16;')
+	},
+	{
+		label: 'snormR16G16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit normalized int as float (red and green channel) image format. [-1.0, 1.0]', 
+		signature: 'uniform Image name : snormR16G16;', insertText: new vscode.SnippetString('snormR16G16;')
+	},
+	{
+		label: 'snormR16G16B16A16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit normalized int as float (red, green, blue, alpha channel) image format. [-1.0, 1.0]', 
+		signature: 'uniform Image name : snormR16G16B16A16;', insertText: new vscode.SnippetString('snormR16G16B16A16;')
+	},
+
+	{
+		label: 'sfloatR16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit signed floating point (red only channel) image format.', 
+		signature: 'uniform Image name : sfloatR16;', insertText: new vscode.SnippetString('sfloatR16;')
+	},
+	{
+		label: 'sfloatR16G16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit signed floating point (red and green channel) image format.', 
+		signature: 'uniform Image name : sfloatR16G16;', insertText: new vscode.SnippetString('sfloatR16G16;')
+	},
+	{
+		label: 'sfloatR16G16B16A16', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 16-bit signed floating point (red, green, blue, alpha channel) image format.', 
+		signature: 'uniform Image name : sfloatR16G16B16A16;', insertText: new vscode.SnippetString('sfloatR16G16B16A16;')
+	},
+	{
+		label: 'sfloatR32', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 32-bit signed floating point (red only channel) image format.', 
+		signature: 'uniform Image name : sfloatR32;', insertText: new vscode.SnippetString('sfloatR32;')
+	},
+	{
+		label: 'sfloatR32G32', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 32-bit signed floating point (red and green channel) image format.', 
+		signature: 'uniform Image name : sfloatR32G32;', insertText: new vscode.SnippetString('sfloatR32G32;')
+	},
+	{
+		label: 'sfloatR32G32B32A32', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 32-bit signed floating point (red, green, blue, alpha channel) image format.', 
+		signature: 'uniform Image name : sfloatR32G32B32A32;', insertText: new vscode.SnippetString('sfloatR32G32B32A32;')
+	},
+	{
+		label: 'ufloatB10G11R11', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'An unsigned floating point (10-bit blue, 11-bit green, 10-bit red channel) image format.', 
+		signature: 'uniform Image name : ufloatB10G11R11;', insertText: new vscode.SnippetString('ufloatB10G11R11;')
+	},
+
+	{
 		label: 'in', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Declares an input variable to the shader stage or function.', 
 		signature: 'in Type name;', insertText: new vscode.SnippetString('in ')
@@ -2028,6 +2228,52 @@ const builtins =
 		label: 'gl.hitKindBackFacingTriangle', kind: vscode.CompletionItemKind.Constant, 
 		documentation: 'Front-facing triangle hit. (Ray Tracing Shader)', 
 		signature: 'const uint32 gl.hitKindBackFacingTriangle = 0xFF;', insertText: new vscode.SnippetString('gl.hitKindBackFacingTriangle')
+	},
+
+	{
+		label: 'ext.debugPrintf', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'Adds a printf(fmt, ...) function which writes to the debug output log. (Use vkconfig-gui)', 
+		signature: '#feature ext.debugPrintf', insertText: new vscode.SnippetString('ext.debugPrintf')
+	},
+	{
+		label: 'ext.explicitTypes', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'Exposes explicit 8-bit integer, and 16-bit integer and floating-point types.', 
+		signature: '#feature ext.explicitTypes', insertText: new vscode.SnippetString('ext.explicitTypes')
+	},
+	{
+		label: 'ext.int8BitStorage', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'Allows loading/storing 8-bit integer and floating-point scalar and vector types from/to uniform and storage buffers.', 
+		signature: '#feature ext.int8BitStorage', insertText: new vscode.SnippetString('ext.int8BitStorage')
+	},
+	{
+		label: 'ext.int16BitStorage', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'Allows loading/storing 16-bit integer and floating-point scalar and vector types from/to uniform and storage buffers.', 
+		signature: '#feature ext.int16BitStorage', insertText: new vscode.SnippetString('ext.int16BitStorage')
+	},
+	{
+		label: 'ext.bindless', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'Allows arrays of resources declared using unsized arrays to become run-time sized arrays.', 
+		signature: '#feature ext.bindless', insertText: new vscode.SnippetString('ext.bindless')
+	},
+	{
+		label: 'ext.scalarLayout', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'Adds a new block layout (scalar) for uniform, push constant, and storage buffer blocks.', 
+		signature: '#feature ext.scalarLayout', insertText: new vscode.SnippetString('ext.scalarLayout')
+	},
+	{
+		label: 'ext.bufferReference', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'Allows storage block names to be declared with a reference layout.', 
+		signature: '#feature ext.bufferReference', insertText: new vscode.SnippetString('ext.bufferReference')
+	},
+	{
+		label: 'ext.subgroupBasic', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'Enables basic subgroup operations.', 
+		signature: '#feature ext.subgroupBasic', insertText: new vscode.SnippetString('ext.subgroupBasic')
+	},
+	{
+		label: 'ext.subgroupVote', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'Enables subgroup vote operations.', 
+		signature: '#feature ext.subgroupVote', insertText: new vscode.SnippetString('ext.subgroupVote')
 	},
 ];
 const builtinMap = new Map(builtins.map(item => [item.label, item]));

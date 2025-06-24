@@ -65,7 +65,7 @@
 				},
 				{
 					"name": "constant.language.gsl",
-					"match": "\\b(false|true)\\b"
+					"match": "\\b(false|true|ext.debugPrintf|ext.explicitTypes|ext.int8BitStorage|ext.int16BitStorage|ext.bindless|ext.scalarLayout|ext.bufferReference|ext.subgroupBasic|ext.subgroupVote)\\b"
 				},
 				{
 					"name": "invalid.illegal.gsl",
