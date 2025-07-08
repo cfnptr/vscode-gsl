@@ -37,7 +37,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.preprocessor.gsl",
-					"match": "^\\s*(#\\s*(include|define|undef|if|else|elif|endif|ifdef|ifndef|pragma|line|feature|variantCount|attributeOffset|attachmentOffset|rayRecursionDepth))\\b"
+					"match": "^\\s*(#\\s*(include|define|undef|if|else|elif|endif|ifdef|ifndef|pragma|line|feature|variantCount|attributeOffset|attachmentOffset|rayPayloadOffset|callableDataOffset|rayRecursionDepth))\\b"
 				},
 				{
 					"name": "keyword.control.preprocessor.gsl",
@@ -57,7 +57,7 @@
 				},
 				{
 					"name": "storage.type.gsl",
-					"match": "\\b(void|struct|int(8|16|32|64)|uint(8|16|32|64)|half|float|double|bool|sbyte[2-4]|byte[2-4]|short[2-4]|ushort[2-4]|int[2-4]|uint[2-4]|long[2-4]|ulong[2-4]|bool[2-4]|half(2|3|4|2x2|3x3|4x4|2x3|3x2|2x4|4x2|3x4|4x3)|float(2|3|4|2x2|3x3|4x4|2x3|3x2|2x4|4x2|3x4|4x3)|double(2|3|4)|sampler(1D|2D|3D|Cube|1DArray|2DArray|CubeArray|1DShadow|2DShadow|CubeShadow|1DArrayShadow|2DArrayShadow|CubeArrayShadow)|(u|i)sampler(1D|2D|3D|Cube|1DArray|2DArray|CubeArray)|image(1D|2D|3D|Cube|1DArray|2DArray|CubeArray|1DShadow|2DShadow|CubeShadow|1DArrayShadow|2DArrayShadow|CubeArrayShadow)|(u|i)image(1D|2D|3D|Cube|1DArray|2DArray|CubeArray)|subpassInput|accelerationStructure)\\b"
+					"match": "\\b(void|struct|int(8|16|32|64)|uint(8|16|32|64)|half|float|double|bool|sbyte[2-4]|byte[2-4]|short[2-4]|ushort[2-4]|int[2-4]|uint[2-4]|long[2-4]|ulong[2-4]|bool[2-4]|half(2|3|4|2x2|3x3|4x4|2x3|3x2|2x4|4x2|3x4|4x3)|float(2|3|4|2x2|3x3|4x4|2x3|3x2|2x4|4x2|3x4|4x3)|double(2|3|4)|sampler(1D|2D|3D|Cube|1DArray|2DArray|CubeArray|1DShadow|2DShadow|CubeShadow|1DArrayShadow|2DArrayShadow|CubeArrayShadow)|(u|i)sampler(1D|2D|3D|Cube|1DArray|2DArray|CubeArray)|image(1D|2D|3D|Cube|1DArray|2DArray|CubeArray|1DShadow|2DShadow|CubeShadow|1DArrayShadow|2DArrayShadow|CubeArrayShadow)|(u|i)image(1D|2D|3D|Cube|1DArray|2DArray|CubeArray)|subpassInput|accelerationStructure|rayQuery)\\b"
 				},
 				{
 					"name": "storage.modifier.gsl",
@@ -65,7 +65,7 @@
 				},
 				{
 					"name": "constant.language.gsl",
-					"match": "\\b(false|true|ext.debugPrintf|ext.explicitTypes|ext.int8BitStorage|ext.int16BitStorage|ext.bindless|ext.scalarLayout|ext.bufferReference|ext.subgroupBasic|ext.subgroupVote)\\b"
+					"match": "\\b(false|true|ext.(debugPrintf|explicitTypes|int8BitStorage|int16BitStorage|bindless|scalarLayout|bufferReference|subgroupBasic|subgroupVote|rayQuery))\\b"
 				},
 				{
 					"name": "invalid.illegal.gsl",

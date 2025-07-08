@@ -770,7 +770,7 @@ const builtins =
 	{
 		label: '#variantCount', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Total variant count of the shader.', 
-		signature: '#variantCount x', insertText: new vscode.SnippetString('#attributeOffset $1')
+		signature: '#variantCount x', insertText: new vscode.SnippetString('#variantCount $1')
 	},
 	{
 		label: '#attributeOffset', kind: vscode.CompletionItemKind.Keyword, 
@@ -2035,7 +2035,7 @@ const builtins =
 	},
 	{
 		label: 'callableData', kind: vscode.CompletionItemKind.Keyword, 
-		documentation: 'Declares data output by callable shaders, which are invoked from ray tracing shaders.', 
+		documentation: 'Declares data for callable shaders, which are invoked from ray tracing shaders.', 
 		signature: 'callableData Type name;', insertText: new vscode.SnippetString('callableData $1 $2;')
 	},
 	{
@@ -2044,14 +2044,14 @@ const builtins =
 		signature: 'callableDataIn Type name;', insertText: new vscode.SnippetString('callableDataIn $1 $2;')
 	},
 	{
-		label: '#payloadOffset', kind: vscode.CompletionItemKind.Keyword, 
+		label: '#rayPayloadOffset', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Adds offset to the `rayPayload` or `rayPayloadIn` index.', 
-		signature: '#payloadOffset x', insertText: new vscode.SnippetString('#payloadOffset $1')
+		signature: '#rayPayloadOffset x', insertText: new vscode.SnippetString('#rayPayloadOffset $1')
 	},
 	{
-		label: '#callableOffset', kind: vscode.CompletionItemKind.Keyword, 
+		label: '#callableDataOffset', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Adds offset to the `callableData` or `callableDataIn` index.', 
-		signature: '#callableOffset x', insertText: new vscode.SnippetString('#callableOffset $1')
+		signature: '#callableDataOffset x', insertText: new vscode.SnippetString('#callableDataOffset $1')
 	},
 	{
 		label: 'ignoreIntersection', kind: vscode.CompletionItemKind.Keyword, 
@@ -2077,7 +2077,7 @@ const builtins =
 	{
 		label: 'executeCallable', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Invoke a callable shader. (Ray Tracing Shader)', 
-		signature: 'void executeCallable(uint32 sbtRecordOffset, uint32 sbtRecordStride);', insertText: new vscode.SnippetString('executeCallable($1, $2)')
+		signature: 'void executeCallable(uint32 sbtRecordOffset, uint32 dataIndex);', insertText: new vscode.SnippetString('executeCallable($1, $2)')
 	},
 	{
 		label: 'gl.launchID', kind: vscode.CompletionItemKind.Variable, 
@@ -2097,17 +2097,17 @@ const builtins =
 	{
 		label: 'gl.instanceID', kind: vscode.CompletionItemKind.Variable, 
 		documentation: 'Contains the instance ID of the hit geometry. (Ray Tracing Shader)', 
-		signature: 'in uint32 gl.instanceID;', insertText: new vscode.SnippetString('gl.instanceID')
+		signature: 'in int32 gl.instanceID;', insertText: new vscode.SnippetString('gl.instanceID')
 	},
 	{
 		label: 'gl.instanceCustomIndex', kind: vscode.CompletionItemKind.Variable, 
 		documentation: 'Contains user-assigned custom index of the hit instance. (Ray Tracing Shader)', 
-		signature: 'in uint32 gl.instanceCustomIndex;', insertText: new vscode.SnippetString('gl.instanceCustomIndex')
+		signature: 'in int32 gl.instanceCustomIndex;', insertText: new vscode.SnippetString('gl.instanceCustomIndex')
 	},
 	{
 		label: 'gl.geometryIndex', kind: vscode.CompletionItemKind.Variable, 
 		documentation: 'Contains the hit geometry index within the acceleration structure. (Ray Tracing Shader)', 
-		signature: 'in uint32 gl.geometryIndex;', insertText: new vscode.SnippetString('gl.geometryIndex')
+		signature: 'in int32 gl.geometryIndex;', insertText: new vscode.SnippetString('gl.geometryIndex')
 	},
 	{
 		label: 'gl.worldRayOrigin', kind: vscode.CompletionItemKind.Variable, 
@@ -2231,6 +2231,181 @@ const builtins =
 	},
 
 	{
+		label: 'rayQuery', kind: vscode.CompletionItemKind.Class, 
+		documentation: "A structure that holds the query traversal information for ray tracing.", 
+		signature: 'rayQuery name;', insertText: new vscode.SnippetString('rayQuery ')
+	},
+	{
+		label: 'rayQueryInitialize', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Initializes a ray query object for future TLAS traversal.', 
+		signature: 'void rayQueryInitialize(rayQuery query, accelerationStructure tlas, uint32 rayFlags, \n\tuint32 cullMask, float3 origin, float tMin, float3 direction, float tMax);', 
+		insertText: new vscode.SnippetString('rayQueryInitialize($1, $2, $3, $4, $5, $6, $7, $8)')
+	},
+	{
+		label: 'rayQueryProceed', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Proceed TLAS traversal when ray traversal is incomplete.', 
+		signature: 'bool rayQueryProceed(rayQuery query);', 
+		insertText: new vscode.SnippetString('rayQueryProceed($1)')
+	},
+	{
+		label: 'rayQueryTerminate', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Terminates execution of ray query when traversal is incomplete.', 
+		signature: 'void rayQueryTerminate(rayQuery query);', 
+		insertText: new vscode.SnippetString('rayQueryTerminate($1)')
+	},
+	{
+		label: 'rayQueryGenerateIntersection', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Generates and commits an AABB intersection at `tHit`.', 
+		signature: 'void rayQueryGenerateIntersection(rayQuery query, float tHit);', 
+		insertText: new vscode.SnippetString('rayQueryGenerateIntersection($1, $2)')
+	},
+	{
+		label: 'rayQueryConfirmIntersection', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Commits current candidate triangle intersection.', 
+		signature: 'void rayQueryConfirmIntersection(rayQuery query);', 
+		insertText: new vscode.SnippetString('rayQueryConfirmIntersection($1)')
+	},
+	{
+		label: 'rayQueryGetIntersectionType', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns type of committed or candidate intersection.', 
+		signature: 'uint32 rayQueryGetIntersectionType(rayQuery query, bool committed);', 
+		insertText: new vscode.SnippetString('rayQueryGetIntersectionType($1, $2)')
+	},
+	{
+		label: 'rayQueryGetRayTMin', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns the parametric `tMin` value for the ray query.', 
+		signature: 'float rayQueryGetRayTMin(rayQuery query);', 
+		insertText: new vscode.SnippetString('rayQueryGetRayTMin($1)')
+	},
+	{
+		label: 'rayQueryGetRayFlags', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns the ray flags for the ray query.', 
+		signature: 'uint32 rayQueryGetRayFlags(rayQuery query);', 
+		insertText: new vscode.SnippetString('rayQueryGetRayFlags($1)')
+	},
+	{
+		label: 'rayQueryGetWorldRayOrigin', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns the world-space origin of ray for the ray query.', 
+		signature: 'float3 rayQueryGetWorldRayOrigin(rayQuery query);', 
+		insertText: new vscode.SnippetString('rayQueryGetWorldRayOrigin($1)')
+	},
+	{
+		label: 'rayQueryGetWorldRayDirection', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns the world-space direction of ray for the ray query.', 
+		signature: 'float3 rayQueryGetWorldRayDirection(rayQuery query);', 
+		insertText: new vscode.SnippetString('rayQueryGetWorldRayDirection($1)')
+	},
+	{
+		label: 'rayQueryGetWorldRayDirection', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns the world-space direction of ray for the ray query.', 
+		signature: 'float3 rayQueryGetWorldRayDirection(rayQuery query);', 
+		insertText: new vscode.SnippetString('rayQueryGetWorldRayDirection($1)')
+	},
+	{
+		label: 'rayQueryGetIntersectionT', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns the parametric `t` value for current intersection.', 
+		signature: 'float rayQueryGetIntersectionT(rayQuery query, bool committed);', 
+		insertText: new vscode.SnippetString('rayQueryGetIntersectionT($1, $2)')
+	},
+	{
+		label: 'rayQueryGetIntersectionInstanceCustomIndex', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns the custom index of the instance for current intersection.', 
+		signature: 'int32 rayQueryGetIntersectionInstanceCustomIndex(rayQuery query, bool committed);', 
+		insertText: new vscode.SnippetString('rayQueryGetIntersectionInstanceCustomIndex($1, $2)')
+	},
+	{
+		label: 'rayQueryGetIntersectionInstanceId', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns the index of the instance for current intersection.', 
+		signature: 'int32 rayQueryGetIntersectionInstanceId(rayQuery query, bool committed);', 
+		insertText: new vscode.SnippetString('rayQueryGetIntersectionInstanceId($1, $2)')
+	},
+	{
+		label: 'rayQueryGetIntersectionInstanceShaderBindingTableRecordOffset', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns the application-specified BLAS SBT record offset value.', 
+		signature: 'uint32 rayQueryGetIntersectionInstanceShaderBindingTableRecordOffset(rayQuery query, bool committed);', 
+		insertText: new vscode.SnippetString('rayQueryGetIntersectionInstanceShaderBindingTableRecordOffset($1, $2)')
+	},
+	{
+		label: 'rayQueryGetIntersectionGeometryIndex', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns implementation defined index of geometry for current intersection.', 
+		signature: 'int32 rayQueryGetIntersectionGeometryIndex(rayQuery query, bool committed);', 
+		insertText: new vscode.SnippetString('rayQueryGetIntersectionGeometryIndex($1, $2)')
+	},
+	{
+		label: 'rayQueryGetIntersectionPrimitiveIndex', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns the index of the primitive within the geometry of the BLAS being processed.', 
+		signature: 'int32 rayQueryGetIntersectionPrimitiveIndex(rayQuery query, bool committed);', 
+		insertText: new vscode.SnippetString('rayQueryGetIntersectionPrimitiveIndex($1, $2)')
+	},
+	{
+		label: 'rayQueryGetIntersectionBarycentrics', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns floating point barycentric coordinates of current intersection of ray.', 
+		signature: 'float2 rayQueryGetIntersectionBarycentrics(rayQuery query, bool committed);', 
+		insertText: new vscode.SnippetString('rayQueryGetIntersectionBarycentrics($1, $2)')
+	},
+	{
+		label: 'rayQueryGetIntersectionFrontFace', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns true if the current intersection is a front facing triangle.', 
+		signature: 'bool rayQueryGetIntersectionFrontFace(rayQuery query, bool committed);', 
+		insertText: new vscode.SnippetString('rayQueryGetIntersectionFrontFace($1, $2)')
+	},
+	{
+		label: 'rayQueryGetIntersectionCandidateAABBOpaque', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns true if the current candidate intersection is an opaque AABB.', 
+		signature: 'bool rayQueryGetIntersectionCandidateAABBOpaque(rayQuery query);', 
+		insertText: new vscode.SnippetString('rayQueryGetIntersectionCandidateAABBOpaque($1)')
+	},
+	{
+		label: 'rayQueryGetIntersectionObjectRayDirection', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns object-space direction of ray for current intersection.', 
+		signature: 'float3 rayQueryGetIntersectionObjectRayDirection(rayQuery query, bool committed);', 
+		insertText: new vscode.SnippetString('rayQueryGetIntersectionObjectRayDirection($1, $2)')
+	},
+	{
+		label: 'rayQueryGetIntersectionObjectRayOrigin', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns object-space origin of ray for current intersection.', 
+		signature: 'float3 rayQueryGetIntersectionObjectRayOrigin(rayQuery query, bool committed);', 
+		insertText: new vscode.SnippetString('rayQueryGetIntersectionObjectRayOrigin($1, $2)')
+	},
+	{
+		label: 'rayQueryGetIntersectionObjectToWorld', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns object to world transformation matrix for current intersection.', 
+		signature: 'float4x3 rayQueryGetIntersectionObjectToWorld(rayQuery query, bool committed);', 
+		insertText: new vscode.SnippetString('rayQueryGetIntersectionObjectToWorld($1, $2)')
+	},
+	{
+		label: 'rayQueryGetIntersectionWorldToObject', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Returns world to object transformation matrix for current intersection.', 
+		signature: 'float4x3 rayQueryGetIntersectionWorldToObject(rayQuery query, bool committed);', 
+		insertText: new vscode.SnippetString('rayQueryGetIntersectionWorldToObject($1, $2)')
+	},
+	{
+		label: 'gl.rayQueryCommittedIntersectionNone', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'No intersection was committed.', 
+		signature: 'const uint32 gl.rayQueryCommittedIntersectionNone = 0;', insertText: new vscode.SnippetString('gl.rayQueryCommittedIntersectionNone')
+	},
+	{
+		label: 'gl.rayQueryCommittedIntersectionTriangle', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'The committed hit was a triangle.', 
+		signature: 'const uint32 gl.rayQueryCommittedIntersectionTriangle = 1;', insertText: new vscode.SnippetString('gl.rayQueryCommittedIntersectionTriangle')
+	},
+	{
+		label: 'gl.rayQueryCommittedIntersectionGenerated', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'The committed hit was a generated geometry.', 
+		signature: 'const uint32 gl.rayQueryCommittedIntersectionGenerated = 2;', insertText: new vscode.SnippetString('gl.rayQueryCommittedIntersectionGenerated')
+	},
+	{
+		label: 'gl.rayQueryCandidateIntersectionTriangle', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'The candidate intersection is with a triangle.', 
+		signature: 'const uint32 gl.rayQueryCandidateIntersectionTriangle = 0;', insertText: new vscode.SnippetString('gl.rayQueryCandidateIntersectionTriangle')
+	},
+	{
+		label: 'gl.rayQueryCandidateIntersectionAABB', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'The candidate intersection is with an AABB.', 
+		signature: 'const uint32 gl.rayQueryCandidateIntersectionAABB = 1;', insertText: new vscode.SnippetString('gl.rayQueryCandidateIntersectionAABB')
+	},
+
+	{
 		label: 'ext.debugPrintf', kind: vscode.CompletionItemKind.Constant, 
 		documentation: 'Adds a printf(fmt, ...) function which writes to the debug output log. (Use vkconfig-gui)', 
 		signature: '#feature ext.debugPrintf', insertText: new vscode.SnippetString('ext.debugPrintf')
@@ -2274,6 +2449,11 @@ const builtins =
 		label: 'ext.subgroupVote', kind: vscode.CompletionItemKind.Constant, 
 		documentation: 'Enables subgroup vote operations.', 
 		signature: '#feature ext.subgroupVote', insertText: new vscode.SnippetString('ext.subgroupVote')
+	},
+	{
+		label: 'ext.rayQuery', kind: vscode.CompletionItemKind.Constant, 
+		documentation: 'Allows existing shader stages to execute ray intersection queries.', 
+		signature: '#feature ext.rayQuery', insertText: new vscode.SnippetString('ext.rayQuery')
 	},
 ];
 const builtinMap = new Map(builtins.map(item => [item.label, item]));
