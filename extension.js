@@ -873,32 +873,32 @@ const builtins =
 
 	{
 		label: 'usampler1D', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 1D texture sampler used to sample signed integer data in shaders.', 
+		documentation: 'A 1D texture sampler used to sample unsigned integer data in shaders.', 
 		signature: 'uniform set0 usampler1D\n{\n\t...\n} name;', insertText: new vscode.SnippetString('usampler1D ')
 	},
 	{
 		label: 'usampler2D', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 2D texture sampler used to sample signed integer data in shaders.', 
+		documentation: 'A 2D texture sampler used to sample unsigned integer data in shaders.', 
 		signature: 'uniform set0 usampler2D\n{\n\t...\n} name;', insertText: new vscode.SnippetString('usampler2D ')
 	},
 	{
 		label: 'usampler3D', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 3D texture sampler used to sample signed integer data in shaders.', 
+		documentation: 'A 3D texture sampler used to sample unsigned integer data in shaders.', 
 		signature: 'uniform set0 usampler3D\n{\n\t...\n} name;', insertText: new vscode.SnippetString('usampler3D ')
 	},
 	{
 		label: 'usamplerCube', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A cubemap texture sampler used to sample signed integer data in shaders.', 
+		documentation: 'A cubemap texture sampler used to sample unsigned integer data in shaders.', 
 		signature: 'uniform set0 usamplerCube\n{\n\t...\n} name;', insertText: new vscode.SnippetString('usamplerCube ')
 	},
 	{
 		label: 'usampler1DArray', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 1D texture array sampler used to sample signed integer data in shaders.', 
+		documentation: 'A 1D texture array sampler used to sample unsigned integer data in shaders.', 
 		signature: 'uniform set0 usampler1DArray\n{\n\t...\n} name;', insertText: new vscode.SnippetString('usampler1DArray ')
 	},
 	{
 		label: 'usampler2DArray', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 2D texture array sampler used to sample signed integer data in shaders.', 
+		documentation: 'A 2D texture array sampler used to sample unsigned integer data in shaders.', 
 		signature: 'uniform set0 usampler2DArray\n{\n\t...\n} name;', insertText: new vscode.SnippetString('usampler2DArray ')
 	},
 
@@ -1838,12 +1838,12 @@ const builtins =
 
 	{
 		label: 'imageLoad', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Load a single texel from the `image`.',
+		documentation: 'Load a single texel from the `image`. (No out of bounds checks!)',
 		signature: 'Type4 imageLoad(Image image, IntX position);', insertText: new vscode.SnippetString('imageLoad($1, $2)')
 	},
 	{
 		label: 'imageStore', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Write a single texel into the `image`.',
+		documentation: 'Write a single texel into the `image`. (No out of bounds checks!)',
 		signature: 'void imageStore(Image image, IntX position, Type4 value);', insertText: new vscode.SnippetString('imageStore($1, $2, $3)')
 	},
 	{
