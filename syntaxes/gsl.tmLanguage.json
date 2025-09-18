@@ -53,7 +53,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.gsl",
-					"match": "\\b(if|else|while|do|for|break|continue|switch|case|return|discard|ignoreIntersection|terminateRay)\\b"
+					"match": "\\b(if|else|while|do|for|break|continue|switch|case|default|return|discard|ignoreIntersection|terminateRay)\\b"
 				},
 				{
 					"name": "storage.type.gsl",
