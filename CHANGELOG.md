@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0] - 2025-10-16
+
+- Added VK_KHR_ray_query extension support.
+- Fixed some docs, namings and variable types.
+- Fixed missing `default` keyword highlight.
+
+* ext.rayQuery - [GLSL_EXT_ray_query](https://github.com/KhronosGroup/GLSL/blob/main/extensions/ext/GLSL_EXT_ray_query.txt)
+
 ## [1.2.0] - 2025-06-24
 
 - Added GLSL `invariant` keyword.
@@ -51,22 +59,9 @@ Shader 16-bit storage - https://github.com/KhronosGroup/GLSL/blob/main/extension
 
 - Added `mutable` sampler support.
 
-## [0.2.2] - 2025-04-23
-
-- Added `mutable` sampler support.
-
 ## [0.2.1] - 2025-03-22
 
 - Fixed vertex input attributes remove.
-
-## [0.2.1] - 2025-03-22
-
-- Fixed vertex input attributes remove.
-
-## [0.2.0] - 2025-03-17
-
-- Refactored imageX formats.
-- Added support for more formats.
 
 ## [0.2.0] - 2025-03-17
 
