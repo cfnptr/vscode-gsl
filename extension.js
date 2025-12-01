@@ -679,7 +679,7 @@ const builtins =
 	{
 		label: 'buffer', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Declares a shader storage buffer for reading and/or writing large data buffers.', 
-		signature: 'buffer <readonly|writeonly|coherent|volatile|restrict|scalar> set0 BufferName\n{\n\t...\n} name;', insertText: new vscode.SnippetString('buffer ')
+		signature: 'buffer <readonly|writeonly|coherent|volatile|restrict|std430> set0 BufferName\n{\n\t...\n} name;', insertText: new vscode.SnippetString('buffer ')
 	},
 	{
 		label: 'coherent', kind: vscode.CompletionItemKind.Keyword, 
@@ -722,9 +722,9 @@ const builtins =
 		signature: 'uniform mutable Sampler name;', insertText: new vscode.SnippetString('mutable ')
 	},
 	{
-		label: 'scalar', kind: vscode.CompletionItemKind.Keyword, 
-		documentation: 'Indicates that buffer layout becomes tightly packed. <br>No unnecessary padding between scalar members like float3, int3, etc.', 
-		signature: 'buffer scalar set0 BufferName\n{\n\t...\n} name;', insertText: new vscode.SnippetString('scalar ')
+		label: 'std430', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Indicates that buffer layout becomes std430 instead of scalar.',
+		signature: 'buffer std430 set0 BufferName\n{\n\t...\n} name;', insertText: new vscode.SnippetString('std430 ')
 	},
 	{
 		label: 'reference', kind: vscode.CompletionItemKind.Keyword, 
@@ -2409,46 +2409,6 @@ const builtins =
 		label: 'ext.debugPrintf', kind: vscode.CompletionItemKind.Constant, 
 		documentation: 'Adds a printf(fmt, ...) function which writes to the debug output log. (Use vkconfig-gui)', 
 		signature: '#feature ext.debugPrintf', insertText: new vscode.SnippetString('ext.debugPrintf')
-	},
-	{
-		label: 'ext.explicitTypes', kind: vscode.CompletionItemKind.Constant, 
-		documentation: 'Exposes explicit 8-bit integer, and 16-bit integer and floating-point types.', 
-		signature: '#feature ext.explicitTypes', insertText: new vscode.SnippetString('ext.explicitTypes')
-	},
-	{
-		label: 'ext.int8BitStorage', kind: vscode.CompletionItemKind.Constant, 
-		documentation: 'Allows loading/storing 8-bit integer and floating-point scalar and vector types from/to uniform and storage buffers.', 
-		signature: '#feature ext.int8BitStorage', insertText: new vscode.SnippetString('ext.int8BitStorage')
-	},
-	{
-		label: 'ext.int16BitStorage', kind: vscode.CompletionItemKind.Constant, 
-		documentation: 'Allows loading/storing 16-bit integer and floating-point scalar and vector types from/to uniform and storage buffers.', 
-		signature: '#feature ext.int16BitStorage', insertText: new vscode.SnippetString('ext.int16BitStorage')
-	},
-	{
-		label: 'ext.bindless', kind: vscode.CompletionItemKind.Constant, 
-		documentation: 'Allows arrays of resources declared using unsized arrays to become run-time sized arrays.', 
-		signature: '#feature ext.bindless', insertText: new vscode.SnippetString('ext.bindless')
-	},
-	{
-		label: 'ext.scalarLayout', kind: vscode.CompletionItemKind.Constant, 
-		documentation: 'Adds a new block layout (scalar) for uniform, push constant, and storage buffer blocks.', 
-		signature: '#feature ext.scalarLayout', insertText: new vscode.SnippetString('ext.scalarLayout')
-	},
-	{
-		label: 'ext.bufferReference', kind: vscode.CompletionItemKind.Constant, 
-		documentation: 'Allows storage block names to be declared with a reference layout.', 
-		signature: '#feature ext.bufferReference', insertText: new vscode.SnippetString('ext.bufferReference')
-	},
-	{
-		label: 'ext.subgroupBasic', kind: vscode.CompletionItemKind.Constant, 
-		documentation: 'Enables basic subgroup operations.', 
-		signature: '#feature ext.subgroupBasic', insertText: new vscode.SnippetString('ext.subgroupBasic')
-	},
-	{
-		label: 'ext.subgroupVote', kind: vscode.CompletionItemKind.Constant, 
-		documentation: 'Enables subgroup vote operations.', 
-		signature: '#feature ext.subgroupVote', insertText: new vscode.SnippetString('ext.subgroupVote')
 	},
 	{
 		label: 'ext.rayQuery', kind: vscode.CompletionItemKind.Constant, 
