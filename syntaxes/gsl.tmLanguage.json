@@ -109,10 +109,6 @@
 					"match": "\\bgl_[a-zA-Z0-9_]+\\b"
 				},
 				{
-					"name": "invalid.illegal.hlsl",
-					"match": "\\b(ddx|ddy|frac|lerp|mad|saturate)\\b"
-				},
-				{
 					"name": "entity.name.function.gsl",
 					"match": "\\b[a-z]\\w+(?=\\()"
 				},

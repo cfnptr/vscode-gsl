@@ -1145,6 +1145,11 @@ const builtins =
 		signature: 'FloatX fma(FloatX a, FloatX b, FloatX c);', insertText: new vscode.SnippetString('fma($1, $2, $3)')
 	},
 	{
+		label: 'mad', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Perform a fused multiply-add operation. [r = a * b + c]',
+		signature: 'FloatX mad(FloatX a, FloatX b, FloatX c);', insertText: new vscode.SnippetString('mad($1, $2, $3)')
+	},
+	{
 		label: 'mod', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Compute value of the `x` modulo `y`. [r = x - y * floor(x / y)]',
 		signature: 'FloatX mod(FloatX x, FloatX y);', insertText: new vscode.SnippetString('mod($1, $2, $3)')
@@ -1181,6 +1186,11 @@ const builtins =
 		signature: 'FloatX fract(FloatX x);', insertText: new vscode.SnippetString('fract($1)')
 	},
 	{
+		label: 'frac', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Compute the fractional part of the `x`. [r = x - floor(x)]',
+		signature: 'FloatX frac(FloatX x);', insertText: new vscode.SnippetString('frac($1)')
+	},
+	{
 		label: 'trunc', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Find the truncated value of the `x`.',
 		signature: 'FloatX trunc(FloatX x);', insertText: new vscode.SnippetString('trunc($1)')
@@ -1199,6 +1209,11 @@ const builtins =
 		label: 'clamp', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Constrain the `x` value to lie between two further values. (Inclusive range)',
 		signature: 'Type clamp(Type x, Type min, Type max);', insertText: new vscode.SnippetString('clamp($1, $2, $3)')
+	},
+	{
+		label: 'saturate', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Constrain the `x` value to lie between the 0.0f and 1.0f. (Inclusive range)',
+		signature: 'Type saturate(Type x);', insertText: new vscode.SnippetString('saturate($1)')
 	},
 	{
 		label: 'step', kind: vscode.CompletionItemKind.Function, 
@@ -1283,13 +1298,18 @@ const builtins =
 	},
 
 	{
-		label: 'mix', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Linearly interpolate between two values.',
+		label: 'mix', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Linearly interpolate between two values. [r = x * (1.0 − a) + y * a]',
 		signature: 'Type mix(Type x, Type y, Type a);', insertText: new vscode.SnippetString('mix($1, $2, $3)')
 	},
 	{
+		label: 'lerp', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Linearly interpolate between two values. [r = x * (1.0 − a) + y * a]',
+		signature: 'Type lerp(Type x, Type y, Type a);', insertText: new vscode.SnippetString('lerp($1, $2, $3)')
+	},
+	{
 		label: 'dot', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Calculate the dot product of two vectors.',
+		documentation: 'Calculate the dot product of two vectors. [r = x[0] * y[0] + x[1] * y[1] + ...]',
 		signature: 'float dot(FloatX x, FloatX y);', insertText: new vscode.SnippetString('dot($1, $2)')
 	},
 	{
@@ -1304,12 +1324,12 @@ const builtins =
 	},
 	{
 		label: 'distance', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Calculate the distance between two points.',
+		documentation: 'Calculate the distance between two points. [r = length(x - y)]',
 		signature: 'float distance(FloatX x, FloatX y);', insertText: new vscode.SnippetString('distance($1, $2)')
 	},
 	{
 		label: 'length', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Calculate the length of the `vector`.',
+		documentation: 'Calculate the length of the `vector`. [r = sqrt(x[0]^2 + x[1]^2 + ...)]',
 		signature: 'float length(FloatX vector);', insertText: new vscode.SnippetString('length($1)')
 	},
 	{
@@ -1319,7 +1339,7 @@ const builtins =
 	},
 	{
 		label: 'reflect', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Calculate the reflection direction for an `incident` vector.',
+		documentation: 'Calculate the reflection direction for an `incident` vector. [r = I - 2.0 * dot(N, I) * N]',
 		signature: 'FloatX reflect(FloatX incident, FloatX normal);', insertText: new vscode.SnippetString('reflect($1, $2)')
 	},
 	{
@@ -1502,6 +1522,11 @@ const builtins =
 		documentation: 'Pack floating-point values into an unsigned integer. [r = round(clamp(x, 0.0, 1.0) * 255.0)]',
 		signature: 'uint32 packUnorm4x8(float4 x);', insertText: new vscode.SnippetString('packUnorm4x8($1)')
 	},
+	{
+		label: 'packUnorm2x8', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Pack floating-point values into an unsigned integer. [r = round(clamp(x, 0.0, 1.0) * 255.0)]',
+		signature: 'uint16 packUnorm2x8(float2 x);', insertText: new vscode.SnippetString('packUnorm2x8($1)')
+	},
 
 	{
 		label: 'unpackHalf2x16', kind: vscode.CompletionItemKind.Function, 
@@ -1532,6 +1557,11 @@ const builtins =
 		label: 'unpackUnorm4x8', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Unpack floating-point values from an unsigned integer. [r = x / 255.0]',
 		signature: 'float4 unpackUnorm4x8(uint32 x);', insertText: new vscode.SnippetString('unpackUnorm4x8($1)')
+	},
+	{
+		label: 'unpackUnorm2x8', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Unpack floating-point values from an unsigned integer. [r = x / 255.0]',
+		signature: 'float2 unpackUnorm2x8(uint16 x);', insertText: new vscode.SnippetString('unpackUnorm2x8($1)')
 	},
 
 	{
@@ -1585,6 +1615,38 @@ const builtins =
 		documentation: "Calculate derivatives using local differencing based on the value of `p` for the current fragment's <br>neighbors, and will possibly, but not necessarily, include the value for the current fragment. (Fragment Shader)",
 		signature: 'FloatX dFdyCoarse(FloatX p);', insertText: new vscode.SnippetString('dFdyCoarse($1)')
 	},
+
+	{
+		label: 'ddx', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Return the partial derivative of an argument with respect to x. (Fragment Shader)',
+		signature: 'FloatX ddx(FloatX p);', insertText: new vscode.SnippetString('ddx($1)')
+	},
+	{
+		label: 'ddy', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Return the partial derivative of an argument with respect to y. (Fragment Shader)',
+		signature: 'FloatX ddy(FloatX p);', insertText: new vscode.SnippetString('ddy($1)')
+	},
+	{
+		label: 'ddx_fine', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Calculate derivatives using local differencing based on the value of `p` for the <br>current fragment and its immediate neighbor(s). (Fragment Shader)',
+		signature: 'FloatX ddx_fine(FloatX p);', insertText: new vscode.SnippetString('ddx_fine($1)')
+	},
+	{
+		label: 'ddy_fine', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Calculate derivatives using local differencing based on the value of `p` for the <br>current fragment and its immediate neighbor(s). (Fragment Shader)',
+		signature: 'FloatX ddy_fine(FloatX p);', insertText: new vscode.SnippetString('ddy_fine($1)')
+	},
+	{
+		label: 'ddx_coarse', kind: vscode.CompletionItemKind.Function,
+		documentation: "Calculate derivatives using local differencing based on the value of `p` for the current fragment's <br>neighbors, and will possibly, but not necessarily, include the value for the current fragment. (Fragment Shader)",
+		signature: 'FloatX ddx_coarse(FloatX p);', insertText: new vscode.SnippetString('ddx_coarse($1)')
+	},
+	{
+		label: 'ddy_coarse', kind: vscode.CompletionItemKind.Function,
+		documentation: "Calculate derivatives using local differencing based on the value of `p` for the current fragment's <br>neighbors, and will possibly, but not necessarily, include the value for the current fragment. (Fragment Shader)",
+		signature: 'FloatX ddy_coarse(FloatX p);', insertText: new vscode.SnippetString('ddy_coarse($1)')
+	},
+
 	{
 		label: 'fwidth', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return the sum of the absolute value of derivatives in x and y. (Fragment Shader)',
