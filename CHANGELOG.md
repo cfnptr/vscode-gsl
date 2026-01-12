@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.0] - 2026-01-12
+
+- Dropped Vulkan 1.1 support. (Now 1.2+)
+- Added half float numbers highlight. (1.0hf)
+- Removed HLSL mad(), lerp() etc. restrictions.
+- Added packUnorm2x8, unpackUnorm2x8().
+- Improved some documentations.
+
 ## [1.3.0] - 2025-10-16
 
 - Added VK_KHR_ray_query extension support.
