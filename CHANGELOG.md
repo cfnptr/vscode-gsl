@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.5.0] - 2026-02-08
+
+- Added subgroup support.
+- Also added #if, #endif etc. docs.
+- Reenabled GLSL #extension.
+- Removed ext.XXX syntax.
+- And other docs imrpovements.
+
+* [GL_KHR_shader_subgroup](https://github.com/KhronosGroup/GLSL/blob/main/extensions/khr/GL_KHR_shader_subgroup.txt)
+
 ## [1.4.0] - 2026-01-12
 
 - Dropped Vulkan 1.1 support. (Now 1.2+)
