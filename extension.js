@@ -3,6 +3,42 @@ const vscode = require('vscode');
 const builtins =
 [
 	{
+		label: '#if', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Evaluates a constant expression or a macro value and includes the code block only if the result is non-zero (true).',
+		signature: '#if expression', insertText: new vscode.SnippetString('#if $1')
+	},
+	{
+		label: '#else', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Provides an alternative block of code to include if the preceding directive condition is false.',
+		signature: '#else', insertText: new vscode.SnippetString('#else')
+	},
+	{
+		label: '#elif', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Checks a secondary condition if the initial directive condition fails, allowing for multiple conditional branches.',
+		signature: '#elif expression', insertText: new vscode.SnippetString('#elif $1')
+	},
+	{
+		label: '#endif', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Marks the end of a conditional preprocessing block started by the first directive.',
+		signature: '#endif', insertText: new vscode.SnippetString('#endif')
+	},
+	{
+		label: '#ifdef', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Includes the following code block only if a specific `macro` has been previously defined.',
+		signature: '#ifdef MACRO', insertText: new vscode.SnippetString('#ifdef $1')
+	},
+	{
+		label: '#ifndef', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Includes the code block only if a specific `macro` has not been defined. (Commonly used for header guards)',
+		signature: '#ifndef MACRO', insertText: new vscode.SnippetString('#ifndef $1')
+	},
+	{
+		label: 'defined', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'A preprocessor operator used within #if or #elif expressions to check if a specific `macro` exists.',
+		signature: '#if defined(MACRO)', insertText: new vscode.SnippetString('defined($1)')
+	},
+
+	{
 		label: '#defines', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Defines constant global shader preprocessor macros.', 
 		signature: '#define NAME value', insertText: new vscode.SnippetString('#define $1 $2')
@@ -11,6 +47,11 @@ const builtins =
 		label: '#include', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Includes the contents of another GSL source file.<br>Used to modularize shader code by reusing common functions or definitions.', 
 		signature: '#include "file-name.gsl"', insertText: new vscode.SnippetString('#include "$1"')
+	},
+	{
+		label: '#extension', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Enables or disables specific non-standard GLSL features or hardware-specific capabilities.',
+		signature: '#extension EXT_NAME : <require|enable|disable|warn>', insertText: new vscode.SnippetString('#extension $1 : $2')
 	},
 	{
 		label: '#feature', kind: vscode.CompletionItemKind.Keyword, 
@@ -24,7 +65,7 @@ const builtins =
 	},
 	{
 		label: 'main', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'The entry point function of a GSL shader. Execution starts here.', 
+		documentation: 'The entry point function of a GSL shader. Code execution starts here.',
 		signature: 'void main()\n{\n\t...\n}', insertText: new vscode.SnippetString('main ')
 	},
 	{
@@ -35,47 +76,47 @@ const builtins =
 
 	{
 		label: 'bool', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'Conditional type, values may be either true or false.', 
+		documentation: 'Conditional type, values may be either `true` or `false`.',
 		signature: 'bool', insertText: new vscode.SnippetString('bool')
 	},
 	{
 		label: 'int8', kind: vscode.CompletionItemKind.Class, 
-		documentation: "A signed 8-bit integer. (-128 to 127)", 
+		documentation: "A signed 8-bit integer. (From -128 to 127)",
 		signature: 'int8', insertText: new vscode.SnippetString('int8')
 	},
 	{
 		label: 'uint8', kind: vscode.CompletionItemKind.Class, 
-		documentation: "An unsigned 8-bit integer. (0 to 255)", 
+		documentation: "An unsigned 8-bit integer. (From 0 to 255)",
 		signature: 'uint8', insertText: new vscode.SnippetString('uint8')
 	},
 	{
 		label: 'int16', kind: vscode.CompletionItemKind.Class, 
-		documentation: "A signed 16-bit integer. (-32,768 to 32,767)", 
+		documentation: "A signed 16-bit integer. (From -32,768 to 32,767)",
 		signature: 'int16', insertText: new vscode.SnippetString('int16')
 	},
 	{
 		label: 'uint16', kind: vscode.CompletionItemKind.Class, 
-		documentation: "An unsigned 16-bit integer. (0 to 65,535)", 
+		documentation: "An unsigned 16-bit integer. (From 0 to 65,535)",
 		signature: 'uint16', insertText: new vscode.SnippetString('uint16')
 	},
 	{
 		label: 'int32', kind: vscode.CompletionItemKind.Class, 
-		documentation: "A signed, [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), 32-bit integer. (-2,147,483,648 to 2,147,483,647)", 
+		documentation: "A signed, [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), 32-bit integer. (From -2,147,483,648 to 2,147,483,647)",
 		signature: 'int32', insertText: new vscode.SnippetString('int32')
 	},
 	{
 		label: 'uint32', kind: vscode.CompletionItemKind.Class, 
-		documentation: "An unsigned, [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), 32-bit integer. (0 to 4,294,967,295)", 
+		documentation: "An unsigned, [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), 32-bit integer. (From 0 to 4,294,967,295)",
 		signature: 'uint32', insertText: new vscode.SnippetString('uint32')
 	},
 	{
 		label: 'int64', kind: vscode.CompletionItemKind.Class, 
-		documentation: "A signed 64-bit integer. (-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807)", 
+		documentation: "A signed 64-bit integer. (From -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807)",
 		signature: 'int64', insertText: new vscode.SnippetString('int64')
 	},
 	{
 		label: 'uint64', kind: vscode.CompletionItemKind.Class, 
-		documentation: "An unsigned 64-bit integer. (0 to 18,446,744,073,709,551,615)", 
+		documentation: "An unsigned 64-bit integer. (From 0 to 18,446,744,073,709,551,615)",
 		signature: 'uint64', insertText: new vscode.SnippetString('uint64')
 	},
 	{
@@ -723,7 +764,7 @@ const builtins =
 	},
 	{
 		label: 'std430', kind: vscode.CompletionItemKind.Keyword,
-		documentation: 'Indicates that buffer layout becomes std430 instead of scalar.',
+		documentation: 'Indicates that buffer layout becomes [std430](https://docs.vulkan.org/guide/latest/shader_memory_layout.html) instead of scalar.',
 		signature: 'buffer std430 set0 BufferName\n{\n\t...\n} name;', insertText: new vscode.SnippetString('std430 ')
 	},
 	{
@@ -769,7 +810,7 @@ const builtins =
 
 	{
 		label: '#variantCount', kind: vscode.CompletionItemKind.Keyword, 
-		documentation: 'Total variant count of the shader.', 
+		documentation: 'Total variant count of the shader. (See `gsl.variant`)',
 		signature: '#variantCount x', insertText: new vscode.SnippetString('#variantCount $1')
 	},
 	{
@@ -811,125 +852,125 @@ const builtins =
 
 	{
 		label: 'sampler1D', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 1D texture sampler used to sample floating-point data in shaders.', 
+		documentation: 'A 1D texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample floating-point data in shaders.',
 		signature: 'uniform set0 sampler1D\n{\n\t...\n} name;', insertText: new vscode.SnippetString('sampler1D ')
 	},
 	{
 		label: 'sampler2D', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 2D texture sampler used to sample floating-point data in shaders.', 
+		documentation: 'A 2D texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample floating-point data in shaders.',
 		signature: 'uniform set0 sampler2D\n{\n\t...\n} name;', insertText: new vscode.SnippetString('sampler2D ')
 	},
 	{
 		label: 'sampler3D', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 3D texture sampler used to sample floating-point data in shaders.', 
+		documentation: 'A 3D texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample floating-point data in shaders.',
 		signature: 'uniform set0 sampler3D\n{\n\t...\n} name;', insertText: new vscode.SnippetString('sampler3D ')
 	},
 	{
 		label: 'samplerCube', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A cubemap texture sampler used to sample floating-point data in shaders.', 
+		documentation: 'A cubemap texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample floating-point data in shaders.',
 		signature: 'uniform set0 samplerCube\n{\n\t...\n} name;', insertText: new vscode.SnippetString('samplerCube ')
 	},
 	{
 		label: 'sampler1DArray', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 1D texture array sampler used to sample floating-point data in shaders.', 
+		documentation: 'A 1D texture array [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample floating-point data in shaders.',
 		signature: 'uniform set0 sampler1DArray\n{\n\t...\n} name;', insertText: new vscode.SnippetString('sampler1DArray ')
 	},
 	{
 		label: 'sampler2DArray', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 2D texture array sampler used to sample floating-point data in shaders.', 
+		documentation: 'A 2D texture array [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample floating-point data in shaders.',
 		signature: 'uniform set0 sampler2DArray\n{\n\t...\n} name;', insertText: new vscode.SnippetString('sampler2DArray ')
 	},
 
 	{
 		label: 'isampler1D', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 1D texture sampler used to sample signed integer data in shaders.', 
+		documentation: 'A 1D texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample signed integer data in shaders.',
 		signature: 'uniform set0 isampler1D\n{\n\t...\n} name;', insertText: new vscode.SnippetString('isampler1D ')
 	},
 	{
 		label: 'isampler2D', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 2D texture sampler used to sample signed integer data in shaders.', 
+		documentation: 'A 2D texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample signed integer data in shaders.',
 		signature: 'uniform set0 isampler2D\n{\n\t...\n} name;', insertText: new vscode.SnippetString('isampler2D ')
 	},
 	{
 		label: 'isampler3D', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 3D texture sampler used to sample signed integer data in shaders.', 
+		documentation: 'A 3D texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample signed integer data in shaders.',
 		signature: 'uniform set0 isampler3D\n{\n\t...\n} name;', insertText: new vscode.SnippetString('isampler3D ')
 	},
 	{
 		label: 'isamplerCube', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A cubemap texture sampler used to sample signed integer data in shaders.', 
+		documentation: 'A cubemap texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample signed integer data in shaders.',
 		signature: 'uniform set0 isamplerCube\n{\n\t...\n} name;', insertText: new vscode.SnippetString('isamplerCube ')
 	},
 	{
 		label: 'isampler1DArray', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 1D texture array sampler used to sample signed integer data in shaders.', 
+		documentation: 'A 1D texture array [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample signed integer data in shaders.',
 		signature: 'uniform set0 isampler1DArray\n{\n\t...\n} name;', insertText: new vscode.SnippetString('isampler1DArray ')
 	},
 	{
 		label: 'isampler2DArray', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 2D texture array sampler used to sample signed integer data in shaders.', 
+		documentation: 'A 2D texture array [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample signed integer data in shaders.',
 		signature: 'uniform set0 isampler2DArray\n{\n\t...\n} name;', insertText: new vscode.SnippetString('isampler2DArray ')
 	},
 
 	{
 		label: 'usampler1D', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 1D texture sampler used to sample unsigned integer data in shaders.', 
+		documentation: 'A 1D texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample unsigned integer data in shaders.',
 		signature: 'uniform set0 usampler1D\n{\n\t...\n} name;', insertText: new vscode.SnippetString('usampler1D ')
 	},
 	{
 		label: 'usampler2D', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 2D texture sampler used to sample unsigned integer data in shaders.', 
+		documentation: 'A 2D texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample unsigned integer data in shaders.',
 		signature: 'uniform set0 usampler2D\n{\n\t...\n} name;', insertText: new vscode.SnippetString('usampler2D ')
 	},
 	{
 		label: 'usampler3D', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 3D texture sampler used to sample unsigned integer data in shaders.', 
+		documentation: 'A 3D texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample unsigned integer data in shaders.',
 		signature: 'uniform set0 usampler3D\n{\n\t...\n} name;', insertText: new vscode.SnippetString('usampler3D ')
 	},
 	{
 		label: 'usamplerCube', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A cubemap texture sampler used to sample unsigned integer data in shaders.', 
+		documentation: 'A cubemap texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample unsigned integer data in shaders.',
 		signature: 'uniform set0 usamplerCube\n{\n\t...\n} name;', insertText: new vscode.SnippetString('usamplerCube ')
 	},
 	{
 		label: 'usampler1DArray', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 1D texture array sampler used to sample unsigned integer data in shaders.', 
+		documentation: 'A 1D texture array [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample unsigned integer data in shaders.',
 		signature: 'uniform set0 usampler1DArray\n{\n\t...\n} name;', insertText: new vscode.SnippetString('usampler1DArray ')
 	},
 	{
 		label: 'usampler2DArray', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 2D texture array sampler used to sample unsigned integer data in shaders.', 
+		documentation: 'A 2D texture array [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample unsigned integer data in shaders.',
 		signature: 'uniform set0 usampler2DArray\n{\n\t...\n} name;', insertText: new vscode.SnippetString('usampler2DArray ')
 	},
 
 	{
 		label: 'sampler1DShadow', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 1D texture sampler used to sample depth data in shaders.', 
+		documentation: 'A 1D texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample depth data in shaders.',
 		signature: 'uniform set0 sampler1DShadow\n{\n\t...\n} name;', insertText: new vscode.SnippetString('sampler1DShadow ')
 	},
 	{
 		label: 'sampler2DShadow', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 2D texture sampler used to sample depth data in shaders.', 
+		documentation: 'A 2D texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample depth data in shaders.',
 		signature: 'uniform set0 sampler2DShadow\n{\n\t...\n} name;', insertText: new vscode.SnippetString('sampler2DShadow ')
 	},
 	{
 		label: 'sampler3DShadow', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 3D texture sampler used to sample depth data in shaders.', 
+		documentation: 'A 3D texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample depth data in shaders.',
 		signature: 'uniform set0 sampler3DShadow\n{\n\t...\n} name;', insertText: new vscode.SnippetString('sampler3DShadow ')
 	},
 	{
 		label: 'samplerCubeShadow', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A cubemap texture sampler used to sample depth data in shaders.', 
+		documentation: 'A cubemap texture [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample depth data in shaders.',
 		signature: 'uniform set0 samplerCubeShadow\n{\n\t...\n} name;', insertText: new vscode.SnippetString('samplerCubeShadow ')
 	},
 	{
 		label: 'sampler1DArrayShadow', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 1D texture array sampler used to sample depth data in shaders.', 
+		documentation: 'A 1D texture array [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample depth data in shaders.',
 		signature: 'uniform set0 sampler1DArrayShadow\n{\n\t...\n} name;', insertText: new vscode.SnippetString('sampler1DArrayShadow ')
 	},
 	{
 		label: 'sampler2DArrayShadow', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A 2D texture array sampler used to sample depth data in shaders.', 
+		documentation: 'A 2D texture array [sampler](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#sampler-srv) used to sample depth data in shaders.',
 		signature: 'uniform set0 sampler2DArrayShadow\n{\n\t...\n} name;', insertText: new vscode.SnippetString('sampler2DArrayShadow ')
 	},
 
@@ -1135,6 +1176,11 @@ const builtins =
 		signature: 'FloatX sqrt(FloatX x);', insertText: new vscode.SnippetString('sqrt($1)')
 	},
 	{
+		label: 'rsqrt', kind: vscode.CompletionItemKind.Function, 
+		documentation: 'Return the inverse of the square root of the `x`. [r = 1.0 / sqrt(x)]',
+		signature: 'FloatX rsqrt(FloatX x);', insertText: new vscode.SnippetString('rsqrt($1)')
+	},
+	{
 		label: 'inversesqrt', kind: vscode.CompletionItemKind.Function, 
 		documentation: 'Return the inverse of the square root of the `x`. [r = 1.0 / sqrt(x)]',
 		signature: 'FloatX inversesqrt(FloatX x);', insertText: new vscode.SnippetString('inversesqrt($1)')
@@ -1212,8 +1258,8 @@ const builtins =
 	},
 	{
 		label: 'saturate', kind: vscode.CompletionItemKind.Function,
-		documentation: 'Constrain the `x` value to lie between the 0.0f and 1.0f. (Inclusive range)',
-		signature: 'Type saturate(Type x);', insertText: new vscode.SnippetString('saturate($1)')
+		documentation: 'Constrain the `x` value to lie between the 0.0 and 1.0 (Inclusive range)',
+		signature: 'FloatX saturate(FloatX x);', insertText: new vscode.SnippetString('saturate($1)')
 	},
 	{
 		label: 'step', kind: vscode.CompletionItemKind.Function, 
@@ -1334,7 +1380,7 @@ const builtins =
 	},
 	{
 		label: 'normalize', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Calculates the unit vector in the same direction as the original vector.',
+		documentation: 'Calculates the unit vector in the same direction as the original vector. [r = r / length(r)]',
 		signature: 'FloatX normalize(FloatX vector);', insertText: new vscode.SnippetString('normalize($1)')
 	},
 	{
@@ -1777,7 +1823,7 @@ const builtins =
 	},
 	{
 		label: 'memoryBarrierBuffer', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Controls the ordering of operations on buffer variables issued by a single shader invocation. (Compute Shader)',
+		documentation: 'Controls the ordering of operations on buffer and uniform variables issued by a single shader invocation. (Compute Shader)',
 		signature: 'void memoryBarrierBuffer();', insertText: new vscode.SnippetString('memoryBarrierBuffer()')
 	},
 	{
@@ -1921,43 +1967,43 @@ const builtins =
 
 	{
 		label: 'gl.vertexIndex', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains index of the current vertex. (Vertex Shader)', 
+		documentation: 'The index of the current vertex. (Vertex Shader)',
 		signature: 'in int32 gl.vertexIndex;', insertText: new vscode.SnippetString('gl.vertexIndex')
 	},
 	{
 		label: 'gl.baseVertex', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains base vertex offset. (Vertex Shader)', 
+		documentation: 'The base vertex offset. (Vertex Shader)',
 		signature: 'in int32 gl.baseVertex;', insertText: new vscode.SnippetString('gl.baseVertex')
 	},
 	{
 		label: 'gl.instanceIndex', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains index of the current instance. (Vertex Shader)', 
+		documentation: 'The index of the current instance. (Vertex Shader)',
 		signature: 'in int32 gl.instanceIndex;', insertText: new vscode.SnippetString('gl.instanceIndex')
 	},
 	{
 		label: 'gl.baseInstance', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains base instance offset. (Vertex Shader)', 
+		documentation: 'The base instance offset. (Vertex Shader)',
 		signature: 'in int32 gl.baseInstance;', insertText: new vscode.SnippetString('gl.baseInstance')
 	},
 	{
 		label: 'gl.drawIndex', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains index of the current draw call. (Vertex Shader)', 
+		documentation: 'The index of the current draw call. (Vertex Shader)',
 		signature: 'in int32 gl.drawIndex;', insertText: new vscode.SnippetString('gl.drawIndex')
 	},
 	{
 		label: 'gl.position', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains clip-space position of the current vertex. (Vertex Shader)', 
+		documentation: 'The clip-space position of the current vertex. (Vertex Shader)',
 		signature: 'out float4 gl.position;', insertText: new vscode.SnippetString('gl.position')
 	},
 	{
 		label: 'gl.pointSize', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains pixel size of the point being rasterized. (Vertex Shader)', 
+		documentation: 'The pixel size of the point being rasterized. (Vertex Shader)',
 		signature: 'out float gl.pointSize;', insertText: new vscode.SnippetString('gl.pointSize')
 	},
 
 	{
 		label: 'gl.fragCoord', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the window-relative coordinates of the current fragment. (Fragment Shader)', 
+		documentation: 'The window-relative coordinates of the current fragment. (Fragment Shader)',
 		signature: 'in float4 gl.fragCoord;', insertText: new vscode.SnippetString('gl.fragCoord')
 	},
 	{
@@ -1967,12 +2013,12 @@ const builtins =
 	},
 	{
 		label: 'gl.pointCoord', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the coordinate of a fragment within a point. (Fragment Shader)', 
+		documentation: 'The coordinate of a fragment within a point. (Fragment Shader)',
 		signature: 'in float2 gl.pointCoord;', insertText: new vscode.SnippetString('gl.pointCoord')
 	},
 	{
 		label: 'gl.numSamples', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the total number of samples in the framebuffer. (Fragment Shader)', 
+		documentation: 'The total number of samples in the framebuffer. (Fragment Shader)',
 		signature: 'in int32 gl.numSamples;', insertText: new vscode.SnippetString('gl.numSamples')
 	},
 	{
@@ -1987,7 +2033,7 @@ const builtins =
 	},
 	{
 		label: 'gl.sampleMaskIn', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains a bitfield for the sample mask of the fragment being generated. (Fragment Shader)', 
+		documentation: 'The bitfield for the sample mask of the fragment being generated. (Fragment Shader)',
 		signature: 'in int32 gl.sampleMaskIn[];', insertText: new vscode.SnippetString('gl.sampleMaskIn[$1]')
 	},
 	{
@@ -2009,58 +2055,58 @@ const builtins =
 
 	{
 		label: 'gl.clipDistance', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the user-defined clipping planes. (Vertex and Fragment Shaders)', 
+		documentation: 'The user-defined clipping planes. (Vertex and Fragment Shaders)',
 		signature: 'inout float gl.clipDistance[];', insertText: new vscode.SnippetString('gl.clipDistance[$1]')
 	},
 	{
 		label: 'gl.cullDistance', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the user-defined culling distances. (Vertex and Fragment Shaders)', 
+		documentation: 'The user-defined culling distances. (Vertex and Fragment Shaders)',
 		signature: 'inout float gl.cullDistance[];', insertText: new vscode.SnippetString('gl.cullDistance[$1]')
 	},
 	{
 		label: 'gl.primitiveID', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the index of the current primitive. (Fragment, Ray Tracing and Mesh Shaders)', 
+		documentation: 'The index of the current primitive. (Fragment, Ray Tracing and Mesh Shaders)',
 		signature: 'inout int32 gl.primitiveID;', insertText: new vscode.SnippetString('gl.primitiveID')
 	},
 	{
 		label: 'gl.layerID', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains a layer index of the current fragment. (Fragment and Mesh Shaders)', 
+		documentation: 'The layer index of the current fragment. (Fragment and Mesh Shaders)',
 		signature: 'inout int32 gl.layerID;', insertText: new vscode.SnippetString('gl.layerID')
 	},
 	{
 		label: 'gl.viewportIndex', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains a viewport index of the currents fragment. (Fragment and Mesh Shaders)', 
+		documentation: 'The viewport index of the currents fragment. (Fragment and Mesh Shaders)',
 		signature: 'inout int32 gl.viewportIndex;', insertText: new vscode.SnippetString('gl.viewportIndex')
 	},
 
 	{
 		label: 'gl.workGroupSize', kind: vscode.CompletionItemKind.Variable, 
-		documentation: "Contains the `localSize` of the workgroup. (Compute Shader)", 
+		documentation: "The 3D `localSize` of the workgroup. (Compute Shader)",
 		signature: 'in uint3 gl.workGroupSize;', insertText: new vscode.SnippetString('gl.workGroupSize')
 	},
 	{
 		label: 'gl.numWorkGroups', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the number of workgroups that have been dispatched. (Compute Shader)', 
+		documentation: 'The 3D number of workgroups that have been dispatched. (Compute Shader)',
 		signature: 'in uint3 gl.numWorkGroups;', insertText: new vscode.SnippetString('gl.numWorkGroups')
 	},
 	{
 		label: 'gl.workGroupID', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the index of the workgroup currently being operated on. (Compute Shader)', 
+		documentation: 'The 3D index of the workgroup currently being operated on. (Compute Shader)',
 		signature: 'in uint3 gl.workGroupID;', insertText: new vscode.SnippetString('gl.workGroupID')
 	},
 	{
 		label: 'gl.localInvocationID', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the index of work item currently being operated on. (Compute Shader)', 
+		documentation: 'The 3D index of work item currently being operated on. (Compute Shader)',
 		signature: 'in uint3 gl.localInvocationID;', insertText: new vscode.SnippetString('gl.localInvocationID')
 	},
 	{
 		label: 'gl.globalInvocationID', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the global index of work item currently being operated on. (Compute Shader) <br>`gl.globalInvocationID = gl.workGroupID * gl.workGroupSize + gl.localInvocationID;`', 
+		documentation: 'The global 3D index of work item currently being operated on. (Compute Shader) <br>`gl.globalInvocationID = gl.workGroupID * gl.workGroupSize + gl.localInvocationID;`',
 		signature: 'in uint3 gl.globalInvocationID;', insertText: new vscode.SnippetString('gl.globalInvocationID')
 	},
 	{
 		label: 'gl.localInvocationIndex', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the local linear index of work item currently being operated on. (Compute Shader)', 
+		documentation: 'The local linear index of work item currently being operated on. (Compute Shader)',
 		signature: 'in uint32 gl.localInvocationIndex;', insertText: new vscode.SnippetString('gl.localInvocationIndex')
 	},
 
@@ -2073,6 +2119,372 @@ const builtins =
 		label: 'gsl.rayRecursionDepth', kind: vscode.CompletionItemKind.Constant, 
 		documentation: 'Compile-time maximum ray recursion depth.', 
 		signature: 'const uint32 gsl.rayRecursionDepth;', insertText: new vscode.SnippetString('gsl.rayRecursionDepth')
+	},
+
+	{
+		label: 'GL_KHR_shader_subgroup_vote', kind: vscode.CompletionItemKind.Keyword,
+		documentation: "Enables subgroup basic and vote operations.",
+		signature: '#extension GL_KHR_shader_subgroup_vote : enable', insertText: new vscode.SnippetString('GL_KHR_shader_subgroup_vote ')
+	},
+	{
+		label: 'GL_KHR_shader_subgroup_arithmetic', kind: vscode.CompletionItemKind.Keyword,
+		documentation: "Enables subgroup basic and arithmetic operations.",
+		signature: '#extension GL_KHR_shader_subgroup_arithmetic : enable', insertText: new vscode.SnippetString('GL_KHR_shader_subgroup_arithmetic ')
+	},
+	{
+		label: 'GL_KHR_shader_subgroup_ballot', kind: vscode.CompletionItemKind.Keyword,
+		documentation: "Enables subgroup basic and ballot operations.",
+		signature: '#extension GL_KHR_shader_subgroup_ballot : enable', insertText: new vscode.SnippetString('GL_KHR_shader_subgroup_ballot ')
+	},
+	{
+		label: 'GL_KHR_shader_subgroup_shuffle', kind: vscode.CompletionItemKind.Keyword,
+		documentation: "Enables subgroup basic and shuffle operations.",
+		signature: '#extension GL_KHR_shader_subgroup_shuffle : enable', insertText: new vscode.SnippetString('GL_KHR_shader_subgroup_shuffle ')
+	},
+	{
+		label: 'GL_KHR_shader_subgroup_shuffle_relative', kind: vscode.CompletionItemKind.Keyword,
+		documentation: "Enables subgroup basic and shuffle relative operations.",
+		signature: '#extension GL_KHR_shader_subgroup_shuffle_relative : enable', insertText: new vscode.SnippetString('GL_KHR_shader_subgroup_shuffle_relative ')
+	},
+	{
+		label: 'GL_KHR_shader_subgroup_clustered', kind: vscode.CompletionItemKind.Keyword,
+		documentation: "Enables subgroup basic and clustered operations.",
+		signature: '#extension GL_KHR_shader_subgroup_clustered : enable', insertText: new vscode.SnippetString('GL_KHR_shader_subgroup_clustered ')
+	},
+	{
+		label: 'GL_KHR_shader_subgroup_quad', kind: vscode.CompletionItemKind.Keyword,
+		documentation: "Enables subgroup basic and quad operations.",
+		signature: '#extension GL_KHR_shader_subgroup_quad : enable', insertText: new vscode.SnippetString('GL_KHR_shader_subgroup_quad ')
+	},
+
+	{
+		label: 'gl.numSubgroups', kind: vscode.CompletionItemKind.Variable,
+		documentation: 'The total number of subgroups within the current workgroup. (Compute Shader)',
+		signature: 'in uint32 gl.numSubgroups;', insertText: new vscode.SnippetString('gl.numSubgroups')
+	},
+	{
+		label: 'gl.subgroupID', kind: vscode.CompletionItemKind.Variable,
+		documentation: 'The index of the current subgroup within the workgroup. (Compute Shader)',
+		signature: 'in uint32 gl.subgroupID;', insertText: new vscode.SnippetString('gl.subgroupID')
+	},
+	{
+		label: 'gl.subgroupSize', kind: vscode.CompletionItemKind.Variable,
+		documentation: 'The maximum number of invocations (threads) in a subgroup.',
+		signature: 'in uint32 gl.subgroupSize;', insertText: new vscode.SnippetString('gl.subgroupSize')
+	},
+	{
+		label: 'gl.subgroupInvocationID', kind: vscode.CompletionItemKind.Variable,
+		documentation: 'The index of the current thread within its subgroup.',
+		signature: 'in uint32 gl.subgroupInvocationID;', insertText: new vscode.SnippetString('gl.subgroupInvocationID')
+	},
+	{
+		label: 'gl.subgroupEqMask', kind: vscode.CompletionItemKind.Variable,
+		documentation: 'Only the bit corresponding to the current thread is set. (bitIndex == gl.subgroupInvocationID)',
+		signature: 'in uint4 gl.subgroupEqMask;', insertText: new vscode.SnippetString('gl.subgroupEqMask')
+	},
+	{
+		label: 'gl.subgroupGeMask', kind: vscode.CompletionItemKind.Variable,
+		documentation: 'Bits for the current thread and all threads with a higher ID are set. (bitIndex >= gl.subgroupInvocationID)',
+		signature: 'in uint4 gl.subgroupGeMask;', insertText: new vscode.SnippetString('gl.subgroupGeMask')
+	},
+	{
+		label: 'gl.subgroupGtMask', kind: vscode.CompletionItemKind.Variable,
+		documentation: 'Bits for all threads with a higher ID than the current one are set. (bitIndex > gl.subgroupInvocationID)',
+		signature: 'in uint4 gl.subgroupGtMask;', insertText: new vscode.SnippetString('gl.subgroupGtMask')
+	},
+	{
+		label: 'gl.subgroupLeMask', kind: vscode.CompletionItemKind.Variable,
+		documentation: 'Bits for the current thread and all threads with a lower ID are set. (bitIndex <= gl.subgroupInvocationID)',
+		signature: 'in uint4 gl.subgroupLeMask;', insertText: new vscode.SnippetString('gl.subgroupLeMask')
+	},
+	{
+		label: 'gl.subgroupLtMask', kind: vscode.CompletionItemKind.Variable,
+		documentation: 'Bits for all threads with a lower ID than the current one are set. (bitIndex < gl.subgroupInvocationID)',
+		signature: 'in uint4 gl.subgroupLtMask;', insertText: new vscode.SnippetString('gl.subgroupLtMask')
+	},
+
+	{
+		label: 'subgroupBarrier', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Synchronizes execution and memory access for all invocations within a subgroup.',
+		signature: 'void subgroupBarrier();', insertText: new vscode.SnippetString('subgroupBarrier()')
+	},
+	{
+		label: 'subgroupMemoryBarrier', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Ensures all memory accesses are ordered and visible to other invocations in the subgroup.',
+		signature: 'void subgroupMemoryBarrier();', insertText: new vscode.SnippetString('subgroupMemoryBarrier()')
+	},
+	{
+		label: 'subgroupMemoryBarrierBuffer', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Orders memory accesses specifically for buffer and uniform variables in the subgroup.',
+		signature: 'void subgroupMemoryBarrierBuffer();', insertText: new vscode.SnippetString('subgroupMemoryBarrierBuffer()')
+	},
+	{
+		label: 'subgroupMemoryBarrierShared', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Orders memory accesses specifically for workgroup shared memory in the subgroup.',
+		signature: 'void subgroupMemoryBarrierShared();', insertText: new vscode.SnippetString('subgroupMemoryBarrierShared()')
+	},
+	{
+		label: 'subgroupMemoryBarrierImage', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Orders memory accesses specifically for image variables in the subgroup.',
+		signature: 'void subgroupMemoryBarrierImage();', insertText: new vscode.SnippetString('subgroupMemoryBarrierImage()')
+	},
+
+	{
+		label: 'subgroupElect', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Returns true for exactly one active invocation (the one with the lowest ID) and false for others.',
+		signature: 'bool subgroupElect();', insertText: new vscode.SnippetString('subgroupElect()')
+	},
+	{
+		label: 'subgroupAll', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Returns true if the provided `value` is true for all active invocations in the subgroup. (EXT_VOTE)',
+		signature: 'bool subgroupAll(bool value);', insertText: new vscode.SnippetString('subgroupAll($1)')
+	},
+	{
+		label: 'subgroupAny', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Returns true if the provided `value` is true for at least one active invocation in the subgroup. (EXT_VOTE)',
+		signature: 'bool subgroupAny(bool value);', insertText: new vscode.SnippetString('subgroupAny($1)')
+	},
+	{
+		label: 'subgroupAllEqual', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Returns true if the provided `value` is identical across all active invocations in the subgroup. (EXT_VOTE)',
+		signature: 'bool subgroupAllEqual(Type value);', insertText: new vscode.SnippetString('subgroupAllEqual($1)')
+	},
+
+	{
+		label: 'subgroupBroadcast', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Shares the `value` from a specific invocation (defined by `id`) to all other invocations. (EXT_BALLOT)',
+		signature: 'Type subgroupBroadcast(Type value, uint32 id);', insertText: new vscode.SnippetString('subgroupBroadcast($1, $2)')
+	},
+	{
+		label: 'subgroupBroadcastFirst', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Shares the `value` from the first active invocation (lowest ID) to all other invocations. (EXT_BALLOT)',
+		signature: 'Type subgroupBroadcastFirst(Type value);', insertText: new vscode.SnippetString('subgroupBroadcastFirst($1)')
+	},
+	{
+		label: 'subgroupBallot', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Returns a bitmask where each bit represents the boolean `value` from the corresponding invocation. (EXT_BALLOT)',
+		signature: 'uint4 subgroupBallot(bool value);', insertText: new vscode.SnippetString('subgroupBallot($1)')
+	},
+	{
+		label: 'subgroupInverseBallot', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Extracts a specific boolean value from a ballot `bitmask` based on the current invocation ID. (EXT_BALLOT)',
+		signature: 'bool subgroupInverseBallot(uint4 bitmask);', insertText: new vscode.SnippetString('subgroupInverseBallot($1)')
+	},
+	{
+		label: 'subgroupBallotBitExtract', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Returns the bit boolean value at a specific `index` within a provided ballot `bitmask`. (EXT_BALLOT)',
+		signature: 'bool subgroupBallotBitExtract(uint4 bitmask, uint32 index);', insertText: new vscode.SnippetString('subgroupBallotBitExtract($1, $2)')
+	},
+	{
+		label: 'subgroupBallotBitCount', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Returns the total number of bits set to 1 in the provided ballot `bitmask`. (EXT_BALLOT)',
+		signature: 'uint32 subgroupBallotBitCount(uint4 bitmask);', insertText: new vscode.SnippetString('subgroupBallotBitCount($1)')
+	},
+	{
+		label: 'subgroupBallotInclusiveBitCount', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Returns the number of bits set to 1 in the `bitmask` up to and including the current invocation ID. (EXT_BALLOT)',
+		signature: 'uint32 subgroupBallotInclusiveBitCount(uint4 bitmask);', insertText: new vscode.SnippetString('subgroupBallotInclusiveBitCount($1)')
+	},
+	{
+		label: 'subgroupBallotExclusiveBitCount', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Returns the number of bits set to 1 in the `bitmask` up to (but excluding) the current invocation ID. (EXT_BALLOT)',
+		signature: 'uint32 subgroupBallotExclusiveBitCount(uint4 bitmask);', insertText: new vscode.SnippetString('subgroupBallotExclusiveBitCount($1)')
+	},
+	{
+		label: 'subgroupBallotFindLSB', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Returns the index of the least significant bit set to 1 in the ballot `bitmask`. (EXT_BALLOT)',
+		signature: 'uint32 subgroupBallotFindLSB(uint4 bitmask);', insertText: new vscode.SnippetString('subgroupBallotFindLSB($1)')
+	},
+	{
+		label: 'subgroupBallotFindMSB', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Returns the index of the most significant bit set to 1 in the ballot `bitmask`. (EXT_BALLOT)',
+		signature: 'uint32 subgroupBallotFindMSB(uint4 bitmask);', insertText: new vscode.SnippetString('subgroupBallotFindMSB($1)')
+	},
+
+	{
+		label: 'subgroupShuffle', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Exchanges `value` between invocations based on an explicit target invocation `id`. (EXT_SHUFFLE)',
+		signature: 'Type subgroupShuffle(Type value, uint32 id);', insertText: new vscode.SnippetString('subgroupShuffle($1, $2)')
+	},
+	{
+		label: 'subgroupShuffleXor', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Exchanges `value` between invocations by XORing the current ID with a `mask`. (EXT_SHUFFLE)',
+		signature: 'Type subgroupShuffleXor(Type value, uint32 mask);', insertText: new vscode.SnippetString('subgroupShuffleXor($1, $2)')
+	},
+	{
+		label: 'subgroupShuffleUp', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Shifts `value` to invocations with higher IDs by a relative `delta`. (EXT_SHUFFLE_RELATIVE)',
+		signature: 'Type subgroupShuffleUp(Type value, uint32 delta);', insertText: new vscode.SnippetString('subgroupShuffleUp($1, $2)')
+	},
+	{
+		label: 'subgroupShuffleDown', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Shifts `value` to invocations with lower IDs by a relative `delta`. (EXT_SHUFFLE_RELATIVE)',
+		signature: 'Type subgroupShuffleDown(Type value, uint32 delta);', insertText: new vscode.SnippetString('subgroupShuffleDown($1, $2)')
+	},
+
+	{
+		label: 'subgroupAdd', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Combines values from all active invocations using the `+` math operation. (EXT_ARITHMETIC)',
+		signature: 'Type subgroupAdd(Type value);', insertText: new vscode.SnippetString('subgroupAdd($1)')
+	},
+	{
+		label: 'subgroupMul', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Combines values from all active invocations using the `*` math operation. (EXT_ARITHMETIC)',
+		signature: 'Type subgroupMul(Type value);', insertText: new vscode.SnippetString('subgroupMul($1)')
+	},
+	{
+		label: 'subgroupMin', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Combines values from all active invocations using the `min()` math operation. (EXT_ARITHMETIC)',
+		signature: 'Type subgroupMin(Type value);', insertText: new vscode.SnippetString('subgroupMin($1)')
+	},
+	{
+		label: 'subgroupMax', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Combines values from all active invocations using the `max()` math operation. (EXT_ARITHMETIC)',
+		signature: 'Type subgroupMax(Type value);', insertText: new vscode.SnippetString('subgroupMax($1)')
+	},
+	{
+		label: 'subgroupAnd', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Combines values from all active invocations using the `&` math operation. (EXT_ARITHMETIC)',
+		signature: 'UInt subgroupAnd(UInt value);', insertText: new vscode.SnippetString('subgroupAnd($1)')
+	},
+	{
+		label: 'subgroupOr', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Combines values from all active invocations using the `|` math operation. (EXT_ARITHMETIC)',
+		signature: 'UInt subgroupOr(UInt value);', insertText: new vscode.SnippetString('subgroupOr($1)')
+	},
+	{
+		label: 'subgroupXor', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Combines values from all active invocations using the `^` math operation. (EXT_ARITHMETIC)',
+		signature: 'UInt subgroupXor(UInt value);', insertText: new vscode.SnippetString('subgroupXor($1)')
+	},
+
+	{
+		label: 'subgroupInclusiveAdd', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a running `+` operation including the value of the current invocation. (EXT_ARITHMETIC)',
+		signature: 'Type subgroupInclusiveAdd(Type value);', insertText: new vscode.SnippetString('subgroupInclusiveAdd($1)')
+	},
+	{
+		label: 'subgroupInclusiveMul', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a running `*` operation including the value of the current invocation. (EXT_ARITHMETIC)',
+		signature: 'Type subgroupInclusiveMul(Type value);', insertText: new vscode.SnippetString('subgroupInclusiveMul($1)')
+	},
+	{
+		label: 'subgroupInclusiveMin', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a running `min()` operation including the value of the current invocation. (EXT_ARITHMETIC)',
+		signature: 'Type subgroupInclusiveMin(Type value);', insertText: new vscode.SnippetString('subgroupInclusiveMin($1)')
+	},
+	{
+		label: 'subgroupInclusiveMax', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a running `max()` operation including the value of the current invocation. (EXT_ARITHMETIC)',
+		signature: 'Type subgroupInclusiveMax(Type value);', insertText: new vscode.SnippetString('subgroupInclusiveMax($1)')
+	},
+	{
+		label: 'subgroupInclusiveAnd', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a running `&` operation including the value of the current invocation. (EXT_ARITHMETIC)',
+		signature: 'UInt subgroupInclusiveAnd(UInt value);', insertText: new vscode.SnippetString('subgroupInclusiveAnd($1)')
+	},
+	{
+		label: 'subgroupInclusiveOr', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a running `|` operation including the value of the current invocation. (EXT_ARITHMETIC)',
+		signature: 'UInt subgroupInclusiveOr(UInt value);', insertText: new vscode.SnippetString('subgroupInclusiveOr($1)')
+	},
+	{
+		label: 'subgroupInclusiveXor', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a running `^` operation including the value of the current invocation. (EXT_ARITHMETIC)',
+		signature: 'UInt subgroupInclusiveXor(UInt value);', insertText: new vscode.SnippetString('subgroupInclusiveXor($1)')
+	},
+
+	{
+		label: 'subgroupExclusiveAdd', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a running `+` operation excluding the value of the current invocation. (EXT_ARITHMETIC)',
+		signature: 'Type subgroupExclusiveAdd(Type value);', insertText: new vscode.SnippetString('subgroupExclusiveAdd($1)')
+	},
+	{
+		label: 'subgroupExclusiveMul', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a running `*` operation excluding the value of the current invocation. (EXT_ARITHMETIC)',
+		signature: 'Type subgroupExclusiveMul(Type value);', insertText: new vscode.SnippetString('subgroupExclusiveMul($1)')
+	},
+	{
+		label: 'subgroupExclusiveMin', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a running `min()` operation excluding the value of the current invocation. (EXT_ARITHMETIC)',
+		signature: 'Type subgroupExclusiveMin(Type value);', insertText: new vscode.SnippetString('subgroupExclusiveMin($1)')
+	},
+	{
+		label: 'subgroupExclusiveMax', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a running `max()` operation excluding the value of the current invocation. (EXT_ARITHMETIC)',
+		signature: 'Type subgroupExclusiveMax(Type value);', insertText: new vscode.SnippetString('subgroupExclusiveMax($1)')
+	},
+	{
+		label: 'subgroupExclusiveAnd', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a running `&` operation excluding the value of the current invocation. (EXT_ARITHMETIC)',
+		signature: 'UInt subgroupExclusiveAnd(UInt value);', insertText: new vscode.SnippetString('subgroupExclusiveAnd($1)')
+	},
+	{
+		label: 'subgroupExclusiveOr', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a running `|` operation excluding the value of the current invocation. (EXT_ARITHMETIC)',
+		signature: 'UInt subgroupExclusiveOr(UInt value);', insertText: new vscode.SnippetString('subgroupExclusiveOr($1)')
+	},
+	{
+		label: 'subgroupExclusiveXor', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a running `^` operation excluding the value of the current invocation. (EXT_ARITHMETIC)',
+		signature: 'UInt subgroupExclusiveXor(UInt value);', insertText: new vscode.SnippetString('subgroupExclusiveXor($1)')
+	},
+
+	{
+		label: 'subgroupClusteredAdd', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a reduction `+` operation only within smaller, contiguous partitions of the subgroup. (EXT_CLUSTERED)',
+		signature: 'Type subgroupClusteredAdd(Type value, uint32 clusterSize);', insertText: new vscode.SnippetString('subgroupClusteredAdd($1, $2)')
+	},
+	{
+		label: 'subgroupClusteredMul', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a reduction `*` operation only within smaller, contiguous partitions of the subgroup. (EXT_CLUSTERED)',
+		signature: 'Type subgroupClusteredMul(Type value, uint32 clusterSize);', insertText: new vscode.SnippetString('subgroupClusteredMul($1, $2)')
+	},
+	{
+		label: 'subgroupClusteredMin', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a reduction `min()` operation only within smaller, contiguous partitions of the subgroup. (EXT_CLUSTERED)',
+		signature: 'Type subgroupClusteredMin(Type value, uint32 clusterSize);', insertText: new vscode.SnippetString('subgroupClusteredMin($1, $2)')
+	},
+	{
+		label: 'subgroupClusteredMax', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a reduction `max()` operation only within smaller, contiguous partitions of the subgroup. (EXT_CLUSTERED)',
+		signature: 'Type subgroupClusteredMax(Type value, uint32 clusterSize);', insertText: new vscode.SnippetString('subgroupClusteredMax($1, $2)')
+	},
+	{
+		label: 'subgroupClusteredAnd', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a reduction `&` operation only within smaller, contiguous partitions of the subgroup. (EXT_CLUSTERED)',
+		signature: 'UInt subgroupClusteredAnd(UInt value, uint32 clusterSize);', insertText: new vscode.SnippetString('subgroupClusteredAnd($1, $2)')
+	},
+	{
+		label: 'subgroupClusteredOr', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a reduction `|` operation only within smaller, contiguous partitions of the subgroup. (EXT_CLUSTERED)',
+		signature: 'UInt subgroupClusteredOr(UInt value, uint32 clusterSize);', insertText: new vscode.SnippetString('subgroupClusteredOr($1, $2)')
+	},
+	{
+		label: 'subgroupClusteredXor', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Performs a reduction `^` operation only within smaller, contiguous partitions of the subgroup. (EXT_CLUSTERED)',
+		signature: 'UInt subgroupClusteredXor(UInt value, uint32 clusterSize);', insertText: new vscode.SnippetString('subgroupClusteredXor($1, $2)')
+	},
+
+	{
+		label: 'subgroupQuadBroadcast', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Shares a `value` from a specific `id` (gl.subgroupInvocationID % 4) within a 2x2 quad to the other three invocations. (EXT_QUAD)',
+		signature: 'Type subgroupQuadBroadcast(Type value, uint32 id);', insertText: new vscode.SnippetString('subgroupQuadBroadcast($1, $2)')
+	},
+	{
+		label: 'subgroupQuadSwapHorizontal', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Swaps `value` between horizontal neighbors in a 2x2 quad. (EXT_QUAD)',
+		signature: 'Type subgroupQuadSwapHorizontal(Type value);', insertText: new vscode.SnippetString('subgroupQuadSwapHorizontal($1)')
+	},
+	{
+		label: 'subgroupQuadSwapVertical', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Swaps `value` between vertical neighbors in a 2x2 quad. (EXT_QUAD)',
+		signature: 'Type subgroupQuadSwapVertical(Type value);', insertText: new vscode.SnippetString('subgroupQuadSwapVertical($1)')
+	},
+	{
+		label: 'subgroupQuadSwapDiagonal', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Swaps `value` between diagonally opposite neighbors in a 2x2 quad. (EXT_QUAD)',
+		signature: 'Type subgroupQuadSwapDiagonal(Type value);', insertText: new vscode.SnippetString('subgroupQuadSwapDiagonal($1)')
 	},
 
 	{
@@ -2143,67 +2555,67 @@ const builtins =
 	},
 	{
 		label: 'gl.launchID', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the 3D index of the current ray within the launch grid. (Ray Tracing Shader)', 
+		documentation: 'The 3D index of the current ray within the launch grid. (Ray Tracing Shader)',
 		signature: 'in uint3 gl.launchID;', insertText: new vscode.SnippetString('gl.launchID')
 	},
 	{
 		label: 'gl.launchSize', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the 3D size of the ray launch grid. (Ray Tracing Shader)', 
+		documentation: 'The 3D size of the ray launch grid. (Ray Tracing Shader)',
 		signature: 'in uint3 gl.launchSize;', insertText: new vscode.SnippetString('gl.launchSize')
 	},
 	{
 		label: 'gl.launchSize', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the 3D size of the ray launch grid. (Ray Tracing Shader)', 
+		documentation: 'The 3D size of the ray launch grid. (Ray Tracing Shader)',
 		signature: 'in uint3 gl.launchSize;', insertText: new vscode.SnippetString('gl.launchSize')
 	},
 	{
 		label: 'gl.instanceID', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the instance ID of the hit geometry. (Ray Tracing Shader)', 
+		documentation: 'The instance ID of the hit geometry. (Ray Tracing Shader)',
 		signature: 'in int32 gl.instanceID;', insertText: new vscode.SnippetString('gl.instanceID')
 	},
 	{
 		label: 'gl.instanceCustomIndex', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains user-assigned custom index of the hit instance. (Ray Tracing Shader)', 
+		documentation: 'The user-assigned custom index of the hit instance. (Ray Tracing Shader)',
 		signature: 'in int32 gl.instanceCustomIndex;', insertText: new vscode.SnippetString('gl.instanceCustomIndex')
 	},
 	{
 		label: 'gl.geometryIndex', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the hit geometry index within the acceleration structure. (Ray Tracing Shader)', 
+		documentation: 'The hit geometry index within the acceleration structure. (Ray Tracing Shader)',
 		signature: 'in int32 gl.geometryIndex;', insertText: new vscode.SnippetString('gl.geometryIndex')
 	},
 	{
 		label: 'gl.worldRayOrigin', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the ray origin in world (global) coordinates. (Ray Tracing Shader)', 
+		documentation: 'The ray origin in world (global) coordinates. (Ray Tracing Shader)',
 		signature: 'in float3 gl.worldRayOrigin;', insertText: new vscode.SnippetString('gl.worldRayOrigin')
 	},
 	{
 		label: 'gl.worldRayDirection', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the ray direction in world (global) coordinates. (Ray Tracing Shader)', 
+		documentation: 'The ray direction in world (global) coordinates. (Ray Tracing Shader)',
 		signature: 'in float3 gl.worldRayDirection;', insertText: new vscode.SnippetString('gl.worldRayDirection')
 	},
 	{
 		label: 'gl.objectRayOrigin', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the ray origin in object (local) coordinates. (Ray Tracing Shader)', 
+		documentation: 'The ray origin in object (local) coordinates. (Ray Tracing Shader)',
 		signature: 'in float3 gl.objectRayOrigin;', insertText: new vscode.SnippetString('gl.objectRayOrigin')
 	},
 	{
 		label: 'gl.objectRayDirection', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the ray direction in object (local) coordinates. (Ray Tracing Shader)', 
+		documentation: 'The ray direction in object (local) coordinates. (Ray Tracing Shader)',
 		signature: 'in float3 gl.objectRayDirection;', insertText: new vscode.SnippetString('gl.objectRayDirection')
 	},
 	{
 		label: 'gl.rayTmin', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the minimum ray-parameter `t` to consider. (Ray Tracing Shader)', 
+		documentation: 'The minimum ray-parameter `t` to consider. (Ray Tracing Shader)',
 		signature: 'in float gl.rayTmin;', insertText: new vscode.SnippetString('gl.rayTmin')
 	},
 	{
 		label: 'gl.rayTmax', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the maximum ray-parameter `t` to consider. <br>It may be volatile in an intersection shader! (Ray Tracing Shader)', 
+		documentation: 'The maximum ray-parameter `t` to consider. <br>It may be volatile in an intersection shader! (Ray Tracing Shader)',
 		signature: 'in <volatile> float gl.rayTmax;', insertText: new vscode.SnippetString('gl.rayTmax')
 	},
 	{
 		label: 'gl.incomingRayFlags', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the bitmask of the ray flags. (Ray Tracing Shader)', 
+		documentation: 'The bitmask of the ray flags. (Ray Tracing Shader)',
 		signature: 'in uint32 gl.incomingRayFlags;', insertText: new vscode.SnippetString('gl.incomingRayFlags')
 	},
 	{
@@ -2218,22 +2630,22 @@ const builtins =
 	},
 	{
 		label: 'gl.objectToWorld', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the object to world space transformation matrix. (Ray Tracing Shader)', 
+		documentation: 'The object to world space transformation matrix. (Ray Tracing Shader)',
 		signature: 'in float4x3 gl.objectToWorld;', insertText: new vscode.SnippetString('gl.objectToWorld')
 	},
 	{
 		label: 'gl.worldToObject', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the world to object space transformation matrix. (Ray Tracing Shader)', 
+		documentation: 'The world to object space transformation matrix. (Ray Tracing Shader)',
 		signature: 'in float4x3 gl.worldToObject;', insertText: new vscode.SnippetString('gl.worldToObject')
 	},
 	{
 		label: 'gl.worldToObject3x4', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the 3x4 portion of the world to objecttransformation matrix. (Ray Tracing Shader)', 
+		documentation: 'The 3x4 portion of the world to objecttransformation matrix. (Ray Tracing Shader)',
 		signature: 'in float3x4 gl.worldToObject3x4;', insertText: new vscode.SnippetString('gl.worldToObject3x4')
 	},
 	{
 		label: 'gl.objectToWorld3x4', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'Contains the 3x4 portion of the object to world transformation matrix. (Ray Tracing Shader)', 
+		documentation: 'The 3x4 portion of the object to world transformation matrix. (Ray Tracing Shader)',
 		signature: 'in float3x4 gl.objectToWorld3x4;', insertText: new vscode.SnippetString('gl.objectToWorld3x4')
 	},
 	{
@@ -2292,6 +2704,11 @@ const builtins =
 		signature: 'const uint32 gl.hitKindBackFacingTriangle = 0xFF;', insertText: new vscode.SnippetString('gl.hitKindBackFacingTriangle')
 	},
 
+	{
+		label: 'GL_EXT_ray_query', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Allows existing shader stages to execute ray intersection queries.',
+		signature: '#extension GL_EXT_ray_query : require', insertText: new vscode.SnippetString('GL_EXT_ray_query')
+	},
 	{
 		label: 'rayQuery', kind: vscode.CompletionItemKind.Class, 
 		documentation: "A structure that holds the query traversal information for ray tracing.", 
@@ -2468,14 +2885,9 @@ const builtins =
 	},
 
 	{
-		label: 'ext.debugPrintf', kind: vscode.CompletionItemKind.Constant, 
-		documentation: 'Adds a printf(fmt, ...) function which writes to the debug output log. (Use vkconfig-gui)', 
-		signature: '#feature ext.debugPrintf', insertText: new vscode.SnippetString('ext.debugPrintf')
-	},
-	{
-		label: 'ext.rayQuery', kind: vscode.CompletionItemKind.Constant, 
-		documentation: 'Allows existing shader stages to execute ray intersection queries.', 
-		signature: '#feature ext.rayQuery', insertText: new vscode.SnippetString('ext.rayQuery')
+		label: 'GLSL_EXT_debug_printf', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Adds a printf(String fmt, ...) function which writes to the debug output log. (Use vkconfig-gui)',
+		signature: '#extension GLSL_EXT_debug_printf : enable', insertText: new vscode.SnippetString('GLSL_EXT_debug_printf')
 	},
 ];
 const builtinMap = new Map(builtins.map(item => [item.label, item]));

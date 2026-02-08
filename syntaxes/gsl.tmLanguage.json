@@ -37,7 +37,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.preprocessor.gsl",
-					"match": "^\\s*(#\\s*(include|define|undef|if|else|elif|endif|ifdef|ifndef|pragma|line|feature|variantCount|attributeOffset|attachmentOffset|rayPayloadOffset|callableDataOffset|rayRecursionDepth))\\b"
+					"match": "^\\s*(#\\s*(include|define|undef|if|else|elif|endif|ifdef|ifndef|pragma|line|extension|feature|variantCount|attributeOffset|attachmentOffset|rayPayloadOffset|callableDataOffset|rayRecursionDepth))\\b"
 				},
 				{
 					"name": "keyword.control.preprocessor.gsl",
@@ -45,7 +45,7 @@
 				},
 				{
 					"name": "invalid.illegal.gsl",
-					"match": "^\\s*(#\\s*(version|extension))\\b"
+					"match": "^\\s*(#\\s*(version))\\b"
 				}
 			]
 		},
@@ -65,7 +65,7 @@
 				},
 				{
 					"name": "constant.language.gsl",
-					"match": "\\b(false|true|ext.(debugPrintf|rayQuery))\\b"
+					"match": "\\b(false|true)\\b"
 				},
 				{
 					"name": "invalid.illegal.gsl",
