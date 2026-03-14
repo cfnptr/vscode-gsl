@@ -6,7 +6,7 @@
 - Also added #if, #endif etc. docs.
 - Reenabled GLSL #extension.
 - Removed ext.XXX syntax.
-- And other docs imrpovements.
+- And other docs improvements.
 
 * [GL_KHR_shader_subgroup](https://github.com/KhronosGroup/GLSL/blob/main/extensions/khr/GL_KHR_shader_subgroup.txt)
 

@@ -720,12 +720,17 @@ const builtins =
 	{
 		label: 'buffer', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Declares a shader storage buffer for reading and/or writing large data buffers.', 
-		signature: 'buffer <readonly|writeonly|coherent|volatile|restrict|std430> set0 BufferName\n{\n\t...\n} name;', insertText: new vscode.SnippetString('buffer ')
+		signature: 'buffer <readonly|writeonly|coherent|noncoherent|volatile|restrict|std430> set0 BufferName\n{\n\t...\n} name;', insertText: new vscode.SnippetString('buffer ')
 	},
 	{
 		label: 'coherent', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Ensures memory accesses are visible across shader invocations and GPU stages without additional synchronization.', 
 		signature: 'coherent Type name;', insertText: new vscode.SnippetString('coherent ')
+	},
+	{
+		label: 'noncoherent', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Indicates that shaders access different memory parts, and engine can skip memory barriers.',
+		signature: 'noncoherent Type name;', insertText: new vscode.SnippetString('noncoherent ')
 	},
 	{
 		label: 'volatile', kind: vscode.CompletionItemKind.Keyword, 
@@ -2123,37 +2128,37 @@ const builtins =
 
 	{
 		label: 'GL_KHR_shader_subgroup_vote', kind: vscode.CompletionItemKind.Keyword,
-		documentation: "Enables subgroup basic and vote operations.",
+		documentation: "Enables [subgroup](https://github.com/KhronosGroup/GLSL/blob/main/extensions/khr/GL_KHR_shader_subgroup.txt) basic and vote operations.",
 		signature: '#extension GL_KHR_shader_subgroup_vote : enable', insertText: new vscode.SnippetString('GL_KHR_shader_subgroup_vote ')
 	},
 	{
 		label: 'GL_KHR_shader_subgroup_arithmetic', kind: vscode.CompletionItemKind.Keyword,
-		documentation: "Enables subgroup basic and arithmetic operations.",
+		documentation: "Enables [subgroup](https://github.com/KhronosGroup/GLSL/blob/main/extensions/khr/GL_KHR_shader_subgroup.txt) basic and arithmetic operations.",
 		signature: '#extension GL_KHR_shader_subgroup_arithmetic : enable', insertText: new vscode.SnippetString('GL_KHR_shader_subgroup_arithmetic ')
 	},
 	{
 		label: 'GL_KHR_shader_subgroup_ballot', kind: vscode.CompletionItemKind.Keyword,
-		documentation: "Enables subgroup basic and ballot operations.",
+		documentation: "Enables [subgroup](https://github.com/KhronosGroup/GLSL/blob/main/extensions/khr/GL_KHR_shader_subgroup.txt) basic and ballot operations.",
 		signature: '#extension GL_KHR_shader_subgroup_ballot : enable', insertText: new vscode.SnippetString('GL_KHR_shader_subgroup_ballot ')
 	},
 	{
 		label: 'GL_KHR_shader_subgroup_shuffle', kind: vscode.CompletionItemKind.Keyword,
-		documentation: "Enables subgroup basic and shuffle operations.",
+		documentation: "Enables [subgroup](https://github.com/KhronosGroup/GLSL/blob/main/extensions/khr/GL_KHR_shader_subgroup.txt) basic and shuffle operations.",
 		signature: '#extension GL_KHR_shader_subgroup_shuffle : enable', insertText: new vscode.SnippetString('GL_KHR_shader_subgroup_shuffle ')
 	},
 	{
 		label: 'GL_KHR_shader_subgroup_shuffle_relative', kind: vscode.CompletionItemKind.Keyword,
-		documentation: "Enables subgroup basic and shuffle relative operations.",
+		documentation: "Enables [subgroup](https://github.com/KhronosGroup/GLSL/blob/main/extensions/khr/GL_KHR_shader_subgroup.txt) basic and shuffle relative operations.",
 		signature: '#extension GL_KHR_shader_subgroup_shuffle_relative : enable', insertText: new vscode.SnippetString('GL_KHR_shader_subgroup_shuffle_relative ')
 	},
 	{
 		label: 'GL_KHR_shader_subgroup_clustered', kind: vscode.CompletionItemKind.Keyword,
-		documentation: "Enables subgroup basic and clustered operations.",
+		documentation: "Enables [subgroup](https://github.com/KhronosGroup/GLSL/blob/main/extensions/khr/GL_KHR_shader_subgroup.txt) basic and clustered operations.",
 		signature: '#extension GL_KHR_shader_subgroup_clustered : enable', insertText: new vscode.SnippetString('GL_KHR_shader_subgroup_clustered ')
 	},
 	{
 		label: 'GL_KHR_shader_subgroup_quad', kind: vscode.CompletionItemKind.Keyword,
-		documentation: "Enables subgroup basic and quad operations.",
+		documentation: "Enables [subgroup](https://github.com/KhronosGroup/GLSL/blob/main/extensions/khr/GL_KHR_shader_subgroup.txt) basic and quad operations.",
 		signature: '#extension GL_KHR_shader_subgroup_quad : enable', insertText: new vscode.SnippetString('GL_KHR_shader_subgroup_quad ')
 	},
 
@@ -2706,7 +2711,7 @@ const builtins =
 
 	{
 		label: 'GL_EXT_ray_query', kind: vscode.CompletionItemKind.Keyword,
-		documentation: 'Allows existing shader stages to execute ray intersection queries.',
+		documentation: 'Allows existing shader stages to execute ray intersection [queries](https://github.com/KhronosGroup/GLSL/blob/main/extensions/ext/GLSL_EXT_ray_query.txt).',
 		signature: '#extension GL_EXT_ray_query : require', insertText: new vscode.SnippetString('GL_EXT_ray_query')
 	},
 	{
@@ -2885,9 +2890,9 @@ const builtins =
 	},
 
 	{
-		label: 'GLSL_EXT_debug_printf', kind: vscode.CompletionItemKind.Keyword,
+		label: 'GL_EXT_debug_printf', kind: vscode.CompletionItemKind.Keyword,
 		documentation: 'Adds a printf(String fmt, ...) function which writes to the debug output log. (Use vkconfig-gui)',
-		signature: '#extension GLSL_EXT_debug_printf : enable', insertText: new vscode.SnippetString('GLSL_EXT_debug_printf')
+		signature: '#extension GL_EXT_debug_printf : enable', insertText: new vscode.SnippetString('GL_EXT_debug_printf')
 	},
 ];
 const builtinMap = new Map(builtins.map(item => [item.label, item]));
