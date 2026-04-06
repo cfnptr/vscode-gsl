@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.5.1] - 2026-04-06
+
+- Added `noncoherent` keyword.
+- Docs improvements and fixes.
+
 ## [1.5.0] - 2026-02-08
 
 - Added subgroup support.
@@ -30,7 +35,7 @@
 
 - Added GLSL `invariant` keyword.
 - Added GSL extension changelog.
-- Added `#rayRecusrionDepth` and `gsl.rayRecursionDepth` support.
+- Added `#rayRecursionDepth` and `gsl.rayRecursionDepth` support.
 - Added `printf(fmt, ...)` support.
 - Added `uintR8, sintR16G16...` image formats support.
 - Added `ext.bindless, ext.debugPrintf...` extensions support.
@@ -67,8 +72,8 @@ Shader 16-bit storage - https://github.com/KhronosGroup/GLSL/blob/main/extension
 ### Added
 
 - All base GLSL keywords and functions support.
-- Buil-in keywords and functions hover tooltip support.
-- Buil-in keywords and functions auto completion support.
+- Built-in keywords and functions hover tooltip support.
+- Built-in keywords and functions auto completion support.
 - Ray tracing shader keywords and functions.
 - Illegal HLSL functions highlight.
 - README GSL vertex and fragment shaders example.
