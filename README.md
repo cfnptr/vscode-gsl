@@ -55,6 +55,11 @@ void main()
 }
 ```
 
+# Install GSL extension
+
+1. Launch VS Code Quick Open **(Ctrl+P)**
+2. And enter: ```ext install cfnptr.gsl-linter```
+
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for details.

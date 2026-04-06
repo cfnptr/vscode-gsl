@@ -132,7 +132,7 @@ const builtins =
 	{
 		label: 'double', kind: vscode.CompletionItemKind.Class, 
 		documentation: 'An [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754) double-precision 64-bit floating point number.', 
-		signature: 'doulbe', insertText: new vscode.SnippetString('doulbe')
+		signature: 'double', insertText: new vscode.SnippetString('double')
 	},
 
 	{
@@ -331,7 +331,7 @@ const builtins =
 	{
 		label: 'half2x3', kind: vscode.CompletionItemKind.Class, 
 		documentation: 'A matrix with 2 columns and 3 rows of half-precision 16-bit floating-point numbers.', 
-		signature: 'halfx3(half3 c0, half3 c1)', insertText: new vscode.SnippetString('half2x3($1, $2)')
+		signature: 'half2x3(half3 c0, half3 c1)', insertText: new vscode.SnippetString('half2x3($1, $2)')
 	},
 	{
 		label: 'half2x4', kind: vscode.CompletionItemKind.Class, 
@@ -1058,7 +1058,7 @@ const builtins =
 	},
 	{
 		label: 'uimageCube', kind: vscode.CompletionItemKind.Class, 
-		documentation: 'A cubemap image that can be read from or written to in shaders, with unsigned integerdata.', 
+		documentation: 'A cubemap image that can be read from or written to in shaders, with unsigned integer data.', 
 		signature: 'uniform <readonly|writeonly|coherent|volatile|restrict> set0 uimageCube name : Format;', insertText: new vscode.SnippetString('uimageCube ')
 	},
 	{
@@ -1493,7 +1493,7 @@ const builtins =
 	},
 	{
 		label: 'frexp', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Split the `x` floating point number. [x = significand * (2 ^ exponent)]',
+		documentation: 'Split the `x` floating point number. [x = significant * (2 ^ exponent)]',
 		signature: 'FloatX frexp(FloatX x, out FloatX exponent);', insertText: new vscode.SnippetString('frexp($1, $2)')
 	},
 	{
@@ -2645,7 +2645,7 @@ const builtins =
 	},
 	{
 		label: 'gl.worldToObject3x4', kind: vscode.CompletionItemKind.Variable, 
-		documentation: 'The 3x4 portion of the world to objecttransformation matrix. (Ray Tracing Shader)',
+		documentation: 'The 3x4 portion of the world to object transformation matrix. (Ray Tracing Shader)',
 		signature: 'in float3x4 gl.worldToObject3x4;', insertText: new vscode.SnippetString('gl.worldToObject3x4')
 	},
 	{
