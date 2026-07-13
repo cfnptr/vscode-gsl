@@ -1,3 +1,5 @@
+<p align="center"><img src="logo.png" alt="GSL logo" width="128"/></p>
+
 # Garden Shading Language (GSL)
 
 GSL is a custom shader language based on [GLSL](https://en.wikipedia.org/wiki/OpenGL_Shading_Language). It was created for the [Garden](https://github.com/cfnptr/garden) game engine
