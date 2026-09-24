@@ -416,19 +416,19 @@ const builtins =
 	},
 
 	{
-		label: 'f8', kind: vscode.CompletionItemKind.Keyword, 
-		documentation: 'A 8-bit normalized uint as float vertex shader input attribute type.', 
-		signature: 'in Type vs.name : f8;', insertText: new vscode.SnippetString('f8;')
-	},
-	{
 		label: 'f16', kind: vscode.CompletionItemKind.Keyword, 
-		documentation: 'A 16-bit normalized uint as float vertex shader input attribute type.', 
+		documentation: 'A 16-bit floating-point vertex shader input attribute type.',
 		signature: 'in Type vs.name : f16;', insertText: new vscode.SnippetString('f16;')
 	},
 	{
 		label: 'f32', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'A 32-bit floating-point vertex shader input attribute type.', 
 		signature: 'in Type vs.name : f32;', insertText: new vscode.SnippetString('f32;')
+	},
+	{
+		label: 'f64', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'A 64-bit floating-point vertex shader input attribute type.',
+		signature: 'in Type vs.name : f64;', insertText: new vscode.SnippetString('f64;')
 	},
 	{
 		label: 'i8', kind: vscode.CompletionItemKind.Keyword, 
@@ -459,6 +459,26 @@ const builtins =
 		label: 'u32', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'A 32-bit unsigned integer vertex shader input attribute type.', 
 		signature: 'in Type vs.name : u32;', insertText: new vscode.SnippetString('u32;')
+	},
+	{
+		label: 'snorm8', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'A 8-bit normalized int as float vertex shader input attribute type.',
+		signature: 'in Type vs.name : snorm8;', insertText: new vscode.SnippetString('snorm8;')
+	},
+	{
+		label: 'snorm16', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'A 16-bit normalized int as float vertex shader input attribute type.',
+		signature: 'in Type vs.name : snorm16;', insertText: new vscode.SnippetString('snorm16;')
+	},
+	{
+		label: 'unorm8', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'A 8-bit normalized uint as float vertex shader input attribute type.',
+		signature: 'in Type vs.name : unorm8;', insertText: new vscode.SnippetString('unorm8;')
+	},
+	{
+		label: 'unorm16', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'A 16-bit normalized uint as float vertex shader input attribute type.',
+		signature: 'in Type vs.name : unorm16;', insertText: new vscode.SnippetString('unorm16;')
 	},
 
 	{
@@ -662,6 +682,11 @@ const builtins =
 	},
 
 	{
+		label: 'offset', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'Absolute offset of the variable or structure member.',
+		signature: 'offset(x)', insertText: new vscode.SnippetString('offset($1)')
+	},
+	{
 		label: 'in', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Declares an input variable to the shader stage or function.', 
 		signature: 'in Type name;', insertText: new vscode.SnippetString('in ')
@@ -770,7 +795,7 @@ const builtins =
 	{
 		label: 'std430', kind: vscode.CompletionItemKind.Keyword,
 		documentation: 'Indicates that buffer layout becomes [std430](https://docs.vulkan.org/guide/latest/shader_memory_layout.html) instead of scalar.',
-		signature: 'buffer std430 set0 BufferName\n{\n\t...\n} name;', insertText: new vscode.SnippetString('std430 ')
+		signature: 'buffer std430 group0 BufferName\n{\n\t...\n} name;', insertText: new vscode.SnippetString('std430 ')
 	},
 	{
 		label: 'reference', kind: vscode.CompletionItemKind.Keyword, 
@@ -802,6 +827,33 @@ const builtins =
 		documentation: 'Declares a specialization constant that can be overridden at pipeline creation time. <br>Specialization constants behave like regular constants in shaders but allow changing their values without recompiling the shader.', 
 		signature: 'spec const Type NAME = ...;', insertText: new vscode.SnippetString('spec const $1 $2 = $3;')
 	},
+
+	{
+		label: 'vertexBuffer', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Declares a [vertex buffer](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#vertex-attributes-data-streams) input attributes. (Vertex stream)',
+		signature: 'vertexBuffer\n{\n\t...\n}', insertText: new vscode.SnippetString('vertexBuffer\n{\n\t$1\n}')
+	},
+	{
+		label: 'vertexBuffer0', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Declares a [vertex buffer](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#vertex-attributes-data-streams) input attributes. (Vertex stream)',
+		signature: 'vertexBuffer0\n{\n\t...\n}', insertText: new vscode.SnippetString('vertexBuffer0\n{\n\t$1\n}')
+	},
+	{
+		label: 'vertexBuffer1', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Declares a [vertex buffer](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#vertex-attributes-data-streams) input attributes. (Vertex stream)',
+		signature: 'vertexBuffer1\n{\n\t...\n}', insertText: new vscode.SnippetString('vertexBuffer1\n{\n\t$1\n}')
+	},
+	{
+		label: 'vertexBuffer2', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Declares a [vertex buffer](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#vertex-attributes-data-streams) input attributes. (Vertex stream)',
+		signature: 'vertexBuffer2\n{\n\t...\n}', insertText: new vscode.SnippetString('vertexBuffer2\n{\n\t$1\n}')
+	},
+	{
+		label: 'vertexBuffer3', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Declares a [vertex buffer](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#vertex-attributes-data-streams) input attributes. (Vertex stream)',
+		signature: 'vertexBuffer3\n{\n\t...\n}', insertText: new vscode.SnippetString('vertexBuffer3\n{\n\t$1\n}')
+	},
+
 	{
 		label: 'pipelineState', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Declares a [pipeline state](https://github.com/cfnptr/garden/blob/main/docs/GSL.md#pipeline-state) that configures fixed-function pipeline behavior.', 
@@ -809,8 +861,8 @@ const builtins =
 	},
 	{
 		label: 'pushConstants', kind: vscode.CompletionItemKind.Keyword, 
-		documentation: 'Defines a block of fast, read-only memory that can be updated <br>frequently from the host without rebinding descriptor sets.', 
-		signature: 'uniform pushConstants\n{\n\t...\n} pc;', insertText: new vscode.SnippetString('pushConstants ')
+		documentation: 'Defines a block of fast, read-only memory that can be updated <br>frequently from the host without rebinding resource groups.',
+		signature: 'uniform pushConstants\n{\n\t...\n} pc;', insertText: new vscode.SnippetString('pushConstants\n{\n\t$1\n} pc;')
 	},
 
 	{
@@ -819,39 +871,29 @@ const builtins =
 		signature: '#variantCount x', insertText: new vscode.SnippetString('#variantCount $1')
 	},
 	{
-		label: '#attributeOffset', kind: vscode.CompletionItemKind.Keyword, 
-		documentation: 'Adds offset to the input vertex attributes in bytes.', 
-		signature: '#attributeOffset x', insertText: new vscode.SnippetString('#attributeOffset $1')
-	},
-	{
-		label: '#attachmentOffset', kind: vscode.CompletionItemKind.Keyword, 
-		documentation: 'Adds offset to the `subpassInput` index.', 
-		signature: '#attachmentOffset x', insertText: new vscode.SnippetString('#attachmentOffset $1')
-	},
-	{
 		label: '#rayRecursionDepth', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Maximum number of levels of ray recursion allowed in a trace command.', 
 		signature: '#rayRecursionDepth x', insertText: new vscode.SnippetString('#rayRecursionDepth $1')
 	},
 
 	{
-		label: 'set0', kind: vscode.CompletionItemKind.Keyword, 
-		documentation: 'Specifies default uniform variable first descriptor set index.', 
+		label: 'set0', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Specifies default uniform variable first descriptor set index.',
 		signature: 'uniform set0 ...', insertText: new vscode.SnippetString('set0 ')
 	},
 	{
-		label: 'set1', kind: vscode.CompletionItemKind.Keyword, 
-		documentation: 'Specifies uniform variable second descriptor set index.', 
+		label: 'set1', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Specifies uniform variable second descriptor set index.',
 		signature: 'uniform set1 ...', insertText: new vscode.SnippetString('set1 ')
 	},
 	{
-		label: 'set2', kind: vscode.CompletionItemKind.Keyword, 
-		documentation: 'Specifies uniform variable third descriptor set index.', 
+		label: 'set2', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Specifies uniform variable third descriptor set index.',
 		signature: 'uniform set2 ...', insertText: new vscode.SnippetString('set2 ')
 	},
 	{
-		label: 'set3', kind: vscode.CompletionItemKind.Keyword, 
-		documentation: 'Specifies uniform variable fourth descriptor set index.', 
+		label: 'set3', kind: vscode.CompletionItemKind.Keyword,
+		documentation: 'Specifies uniform variable fourth descriptor set index.',
 		signature: 'uniform set3 ...', insertText: new vscode.SnippetString('set3 ')
 	},
 
@@ -982,7 +1024,7 @@ const builtins =
 	{
 		label: 'image1D', kind: vscode.CompletionItemKind.Class, 
 		documentation: 'A 1D image that can be read from or written to in shaders, with floating point data.', 
-		signature: 'uniform <readonly|writeonly|coherent|volatile|restrict> set0 image1D name : Format;', insertText: new vscode.SnippetString('image1D ')
+		signature: 'uniform <readonly|writeonly|coherent|volatile|restrict> group0 image1D name : Format;', insertText: new vscode.SnippetString('image1D ')
 	},
 	{
 		label: 'image2D', kind: vscode.CompletionItemKind.Class, 
@@ -1565,17 +1607,17 @@ const builtins =
 	},
 	{
 		label: 'packUnorm2x16', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Pack floating-point values into an unsigned integer. [r = round(clamp(x, 0.0, 1.0) * 65535.0)]',
+		documentation: 'Pack floating-point values into an unsigned integer. [r = round(saturate(x) * 65535.0)]',
 		signature: 'uint32 packUnorm2x16(float2 x);', insertText: new vscode.SnippetString('packUnorm2x16($1)')
 	},
 	{
 		label: 'packUnorm4x8', kind: vscode.CompletionItemKind.Function, 
-		documentation: 'Pack floating-point values into an unsigned integer. [r = round(clamp(x, 0.0, 1.0) * 255.0)]',
+		documentation: 'Pack floating-point values into an unsigned integer. [r = round(saturate(x) * 255.0)]',
 		signature: 'uint32 packUnorm4x8(float4 x);', insertText: new vscode.SnippetString('packUnorm4x8($1)')
 	},
 	{
 		label: 'packUnorm2x8', kind: vscode.CompletionItemKind.Function,
-		documentation: 'Pack floating-point values into an unsigned integer. [r = round(clamp(x, 0.0, 1.0) * 255.0)]',
+		documentation: 'Pack floating-point values into an unsigned integer. [r = round(saturate(x) * 255.0)]',
 		signature: 'uint16 packUnorm2x8(float2 x);', insertText: new vscode.SnippetString('packUnorm2x8($1)')
 	},
 
@@ -1613,6 +1655,27 @@ const builtins =
 		label: 'unpackUnorm2x8', kind: vscode.CompletionItemKind.Function,
 		documentation: 'Unpack floating-point values from an unsigned integer. [r = x / 255.0]',
 		signature: 'float2 unpackUnorm2x8(uint16 x);', insertText: new vscode.SnippetString('unpackUnorm2x8($1)')
+	},
+
+	{
+		label: 'quantizeUnorm8', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Quantizes floating-point values into the 8-bit unsigned integers. [r = round(saturate(x) * 255.0)]',
+		signature: 'ByteX quantizeUnorm8(FloatX x);', insertText: new vscode.SnippetString('quantizeUnorm8($1)')
+	},
+	{
+		label: 'quantizeUnorm16', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Quantizes floating-point values into the 16-bit unsigned integers. [r = round(saturate(x) * 65535.0)]',
+		signature: 'UshortX quantizeUnorm16(FloatX x);', insertText: new vscode.SnippetString('quantizeUnorm16($1)')
+	},
+	{
+		label: 'dequantizeUnorm8', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Dequantizes floating-point values from the 8-bit unsigned integers. [r = v / 255.0]',
+		signature: 'FloatX dequantizeUnorm8(ByteX x);', insertText: new vscode.SnippetString('dequantizeUnorm8($1)')
+	},
+	{
+		label: 'dequantizeUnorm16', kind: vscode.CompletionItemKind.Function,
+		documentation: 'Dequantizes floating-point values from the 16-bit unsigned integers. [r = v / 65535.0]',
+		signature: 'FloatX dequantizeUnorm16(UshortX x);', insertText: new vscode.SnippetString('dequantizeUnorm16($1)')
 	},
 
 	{

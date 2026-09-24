@@ -10,12 +10,12 @@ to simplify and standardize shader development. In the engine's repository, you 
 ```
 #include "common/tone-mapping.gsl"
 
-in float2 vs.position : f32;
-in float2 vs.texCoords : f32;
-in float4 vs.color : f8;
-
-out float4 fs.color;
-out float2 fs.texCoords;
+vertexBuffer
+{
+    float2 position : f32;
+    float2 texCoords : f32;
+    float4 color : unorm8;
+}
 
 uniform pushConstants
 {
@@ -23,11 +23,13 @@ uniform pushConstants
     float2 translate;
 } pc;
 
+out float4 fs.color;
+out float2 fs.texCoords;
+
 void main()
 {
     gl.position = float4(vs.position * pc.scale + pc.translate, 0.0f, 1.0f);
-    float3 color = gammaCorrection(vs.color.rgb, DEFAULT_GAMMA);
-    fs.color = float4(color, vs.color.a);
+    fs.color = float4(gammaCorrection(vs.color.rgb, DEFAULT_GAMMA), vs.color.a);
     fs.texCoords = vs.texCoords;
 }
 ```
