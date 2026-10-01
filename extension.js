@@ -418,67 +418,67 @@ const builtins =
 	{
 		label: 'f16', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'A 16-bit floating-point vertex shader input attribute type.',
-		signature: 'in Type vs.name : f16;', insertText: new vscode.SnippetString('f16;')
+		signature: 'Type name : f16;', insertText: new vscode.SnippetString('f16;')
 	},
 	{
 		label: 'f32', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'A 32-bit floating-point vertex shader input attribute type.', 
-		signature: 'in Type vs.name : f32;', insertText: new vscode.SnippetString('f32;')
+		signature: 'Type name : f32;', insertText: new vscode.SnippetString('f32;')
 	},
 	{
 		label: 'f64', kind: vscode.CompletionItemKind.Keyword,
 		documentation: 'A 64-bit floating-point vertex shader input attribute type.',
-		signature: 'in Type vs.name : f64;', insertText: new vscode.SnippetString('f64;')
+		signature: 'Type name : f64;', insertText: new vscode.SnippetString('f64;')
 	},
 	{
 		label: 'i8', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'A 8-bit signed integer vertex shader input attribute type.', 
-		signature: 'in Type vs.name : i8;', insertText: new vscode.SnippetString('i8;')
+		signature: 'Type name : i8;', insertText: new vscode.SnippetString('i8;')
 	},
 	{
 		label: 'i16', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'A 16-bit signed integer vertex shader input attribute type.', 
-		signature: 'in Type vs.name : i16;', insertText: new vscode.SnippetString('i16;')
+		signature: 'Type name : i16;', insertText: new vscode.SnippetString('i16;')
 	},
 	{
 		label: 'i32', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'A 32-bit signed integer vertex shader input attribute type.', 
-		signature: 'in Type vs.name : i32;', insertText: new vscode.SnippetString('i32;')
+		signature: 'Type name : i32;', insertText: new vscode.SnippetString('i32;')
 	},
 	{
 		label: 'u8', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'A 8-bit unsigned integer vertex shader input attribute type.', 
-		signature: 'in Type vs.name : u8;', insertText: new vscode.SnippetString('u8;')
+		signature: 'Type name : u8;', insertText: new vscode.SnippetString('u8;')
 	},
 	{
 		label: 'u16', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'A 16-bit unsigned integer vertex shader input attribute type.', 
-		signature: 'in Type vs.name : u16;', insertText: new vscode.SnippetString('u16;')
+		signature: 'Type name : u16;', insertText: new vscode.SnippetString('u16;')
 	},
 	{
 		label: 'u32', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'A 32-bit unsigned integer vertex shader input attribute type.', 
-		signature: 'in Type vs.name : u32;', insertText: new vscode.SnippetString('u32;')
+		signature: 'Type name : u32;', insertText: new vscode.SnippetString('u32;')
 	},
 	{
 		label: 'snorm8', kind: vscode.CompletionItemKind.Keyword,
 		documentation: 'A 8-bit normalized int as float vertex shader input attribute type.',
-		signature: 'in Type vs.name : snorm8;', insertText: new vscode.SnippetString('snorm8;')
+		signature: 'Type name : snorm8;', insertText: new vscode.SnippetString('snorm8;')
 	},
 	{
 		label: 'snorm16', kind: vscode.CompletionItemKind.Keyword,
 		documentation: 'A 16-bit normalized int as float vertex shader input attribute type.',
-		signature: 'in Type vs.name : snorm16;', insertText: new vscode.SnippetString('snorm16;')
+		signature: 'Type name : snorm16;', insertText: new vscode.SnippetString('snorm16;')
 	},
 	{
 		label: 'unorm8', kind: vscode.CompletionItemKind.Keyword,
 		documentation: 'A 8-bit normalized uint as float vertex shader input attribute type.',
-		signature: 'in Type vs.name : unorm8;', insertText: new vscode.SnippetString('unorm8;')
+		signature: 'Type name : unorm8;', insertText: new vscode.SnippetString('unorm8;')
 	},
 	{
 		label: 'unorm16', kind: vscode.CompletionItemKind.Keyword,
 		documentation: 'A 16-bit normalized uint as float vertex shader input attribute type.',
-		signature: 'in Type vs.name : unorm16;', insertText: new vscode.SnippetString('unorm16;')
+		signature: 'Type name : unorm16;', insertText: new vscode.SnippetString('unorm16;')
 	},
 
 	{
@@ -801,6 +801,11 @@ const builtins =
 		label: 'reference', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Declares that the type can be used as a buffer reference.', 
 		signature: 'buffer reference BufferName\n{\n\t...\n};', insertText: new vscode.SnippetString('reference ')
+	},
+	{
+		label: 'perInstance', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'Determines whether a set of attribute data changes per vertex or per instance.', 
+		signature: 'vertexBuffer perInstance \n{\n\t...\n}', insertText: new vscode.SnippetString('perInstance')
 	},
 	{
 		label: 'depthLess', kind: vscode.CompletionItemKind.Keyword, 
