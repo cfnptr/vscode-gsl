@@ -446,6 +446,11 @@ const builtins =
 		signature: 'Type name : i32;', insertText: new vscode.SnippetString('i32;')
 	},
 	{
+		label: 'i64', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 64-bit signed integer vertex shader input attribute type.', 
+		signature: 'Type name : i64;', insertText: new vscode.SnippetString('i64;')
+	},
+	{
 		label: 'u8', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'A 8-bit unsigned integer vertex shader input attribute type.', 
 		signature: 'Type name : u8;', insertText: new vscode.SnippetString('u8;')
@@ -459,6 +464,11 @@ const builtins =
 		label: 'u32', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'A 32-bit unsigned integer vertex shader input attribute type.', 
 		signature: 'Type name : u32;', insertText: new vscode.SnippetString('u32;')
+	},
+	{
+		label: 'u64', kind: vscode.CompletionItemKind.Keyword, 
+		documentation: 'A 64-bit unsigned integer vertex shader input attribute type.', 
+		signature: 'Type name : u64;', insertText: new vscode.SnippetString('u64;')
 	},
 	{
 		label: 'snorm8', kind: vscode.CompletionItemKind.Keyword,
