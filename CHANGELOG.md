@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.0] - 2026-10-02
+
+- Refactored input vertex attribute declaration.
+- Added snorm/unorm and i64/u64 vertex attribute formats.
+- Removed #attributeOffset, #attachmentOffset and #feature syntax.
+- Added universal 'offset()' keyword.
+- Added quantizeUnorm() and dequantizeUnorm() functions.
+
 ## [1.5.1] - 2026-04-06
 
 - Added `noncoherent` keyword.

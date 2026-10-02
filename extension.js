@@ -53,11 +53,7 @@ const builtins =
 		documentation: 'Enables or disables specific non-standard GLSL features or hardware-specific capabilities.',
 		signature: '#extension EXT_NAME : <require|enable|disable|warn>', insertText: new vscode.SnippetString('#extension $1 : $2')
 	},
-	{
-		label: '#feature', kind: vscode.CompletionItemKind.Keyword, 
-		documentation: 'Requests the availability of GLSL or vendor-specific extension.', 
-		signature: '#feature name', insertText: new vscode.SnippetString('#feature $1')
-	},
+
 	{
 		label: 'void', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Represents the absence of a return value in functions.', 
@@ -2599,16 +2595,6 @@ const builtins =
 		label: 'callableDataIn', kind: vscode.CompletionItemKind.Keyword, 
 		documentation: 'Declares an input data for callable shaders.', 
 		signature: 'callableDataIn Type name;', insertText: new vscode.SnippetString('callableDataIn $1 $2;')
-	},
-	{
-		label: '#rayPayloadOffset', kind: vscode.CompletionItemKind.Keyword, 
-		documentation: 'Adds offset to the `rayPayload` or `rayPayloadIn` index.', 
-		signature: '#rayPayloadOffset x', insertText: new vscode.SnippetString('#rayPayloadOffset $1')
-	},
-	{
-		label: '#callableDataOffset', kind: vscode.CompletionItemKind.Keyword, 
-		documentation: 'Adds offset to the `callableData` or `callableDataIn` index.', 
-		signature: '#callableDataOffset x', insertText: new vscode.SnippetString('#callableDataOffset $1')
 	},
 	{
 		label: 'ignoreIntersection', kind: vscode.CompletionItemKind.Keyword, 
